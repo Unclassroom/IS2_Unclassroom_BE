@@ -1,0 +1,2 @@
+class PurposeClassroom < ApplicationRecord
+end
