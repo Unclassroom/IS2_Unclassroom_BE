@@ -1,18 +1,18 @@
-teacher
-external_person
-request
-request_alternative
-schedule_request
-purpose_classroom
-type_classroom
-manager
-student
-head_building
-building
-opinion
-reports
-schedule
-faculty
-deparment
-classroom
-subject
+rails destroy model teacher
+rails destroy model external_person
+rails destroy model request
+rails destroy model request_alternative
+rails destroy model schedule_request
+rails destroy model purpose_classroom
+rails destroy model type_classroom
+rails destroy model manager
+rails destroy model student
+rails destroy model head_building
+rails destroy model building
+rails destroy model opinion
+rails destroy model reports
+rails destroy model schedule
+rails destroy model faculty
+rails destroy model deparment
+rails destroy model classroom
+rails destroy model subject
