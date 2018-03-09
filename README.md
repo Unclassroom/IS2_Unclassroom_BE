@@ -6,3 +6,4 @@ notes first push:
     * Postgresql user: admin Pass:123456
     * Rails proyect's name is "BackEnd"
     
+added script for creating tables and models (create_tables.rb)
