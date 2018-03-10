@@ -74,3 +74,37 @@ Manager.destroy_all
 end
 
 puts 'finished loading manager data'
+
+Subject.destroy_all
+100.times do |row|
+        Subject.create(
+        name: Faker::Educator.course, 
+       # created_at: Faker::Date.backward(370),
+       # updated_at: Faker::Date.between(1.year.ago, Date.today)
+      )
+end
+
+puts 'finished loading subject data'
+
+Faculty.destroy_all
+Faculty.create(name: "Agronomia")
+Faculty.create(name: "Ciencias")
+Faculty.create(name: "Ciencias Económicas")
+Faculty.create(name: "Ciencias Humanas")
+Faculty.create(name: "Derecho, Ciencias Políticas y Sociales")
+Faculty.create(name: "Enfermería")
+Faculty.create(name: "Ingenieria")
+Faculty.create(name: "Medicina")
+Faculty.create(name: "Medicina Veterinaria y Zootecnia")
+Faculty.create(name: "Odontologia")
+
+puts 'finished loading faculty data'
+
+PurposeClassroom.destroy_all 
+100.times do |row|
+    PurposeClassroom.create(
+    name: Faker::Types.string,)
+  end
+
+
+puts 'finished loading purpose classroom data'
