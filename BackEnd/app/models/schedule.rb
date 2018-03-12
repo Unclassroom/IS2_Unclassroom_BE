@@ -1,5 +1,5 @@
 class Schedule < ApplicationRecord
-  belongs_to :subject
-  belongs_to :classroom
-  has_many :opinion
+  belongs_to :time_zone
+  belongs_to :day
+  has_many :schema
 end
