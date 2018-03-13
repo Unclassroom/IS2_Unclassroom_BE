@@ -1,3 +1,4 @@
 class Opinion < ApplicationRecord
-  belongs_to :schedule
+  belongs_to :schema
+  belongs_to :student
 end

@@ -3,5 +3,6 @@ class Classroom < ApplicationRecord
   belongs_to :purpose_classroom
   belongs_to :building
   belongs_to :deparment
-  belongs_to :schedule
+  has_many :schema
+  has_many :report
 end
