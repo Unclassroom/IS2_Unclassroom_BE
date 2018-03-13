@@ -1,7 +1,6 @@
 class CreateDays < ActiveRecord::Migration[5.1]
   def change
     create_table :days do |t|
-      t.integer :id
       t.string :name
       t.boolean :cyclic
       t.date :number_day

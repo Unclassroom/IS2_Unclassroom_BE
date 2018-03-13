@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309162239) do
+ActiveRecord::Schema.define(version: 20180312050254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20180309162239) do
     t.index ["purpose_classroom_id"], name: "index_classrooms_on_purpose_classroom_id"
     t.index ["schedule_id"], name: "index_classrooms_on_schedule_id"
     t.index ["type_classroom_id"], name: "index_classrooms_on_type_classroom_id"
+  end
+
+  create_table "days", force: :cascade do |t|
+    t.string "name"
+    t.boolean "cyclic"
+    t.date "number_day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "deparments", force: :cascade do |t|
@@ -146,6 +154,17 @@ ActiveRecord::Schema.define(version: 20180309162239) do
     t.index ["subject_id"], name: "index_schedules_on_subject_id"
   end
 
+  create_table "schemas", force: :cascade do |t|
+    t.bigint "classroom_id"
+    t.bigint "schedule_id"
+    t.bigint "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_schemas_on_classroom_id"
+    t.index ["schedule_id"], name: "index_schemas_on_schedule_id"
+    t.index ["subject_id"], name: "index_schemas_on_subject_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.integer "cc"
     t.string "first_name"
@@ -166,6 +185,13 @@ ActiveRecord::Schema.define(version: 20180309162239) do
     t.string "first_name"
     t.string "last_name"
     t.string "e_mail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "time_zones", force: :cascade do |t|
+    t.time "begin_at"
+    t.time "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -194,4 +220,7 @@ ActiveRecord::Schema.define(version: 20180309162239) do
   add_foreign_key "requests", "type_classrooms"
   add_foreign_key "schedule_requests", "request_alternatives", column: "request_alternatives_id"
   add_foreign_key "schedules", "subjects"
+  add_foreign_key "schemas", "classrooms"
+  add_foreign_key "schemas", "schedules"
+  add_foreign_key "schemas", "subjects"
 end
