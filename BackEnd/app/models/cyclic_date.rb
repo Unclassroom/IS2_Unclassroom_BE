@@ -1,0 +1,2 @@
+class CyclicDate < ApplicationRecord
+end

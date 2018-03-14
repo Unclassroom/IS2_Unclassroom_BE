@@ -1,0 +1,2 @@
+class SpecificDate < ApplicationRecord
+end
