@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312050254) do
+ActiveRecord::Schema.define(version: 20180314022104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20180312050254) do
     t.index ["purpose_classroom_id"], name: "index_classrooms_on_purpose_classroom_id"
     t.index ["schedule_id"], name: "index_classrooms_on_schedule_id"
     t.index ["type_classroom_id"], name: "index_classrooms_on_type_classroom_id"
+  end
+
+  create_table "cyclic_dates", force: :cascade do |t|
+    t.integer "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "deparments", force: :cascade do |t|
@@ -103,7 +109,7 @@ ActiveRecord::Schema.define(version: 20180312050254) do
     t.datetime "updated_at", null: false
     t.index ["schedule_id"], name: "index_reports_on_schedule_id"
   end
-  
+
   create_table "requests", force: :cascade do |t|
     t.bigint "teacher_id"
     t.bigint "purpose_classroom_id"
@@ -115,17 +121,6 @@ ActiveRecord::Schema.define(version: 20180312050254) do
     t.index ["purpose_classroom_id"], name: "index_requests_on_purpose_classroom_id"
     t.index ["teacher_id"], name: "index_requests_on_teacher_id"
     t.index ["type_classroom_id"], name: "index_requests_on_type_classroom_id"
-  end
-
-  create_table "schedule_requests", force: :cascade do |t|
-    t.integer "day"
-    t.time "begin_at"
-    t.time "end_at"
-    t.boolean "cyclic"
-    t.bigint "request_alternatives_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["request_alternatives_id"], name: "index_schedule_requests_on_request_alternatives_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -148,6 +143,12 @@ ActiveRecord::Schema.define(version: 20180312050254) do
     t.index ["classroom_id"], name: "index_schemas_on_classroom_id"
     t.index ["schedule_id"], name: "index_schemas_on_schedule_id"
     t.index ["subject_id"], name: "index_schemas_on_subject_id"
+  end
+
+  create_table "specific_dates", force: :cascade do |t|
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -198,12 +199,10 @@ ActiveRecord::Schema.define(version: 20180312050254) do
   add_foreign_key "deparments", "teachers"
   add_foreign_key "opinions", "schedules"
   add_foreign_key "reports", "schedules"
-  add_foreign_key "request_alternatives", "requests"
   add_foreign_key "requests", "external_people"
   add_foreign_key "requests", "purpose_classrooms"
   add_foreign_key "requests", "teachers"
   add_foreign_key "requests", "type_classrooms"
-  add_foreign_key "schedule_requests", "request_alternatives", column: "request_alternatives_id"
   add_foreign_key "schedules", "subjects"
   add_foreign_key "schemas", "classrooms"
   add_foreign_key "schemas", "schedules"
