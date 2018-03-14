@@ -40,14 +40,6 @@ ActiveRecord::Schema.define(version: 20180312050254) do
     t.index ["type_classroom_id"], name: "index_classrooms_on_type_classroom_id"
   end
 
-  create_table "days", force: :cascade do |t|
-    t.string "name"
-    t.boolean "cyclic"
-    t.date "number_day"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "deparments", force: :cascade do |t|
     t.bigint "faculty_id"
     t.string "name"
@@ -111,14 +103,7 @@ ActiveRecord::Schema.define(version: 20180312050254) do
     t.datetime "updated_at", null: false
     t.index ["schedule_id"], name: "index_reports_on_schedule_id"
   end
-
-  create_table "request_alternatives", force: :cascade do |t|
-    t.bigint "request_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["request_id"], name: "index_request_alternatives_on_request_id"
-  end
-
+  
   create_table "requests", force: :cascade do |t|
     t.bigint "teacher_id"
     t.bigint "purpose_classroom_id"

@@ -1,0 +1,22 @@
+external_person
+teacher
+manager
+type_classroom
+purpose_classroom
+    -request
+        -request_alternative
+head_building
+faculty
+    -building
+    -department (with teacher)
+        -classroom (with type_classroom)
+        -reports
+subject
+    -group
+schedule
+    -specific_date
+    -cyclic_date
+            -schema (with classrooms and group)
+            -schedule_request (with request_alternative)
+student
+                -opinion (with schema)
