@@ -21,7 +21,7 @@ rails g scaffold deparment faculty:references name:string teacher:references -s
 rails g scaffold request teacher:references purpose_classroom:references type_classroom:references external_person:references state:string -s
 rails g scaffold request_alternative request:references  -s
 rails g scaffold opinion classroom_schedule:references student:references  -s
-rails g scaffold reports description:string{500} schedule:references classroom:references  -s
+rails g scaffold reports description:string{500} classroom:references  -s
 
 rails g scaffold cyclic_schedule day:integer begin_at:time end_at:time  -s
 rails g scaffold classroom_schedule classroom:references group:references subject:references -s

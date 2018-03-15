@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reports
   resources :classroom_events
   resources :events
   resources :opinions
