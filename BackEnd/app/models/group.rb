@@ -5,4 +5,5 @@ class Group < ApplicationRecord
 
   #associations
   belongs_to :subject
+  has_many :classroom_schedules
 end

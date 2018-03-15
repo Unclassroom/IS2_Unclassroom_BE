@@ -128,6 +128,17 @@ end
 
 puts 'finished loading head building data'
 
+
+# Building.destroy_all
+# 20.times do |row|
+#     @HeadBuilding.Building.create!(
+#         name: Faker::Educator.campus,
+#     )
+# end
+
+# puts 'finished loading building'
+
+
 ##### SCHEDULES
 
 # CyclicShedules.destroy_all

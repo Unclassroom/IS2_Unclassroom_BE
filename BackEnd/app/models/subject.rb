@@ -4,5 +4,5 @@ class Subject < ApplicationRecord
     { maximum: 60, too_long: "%{count} characters is the maximum allowed" }
 
     #asociations
-    has_many :group
+    has_many :groups
 end
