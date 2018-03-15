@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315162918) do
+ActiveRecord::Schema.define(version: 20180315165036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,49 @@ ActiveRecord::Schema.define(version: 20180315162918) do
     t.datetime "updated_at", null: false
     t.index ["faculty_id"], name: "index_buildings_on_faculty_id"
     t.index ["head_building_id"], name: "index_buildings_on_head_building_id"
+  end
+
+  create_table "classroom_events", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "specific_schedule_id"
+    t.bigint "classroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classroom_events_on_classroom_id"
+    t.index ["event_id"], name: "index_classroom_events_on_event_id"
+    t.index ["specific_schedule_id"], name: "index_classroom_events_on_specific_schedule_id"
+  end
+
+  create_table "classroom_schedules", force: :cascade do |t|
+    t.bigint "classroom_id"
+    t.bigint "group_id"
+    t.bigint "cyclic_schedule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_classroom_schedules_on_classroom_id"
+    t.index ["cyclic_schedule_id"], name: "index_classroom_schedules_on_cyclic_schedule_id"
+    t.index ["group_id"], name: "index_classroom_schedules_on_group_id"
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.bigint "type_classroom_id"
+    t.bigint "building_id"
+    t.bigint "deparment_id"
+    t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_classrooms_on_building_id"
+    t.index ["deparment_id"], name: "index_classrooms_on_deparment_id"
+    t.index ["type_classroom_id"], name: "index_classrooms_on_type_classroom_id"
+  end
+
+  create_table "cyclic_requests", force: :cascade do |t|
+    t.bigint "request_alternative_id"
+    t.bigint "cyclic_schedule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cyclic_schedule_id"], name: "index_cyclic_requests_on_cyclic_schedule_id"
+    t.index ["request_alternative_id"], name: "index_cyclic_requests_on_request_alternative_id"
   end
 
   create_table "cyclic_schedules", force: :cascade do |t|
@@ -40,6 +83,13 @@ ActiveRecord::Schema.define(version: 20180315162918) do
     t.datetime "updated_at", null: false
     t.index ["faculty_id"], name: "index_deparments_on_faculty_id"
     t.index ["teacher_id"], name: "index_deparments_on_teacher_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "external_people", force: :cascade do |t|
@@ -82,10 +132,60 @@ ActiveRecord::Schema.define(version: 20180315162918) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "opinions", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "classroom_schedule_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_schedule_id"], name: "index_opinions_on_classroom_schedule_id"
+    t.index ["student_id"], name: "index_opinions_on_student_id"
+  end
+
   create_table "purpose_classrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "description", limit: 500
+    t.bigint "classroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_reports_on_classroom_id"
+  end
+
+  create_table "request_alternatives", force: :cascade do |t|
+    t.bigint "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_request_alternatives_on_request_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.bigint "external_person_id"
+    t.bigint "purpose_classroom_id"
+    t.bigint "type_classroom_id"
+    t.date "day"
+    t.string "state"
+    t.boolean "accepted_alternative"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["external_person_id"], name: "index_requests_on_external_person_id"
+    t.index ["purpose_classroom_id"], name: "index_requests_on_purpose_classroom_id"
+    t.index ["teacher_id"], name: "index_requests_on_teacher_id"
+    t.index ["type_classroom_id"], name: "index_requests_on_type_classroom_id"
+  end
+
+  create_table "specific_requests", force: :cascade do |t|
+    t.bigint "request_alternative_id"
+    t.bigint "specific_schedule_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_alternative_id"], name: "index_specific_requests_on_request_alternative_id"
+    t.index ["specific_schedule_id"], name: "index_specific_requests_on_specific_schedule_id"
   end
 
   create_table "specific_schedules", force: :cascade do |t|
@@ -127,6 +227,27 @@ ActiveRecord::Schema.define(version: 20180315162918) do
   end
 
   add_foreign_key "buildings", "faculties"
+  add_foreign_key "classroom_events", "classrooms"
+  add_foreign_key "classroom_events", "events"
+  add_foreign_key "classroom_events", "specific_schedules"
+  add_foreign_key "classroom_schedules", "classrooms"
+  add_foreign_key "classroom_schedules", "cyclic_schedules"
+  add_foreign_key "classroom_schedules", "groups"
+  add_foreign_key "classrooms", "buildings"
+  add_foreign_key "classrooms", "deparments"
+  add_foreign_key "classrooms", "type_classrooms"
+  add_foreign_key "cyclic_requests", "cyclic_schedules"
+  add_foreign_key "cyclic_requests", "request_alternatives"
   add_foreign_key "deparments", "faculties"
   add_foreign_key "groups", "subjects"
+  add_foreign_key "opinions", "classroom_schedules"
+  add_foreign_key "opinions", "students"
+  add_foreign_key "reports", "classrooms"
+  add_foreign_key "request_alternatives", "requests"
+  add_foreign_key "requests", "external_people"
+  add_foreign_key "requests", "purpose_classrooms"
+  add_foreign_key "requests", "teachers"
+  add_foreign_key "requests", "type_classrooms"
+  add_foreign_key "specific_requests", "request_alternatives"
+  add_foreign_key "specific_requests", "specific_schedules"
 end
