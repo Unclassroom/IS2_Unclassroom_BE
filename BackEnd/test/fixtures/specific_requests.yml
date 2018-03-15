@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request_alternative: one
+  specific: one
+
+two:
+  request_alternative: two
+  specific: two

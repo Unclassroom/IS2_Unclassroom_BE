@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  specific: one
+  classroom: one
+
+two:
+  event: two
+  specific: two
+  classroom: two

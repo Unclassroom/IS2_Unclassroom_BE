@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315142757) do
+ActiveRecord::Schema.define(version: 20180315171454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,20 +24,13 @@ ActiveRecord::Schema.define(version: 20180315142757) do
     t.index ["head_building_id"], name: "index_buildings_on_head_building_id"
   end
 
-  create_table "cyclic_dates", force: :cascade do |t|
-    t.integer "day"
+  create_table "external_people", force: :cascade do |t|
+    t.integer "cc"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "deparments", force: :cascade do |t|
-    t.bigint "faculty_id"
-    t.string "name"
-    t.bigint "teacher_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["faculty_id"], name: "index_deparments_on_faculty_id"
-    t.index ["teacher_id"], name: "index_deparments_on_teacher_id"
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -46,11 +39,22 @@ ActiveRecord::Schema.define(version: 20180315142757) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.bigint "subject_id"
+  create_table "head_buildings", force: :cascade do |t|
+    t.integer "cc"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subject_id"], name: "index_groups_on_subject_id"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.integer "cc"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "purpose_classrooms", force: :cascade do |t|
@@ -59,14 +63,26 @@ ActiveRecord::Schema.define(version: 20180315142757) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "specific_dates", force: :cascade do |t|
-    t.date "date"
+  create_table "students", force: :cascade do |t|
+    t.integer "cc"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "subjects", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.integer "cc"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,6 +94,5 @@ ActiveRecord::Schema.define(version: 20180315142757) do
   end
 
   add_foreign_key "buildings", "faculties"
-  add_foreign_key "deparments", "faculties"
-  add_foreign_key "groups", "subjects"
+  add_foreign_key "buildings", "head_buildings"
 end

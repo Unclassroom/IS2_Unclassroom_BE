@@ -1,2 +1,0 @@
-class SpecificDate < ApplicationRecord
-end
