@@ -5,6 +5,8 @@ faculty                     Adri
 purpose_classroom           Adri          
 type_classroom              Adri
 
+----> group                 Adri
+
 ----> department
 
 CREATED TABLES
