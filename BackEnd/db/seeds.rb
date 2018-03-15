@@ -127,3 +127,16 @@ HeadBuilding.destroy_all
 end
 
 puts 'finished loading head building data'
+
+##### SCHEDULES
+
+# CyclicShedules.destroy_all
+# 55.times do |row|
+#       CyclicShedules.create!(
+#         day: Faker::Number.unique.number(8),
+#         begin_at: Faker::Name.first_name,
+#         end_at: Faker::Name.last_name,
+#         #created_at: Faker::Date.backward(370),
+#         #updated_at: Faker::Date.between(1.year.ago, Date.today)
+#       )
+# end

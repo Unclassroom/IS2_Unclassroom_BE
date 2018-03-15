@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CyclicDateTest < ActiveSupport::TestCase
+class RequestAlternativeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

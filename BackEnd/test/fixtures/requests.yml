@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher: one
+  external_person: one
+  purpose_classroom: one
+  type_classroom: one
+  day: 2018-03-15
+  state: MyString
+  accepted_alternative: false
+
+two:
+  teacher: two
+  external_person: two
+  purpose_classroom: two
+  type_classroom: two
+  day: 2018-03-15
+  state: MyString
+  accepted_alternative: false

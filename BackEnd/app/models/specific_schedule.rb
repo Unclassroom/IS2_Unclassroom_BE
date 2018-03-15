@@ -1,0 +1,2 @@
+class SpecificSchedule < ApplicationRecord
+end

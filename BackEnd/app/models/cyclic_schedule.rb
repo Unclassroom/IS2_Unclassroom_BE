@@ -1,0 +1,2 @@
+class CyclicSchedule < ApplicationRecord
+end
