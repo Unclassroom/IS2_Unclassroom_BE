@@ -14,8 +14,6 @@ rails g scaffold head_building cc:integer first_name:string last_name:string ema
 
 #dependent tables
 rails g scaffold group subject:references
-
-
 rails g scaffold deparment faculty:references name:string teacher:references
 rails g scaffold schedule day:integer begin_at:time end_at:time cyclic:boolean subject:references
 rails g scaffold request teacher:references purpose_classroom:references type_classroom:references external_person:references

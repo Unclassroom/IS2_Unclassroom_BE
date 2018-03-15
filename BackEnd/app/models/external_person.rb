@@ -1,0 +1,2 @@
+class ExternalPerson < ApplicationRecord
+end
