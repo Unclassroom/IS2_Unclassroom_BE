@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ExternalPersonTest < ActiveSupport::TestCase
+class FacultiesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

@@ -1,0 +1,2 @@
+class PurposeClassroomsController < ApplicationController
+end

@@ -1,3 +1,18 @@
+CREATED TABLES
+in schema.rb
+
+buildings
+cyclic_dates
+departments
+faculties
+purpose_classrooms
+specific_dates
+subjects
+type_classrooms
+
+
+DEPENDENCIES
+
 external_person
 teacher
 manager

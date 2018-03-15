@@ -1,4 +1,3 @@
 class PurposeClassroom < ApplicationRecord
-  has_many :classroom
-  has_many :request
+    validates :name, presence: { message: "must be given please" }, uniqueness: true
 end

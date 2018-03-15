@@ -1,4 +1,6 @@
 class Faculty < ApplicationRecord
-  has_many :building
-  has_many :deparment
+    validates :name, presence: { message: "must be given please" }, uniqueness: true, length: 
+    { maximum: 60, too_long: "%{count} characters is the maximum allowed" }
+    has_many :building
+    has_many :department
 end

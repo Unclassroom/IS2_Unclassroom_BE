@@ -15,4 +15,3 @@ rails g model opinion schedule:references
 rails g model reports description:string{500} schedule:references 
 rails g model deparment faculty:references name:string teacher:references
 rails g model schedule_request day:integer begin_at:time end_at:time cyclic:boolean request_alternatives:references
-rails g model classroom type_classroom:references purpose_classroom:references building:references deparment:references capacity:integer schedule:references
