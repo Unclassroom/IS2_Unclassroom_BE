@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315173441) do
+ActiveRecord::Schema.define(version: 20180316180839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,8 +162,10 @@ ActiveRecord::Schema.define(version: 20180315173441) do
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "request_alternative_id"
     t.index ["external_person_id"], name: "index_requests_on_external_person_id"
     t.index ["purpose_classroom_id"], name: "index_requests_on_purpose_classroom_id"
+    t.index ["request_alternative_id"], name: "index_requests_on_request_alternative_id"
     t.index ["teacher_id"], name: "index_requests_on_teacher_id"
     t.index ["type_classroom_id"], name: "index_requests_on_type_classroom_id"
   end
@@ -236,6 +238,7 @@ ActiveRecord::Schema.define(version: 20180315173441) do
   add_foreign_key "request_alternatives", "requests"
   add_foreign_key "requests", "external_people"
   add_foreign_key "requests", "purpose_classrooms"
+  add_foreign_key "requests", "request_alternatives"
   add_foreign_key "requests", "teachers"
   add_foreign_key "requests", "type_classrooms"
   add_foreign_key "specific_requests", "request_alternatives"
