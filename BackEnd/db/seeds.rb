@@ -1,15 +1,6 @@
 require 'faker'
 
-<<<<<<< HEAD
 ### BASIC MODELS
-=======
-puts Subject.first.name
-
-for i in Subject.all
-    puts i.name
-end
-
->>>>>>> init_tables_Felipe
 
 
 Subject.destroy_all
@@ -79,21 +70,6 @@ TypeClassroom.create(name: "estadio")
 
 puts 'finished loading type_classroom data'
 
-<<<<<<< HEAD
-##### PEOPLE MODELS
-
-Teacher.destroy_all
-  100.times do |row|
-    Teacher.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        #created_at: Faker::Date.backward(370),
-        #updated_at: Faker::Date.between(1.year.ago, Date.today)
-      )
-  end
-=======
 Building.destroy_all
 
 
@@ -109,7 +85,6 @@ Building.destroy_all
 #         #updated_at: Faker::Date.between(1.year.ago, Date.today)
 #       )
 #     end
->>>>>>> init_tables_Felipe
 
 puts 'finished loading teacher data'
 
