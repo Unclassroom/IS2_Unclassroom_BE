@@ -2,8 +2,8 @@
 
 one:
   request_alternative: one
-  specific_schedule: one
+  specific: one
 
 two:
   request_alternative: two
-  specific_schedule: two
+  specific: two

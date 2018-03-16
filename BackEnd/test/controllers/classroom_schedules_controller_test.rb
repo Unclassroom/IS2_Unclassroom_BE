@@ -12,7 +12,7 @@ class ClassroomSchedulesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create classroom_schedule" do
     assert_difference('ClassroomSchedule.count') do
-      post classroom_schedules_url, params: { classroom_schedule: { classroom_id: @classroom_schedule.classroom_id, cyclic_schedule_id: @classroom_schedule.cyclic_schedule_id, group_id: @classroom_schedule.group_id } }, as: :json
+      post classroom_schedules_url, params: { classroom_schedule: { classroom_id: @classroom_schedule.classroom_id, group_id: @classroom_schedule.group_id, subject_id: @classroom_schedule.subject_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class ClassroomSchedulesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update classroom_schedule" do
-    patch classroom_schedule_url(@classroom_schedule), params: { classroom_schedule: { classroom_id: @classroom_schedule.classroom_id, cyclic_schedule_id: @classroom_schedule.cyclic_schedule_id, group_id: @classroom_schedule.group_id } }, as: :json
+    patch classroom_schedule_url(@classroom_schedule), params: { classroom_schedule: { classroom_id: @classroom_schedule.classroom_id, group_id: @classroom_schedule.group_id, subject_id: @classroom_schedule.subject_id } }, as: :json
     assert_response 200
   end
 

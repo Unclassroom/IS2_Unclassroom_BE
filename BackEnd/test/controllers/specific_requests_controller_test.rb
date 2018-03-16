@@ -12,7 +12,7 @@ class SpecificRequestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create specific_request" do
     assert_difference('SpecificRequest.count') do
-      post specific_requests_url, params: { specific_request: { request_alternative_id: @specific_request.request_alternative_id, specific_schedule_id: @specific_request.specific_schedule_id } }, as: :json
+      post specific_requests_url, params: { specific_request: { request_alternative_id: @specific_request.request_alternative_id, specific_id: @specific_request.specific_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class SpecificRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update specific_request" do
-    patch specific_request_url(@specific_request), params: { specific_request: { request_alternative_id: @specific_request.request_alternative_id, specific_schedule_id: @specific_request.specific_schedule_id } }, as: :json
+    patch specific_request_url(@specific_request), params: { specific_request: { request_alternative_id: @specific_request.request_alternative_id, specific_id: @specific_request.specific_id } }, as: :json
     assert_response 200
   end
 

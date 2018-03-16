@@ -2,10 +2,10 @@
 
 one:
   event: one
-  specific_schedule: one
+  specific: one
   classroom: one
 
 two:
   event: two
-  specific_schedule: two
+  specific: two
   classroom: two

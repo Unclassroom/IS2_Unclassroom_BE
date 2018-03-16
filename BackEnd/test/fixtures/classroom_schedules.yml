@@ -3,9 +3,9 @@
 one:
   classroom: one
   group: one
-  cyclic_schedule: one
+  subject: one
 
 two:
   classroom: two
   group: two
-  cyclic_schedule: two
+  subject: two
