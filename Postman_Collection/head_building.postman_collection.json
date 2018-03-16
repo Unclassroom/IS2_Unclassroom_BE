@@ -1,0 +1,94 @@
+{
+	"id": "a5753cd0-55ae-494e-8259-ac9dbae9fb75",
+	"name": "head_building",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"821c72a3-b64a-4f3b-83e8-2f0688a93106",
+		"692806ea-3ba4-4bd5-840a-3925a8b04f2b",
+		"1b4cf8e9-1cde-4c75-88b4-efef21239a7f",
+		"4bff6883-7747-4fdc-a031-0b64aff029b5"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "1b4cf8e9-1cde-4c75-88b4-efef21239a7f",
+			"name": "get name head_buildings",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "4bff6883-7747-4fdc-a031-0b64aff029b5",
+			"name": "put update head_building",
+			"url": "http://localhost:3000/subjects?name=Bachelor of Health Science",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "name",
+					"value": "Bachelor of Health Science",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "692806ea-3ba4-4bd5-840a-3925a8b04f2b",
+			"name": "post head_buildings",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "821c72a3-b64a-4f3b-83e8-2f0688a93106",
+			"name": "get all head_buildings",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}

@@ -1,0 +1,94 @@
+{
+	"id": "5928a6be-e023-49df-8838-7f5ced43db2f",
+	"name": "subject",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"9394bb5b-8e11-47f6-96f9-4ae29ce477f0",
+		"5417043f-1649-47f7-98a8-a3a068af42b2",
+		"443a43da-1add-442c-9476-4ca2f2e6195d",
+		"770ef649-9a10-4f52-8353-a1a8b8668162"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "443a43da-1add-442c-9476-4ca2f2e6195d",
+			"name": "get health science subject",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "5417043f-1649-47f7-98a8-a3a068af42b2",
+			"name": "post subject",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "770ef649-9a10-4f52-8353-a1a8b8668162",
+			"name": "put update health science",
+			"url": "http://localhost:3000/subjects?name=Bachelor of Health Science",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "name",
+					"value": "Bachelor of Health Science",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "9394bb5b-8e11-47f6-96f9-4ae29ce477f0",
+			"name": "get all subjects",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}

@@ -1,0 +1,94 @@
+{
+	"id": "2a014101-50bb-4a3a-b486-64cb10e1beed",
+	"name": "external_person",
+	"description": "",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"529827a2-4cb1-4cd0-8847-5e6a4d4616cf",
+		"946832e6-227a-4e43-9d07-008cc513617d",
+		"7e303517-1a0c-4cfa-9860-e5744795c765",
+		"8e0e8bb9-33eb-45ee-bb50-855bb9298356"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "529827a2-4cb1-4cd0-8847-5e6a4d4616cf",
+			"name": "get all external_person",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "7e303517-1a0c-4cfa-9860-e5744795c765",
+			"name": "get health science external_person",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "8e0e8bb9-33eb-45ee-bb50-855bb9298356",
+			"name": "put update external_person",
+			"url": "http://localhost:3000/subjects?name=Bachelor of Health Science",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "PUT",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "name",
+					"value": "Bachelor of Health Science",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "946832e6-227a-4e43-9d07-008cc513617d",
+			"name": "post external_person",
+			"url": "",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
