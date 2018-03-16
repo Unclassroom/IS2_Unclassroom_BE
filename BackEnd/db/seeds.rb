@@ -1,5 +1,13 @@
 require 'faker'
 
+puts Subject.first.name
+
+for i in Subject.all
+    puts i.name
+end
+
+
+
 Subject.destroy_all
 50.times do |row|
         Subject.create!(
@@ -8,6 +16,22 @@ Subject.destroy_all
        # updated_at: Faker::Date.between(1.year.ago, Date.today)
       )
 end
+
+puts "finished adding subjets =D"
+
+HeadBuilding.destroy_all
+50.times do |row|
+    HeadBuilding.create!(
+    first_name: Faker::GameOfThrones.character,
+    last_name: Faker::GameOfThrones.character,
+
+   # created_at: Faker::Date.backward(370),
+   # updated_at: Faker::Date.between(1.year.ago, Date.today)
+  )
+end
+
+p "buildings =D"
+
 
 Faculty.destroy_all
 Faculty.create!(name: "Agronomia")
@@ -50,6 +74,10 @@ TypeClassroom.create(name: "cancha de baloncesto")
 TypeClassroom.create(name: "estadio")
 
 puts 'finished loading type_classroom data'
+
+Building.destroy_all
+
+
 
 # Student.destroy_all
 # 100.times do |row|
