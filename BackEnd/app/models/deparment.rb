@@ -1,8 +1,4 @@
 class Deparment < ApplicationRecord
-    ## validates
-
-
-    ## associations
-    belongs_to :faculty
-    has_many :classrooms
+  belongs_to :faculty
+  belongs_to :teacher
 end

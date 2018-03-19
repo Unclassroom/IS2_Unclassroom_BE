@@ -46,6 +46,6 @@ class SpecificRequestsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def specific_request_params
-      params.require(:specific_request).permit(:request_alternative_id, :specific_schedule_id)
+      params.require(:specific_request).permit(:request_alternative_id, :specific_id)
     end
 end

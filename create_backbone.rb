@@ -1,38 +1,33 @@
 # independent tables
-rails g scaffold faculty name:string
-rails g scaffold building head_building:references faculty:references
-rails g scaffold purpose_classroom name:string
-rails g scaffold type_classroom name:string
-rails g scaffold subject name:string
-rails g scaffold event name:string description:string
+rails g migration faculty name:string -s
+rails g migration purpose_classroom name:string -s
+rails g migration type_classroom name:string -s
+rails g migration subject name:string -s
 
-# people
-rails g scaffold teacher cc:integer first_name:string last_name:string email:string 
-rails g scaffold external_person cc:integer first_name:string last_name:string email:string
-rails g scaffold manager cc:integer first_name:string last_name:string email:string
-rails g scaffold student cc:integer first_name:string last_name:string email:string
-rails g scaffold head_building cc:integer first_name:string last_name:string email:string
 
-#schedule
-
-rails g scaffold cyclic_schedule day:integer begin_at:time end_at:time
-rails g scaffold specific_schedule day:date begin_at:time end_at:time
+# people 
+rails g migration teacher cc:integer first_name:string last_name:string email:string  -s
+rails g migration external_person cc:integer first_name:string last_name:string email:string -s
+rails g migration manager cc:integer first_name:string last_name:string email:string -s
+rails g migration student cc:integer first_name:string last_name:string email:string -s
+rails g migration head_building cc:integer first_name:string last_name:string email:string -s
 
 #dependent tables
-rails g scaffold group subject:references
-rails g scaffold deparment faculty:references name:string teacher:references
 
-rails g scaffold request teacher:references external_person:references purpose_classroom:references type_classroom:references day:date state:string accepted_alternative:boolean
-rails g scaffold request_alternative request:references
+rails g migration building head_building:references faculty:references -s
+rails g migration classroom type_classroom:references building:references deparment:references capacity:integer -s
+rails g migration group subject:references number:integer  -s
+rails g migration deparment faculty:references name:string teacher:references -s
+rails g migration request teacher:references purpose_classroom:references type_classroom:references external_person:references state:string -s
+rails g migration request_alternative request:references  -s
+rails g migration add_request_alternative_to_request request_alternative:references -s
+rails g migration opinion classroom_schedule:references student:references  -s
+rails g migration reports description:string{500} classroom:references  -s
 
-rails g scaffold cyclic_request request_alternative:references cyclic_schedule:references
-rails g scaffold specific_request request_alternative:references specific_schedule:references
-
-rails g scaffold classroom type_classroom:references building:references deparment:references capacity:integer
-
-rails g scaffold report description:string{500} classroom:references
-
-rails g scaffold classroom_event event:references specific_schedule:references classroom:references
-
-rails g scaffold classroom_schedule classroom:references group:references cyclic_schedule:references
-rails g scaffold opinion student:references classroom_schedule:references description:string
+rails g migration cyclic_schedule day:integer begin_at:time end_at:time  -s
+rails g migration classroom_schedule classroom:references group:references subject:references -s
+rails g migration cyclic_request request_alternative:references cyclic_schedule:references -s
+rails g migration specific date:date begin_at:time end_at:time -s
+rails g migration specific_request request_alternative:references specific:references -s
+rails g migration event name:string description:string{200}  -s
+rails g migration classroom_event event:references specific:references classroom:references -s

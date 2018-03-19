@@ -46,6 +46,6 @@ class ClassroomSchedulesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def classroom_schedule_params
-      params.require(:classroom_schedule).permit(:classroom_id, :group_id, :cyclic_schedule_id)
+      params.require(:classroom_schedule).permit(:classroom_id, :group_id, :subject_id)
     end
 end

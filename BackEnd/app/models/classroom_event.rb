@@ -3,6 +3,6 @@ class ClassroomEvent < ApplicationRecord
   
   ##associations
   belongs_to :event
-  belongs_to :specific_schedule
+  belongs_to :specific
   belongs_to :classroom
 end

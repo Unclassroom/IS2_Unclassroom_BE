@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  student: one
   classroom_schedule: one
-  description: MyString
+  student: one
 
 two:
-  student: two
   classroom_schedule: two
-  description: MyString
+  student: two

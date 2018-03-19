@@ -12,7 +12,7 @@ class OpinionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create opinion" do
     assert_difference('Opinion.count') do
-      post opinions_url, params: { opinion: { classroom_schedule_id: @opinion.classroom_schedule_id, description: @opinion.description, student_id: @opinion.student_id } }, as: :json
+      post opinions_url, params: { opinion: { classroom_schedule_id: @opinion.classroom_schedule_id, student_id: @opinion.student_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class OpinionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update opinion" do
-    patch opinion_url(@opinion), params: { opinion: { classroom_schedule_id: @opinion.classroom_schedule_id, description: @opinion.description, student_id: @opinion.student_id } }, as: :json
+    patch opinion_url(@opinion), params: { opinion: { classroom_schedule_id: @opinion.classroom_schedule_id, student_id: @opinion.student_id } }, as: :json
     assert_response 200
   end
 

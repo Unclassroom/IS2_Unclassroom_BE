@@ -12,6 +12,22 @@ Subject.destroy_all
       )
 end
 
+puts "finished adding subjets =D"
+
+HeadBuilding.destroy_all
+50.times do |row|
+    HeadBuilding.create!(
+    first_name: Faker::GameOfThrones.character,
+    last_name: Faker::GameOfThrones.character,
+
+   # created_at: Faker::Date.backward(370),
+   # updated_at: Faker::Date.between(1.year.ago, Date.today)
+  )
+end
+
+p "buildings =D"
+
+
 Faculty.destroy_all
 Faculty.create!(name: "Agronomia")
 Faculty.create!(name: "Ciencias")
@@ -54,19 +70,21 @@ TypeClassroom.create(name: "estadio")
 
 puts 'finished loading type_classroom data'
 
-##### PEOPLE MODELS
+Building.destroy_all
 
-Teacher.destroy_all
-  100.times do |row|
-    Teacher.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        #created_at: Faker::Date.backward(370),
-        #updated_at: Faker::Date.between(1.year.ago, Date.today)
-      )
-  end
+
+
+# Student.destroy_all
+# 100.times do |row|
+#     Student.create!(
+#         cc: Faker::Number.unique.number(8),
+#         first_name: Faker::Name.first_name,
+#         last_name: Faker::Name.last_name,
+#         e_mail: Faker::Internet.email, 
+#         #created_at: Faker::Date.backward(370),
+#         #updated_at: Faker::Date.between(1.year.ago, Date.today)
+#       )
+#     end
 
 puts 'finished loading teacher data'
 
