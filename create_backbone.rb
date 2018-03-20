@@ -14,7 +14,7 @@ rails g scaffold head_building cc:integer first_name:string last_name:string ema
 
 #dependent tables
 
-rails g scaffold building head_building:references faculty:references -s
+rails g scaffold building head_building:references faculty:references name:string -s
 rails g scaffold department faculty:references name:string teacher:references -s
 rails g scaffold classroom type_classroom:references building:references department:references capacity:integer -s
 rails g scaffold group subject:references number:integer  -s

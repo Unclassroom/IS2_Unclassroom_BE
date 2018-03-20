@@ -4,7 +4,6 @@ class Request < ApplicationRecord
   validates :external_person_id, presence: true, numericality: { only_integer: true }
   validates :purpose_classroom_id, presence: true, numericality: { only_integer: true }
   validates :type_classroom_id, presence: true, numericality: { only_integer: true }
-  validates :accepted_alternative, presence: true, numericality: { only_integer: true }
   validates :state, presence: true 
   
   ## associations
