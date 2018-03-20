@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320144421) do
+ActiveRecord::Schema.define(version: 20180320151301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20180320144421) do
     t.bigint "faculty_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.index ["faculty_id"], name: "index_buildings_on_faculty_id"
     t.index ["head_building_id"], name: "index_buildings_on_head_building_id"
   end
@@ -52,12 +51,12 @@ ActiveRecord::Schema.define(version: 20180320144421) do
   create_table "classrooms", force: :cascade do |t|
     t.bigint "type_classroom_id"
     t.bigint "building_id"
-    t.bigint "deparment_id"
+    t.bigint "department_id"
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["building_id"], name: "index_classrooms_on_building_id"
-    t.index ["deparment_id"], name: "index_classrooms_on_deparment_id"
+    t.index ["department_id"], name: "index_classrooms_on_department_id"
     t.index ["type_classroom_id"], name: "index_classrooms_on_type_classroom_id"
   end
 
@@ -76,18 +75,6 @@ ActiveRecord::Schema.define(version: 20180320144421) do
     t.time "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "cyclic_request_id"
-    t.index ["cyclic_request_id"], name: "index_cyclic_schedules_on_cyclic_request_id"
-  end
-
-  create_table "deparments", force: :cascade do |t|
-    t.bigint "faculty_id"
-    t.string "name"
-    t.bigint "teacher_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["faculty_id"], name: "index_deparments_on_faculty_id"
-    t.index ["teacher_id"], name: "index_deparments_on_teacher_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -124,9 +111,9 @@ ActiveRecord::Schema.define(version: 20180320144421) do
 
   create_table "groups", force: :cascade do |t|
     t.bigint "subject_id"
+    t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "number"
     t.index ["subject_id"], name: "index_groups_on_subject_id"
   end
 
@@ -251,13 +238,10 @@ ActiveRecord::Schema.define(version: 20180320144421) do
   add_foreign_key "classroom_schedules", "groups"
   add_foreign_key "classroom_schedules", "subjects"
   add_foreign_key "classrooms", "buildings"
-  add_foreign_key "classrooms", "deparments"
+  add_foreign_key "classrooms", "departments"
   add_foreign_key "classrooms", "type_classrooms"
   add_foreign_key "cyclic_requests", "cyclic_schedules"
   add_foreign_key "cyclic_requests", "request_alternatives"
-  add_foreign_key "cyclic_schedules", "cyclic_requests"
-  add_foreign_key "deparments", "faculties"
-  add_foreign_key "deparments", "teachers"
   add_foreign_key "departments", "faculties"
   add_foreign_key "departments", "teachers"
   add_foreign_key "groups", "subjects"

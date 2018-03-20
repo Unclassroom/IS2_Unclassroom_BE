@@ -11,7 +11,7 @@ Report.destroy_all
 Opinion.destroy_all
 RequestAlternative.destroy_all
 Request.destroy_all
-Deparment.destroy_all
+Department.destroy_all
 Group.destroy_all
 Classroom.destroy_all
 Building.destroy_all
