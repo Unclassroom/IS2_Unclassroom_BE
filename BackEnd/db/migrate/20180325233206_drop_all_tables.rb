@@ -6,7 +6,7 @@ class DropAllTables < ActiveRecord::Migration[5.1]
     drop_table :requests
     drop_table :reports
     drop_table :opinions
-    #drop_table :departments
+    drop_table :departments
     drop_table :classroom_events
     drop_table :classroom_schedules
     drop_table :groups

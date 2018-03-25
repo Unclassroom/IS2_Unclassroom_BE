@@ -1,6 +1,7 @@
 class Report < ApplicationRecord
-  ## validates
+  validates :classroom_id, presence: true, numericality: { only_integer: true }
+  validates :description, presence: true
 
-  ## associations
+
   belongs_to :classroom
 end

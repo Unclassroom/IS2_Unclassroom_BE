@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :departments
+  resources :reports
   resources :classroom_events
   resources :events
   resources :opinions
@@ -9,7 +11,6 @@ Rails.application.routes.draw do
   resources :cyclic_schedules
   resources :request_alternatives
   resources :requests
-  resources :deparments
   resources :groups
   resources :classrooms
   resources :buildings

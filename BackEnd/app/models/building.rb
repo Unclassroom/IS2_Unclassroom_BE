@@ -1,11 +1,10 @@
 class Building < ApplicationRecord
-<<<<<<< HEAD
-  belongs_to :head_building
-=======
   ## validates
-
+  validates :name, presence: true,  length: { maximum: 50 }
+  validates :head_building_id, presence: true, numericality: { only_integer: true }
+  validates :faculty_id, presence: true, numericality: { only_integer: true }
+   
   ## associations
->>>>>>> 4323bbc9048eb9ed3727712ee66f05525c9b5586
   belongs_to :faculty
   belongs_to :head_building
 end

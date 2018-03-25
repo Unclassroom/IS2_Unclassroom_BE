@@ -4,8 +4,10 @@ one:
   classroom: one
   group: one
   subject: one
+  cyclic_schedule: one
 
 two:
   classroom: two
   group: two
   subject: two
+  cyclic_schedule: two

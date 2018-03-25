@@ -3,11 +3,11 @@
 one:
   type_classroom: one
   building: one
-  deparment: one
+  department: one
   capacity: 1
 
 two:
   type_classroom: two
   building: two
-  deparment: two
+  department: two
   capacity: 1
