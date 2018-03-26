@@ -1,4 +1,4 @@
-class CreateSpecifics < ActiveRecord::Migration[5.1]
+class CreateSpecificSchedules < ActiveRecord::Migration[5.1]
   def change
     create_table :specific_schedules do |t|
       t.date :date

@@ -10,43 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320193401) do
+ActiveRecord::Schema.define(version: 20180320151301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "buildings", force: :cascade do |t|
+    t.string "name"
     t.bigint "head_building_id"
     t.bigint "faculty_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.index ["faculty_id"], name: "index_buildings_on_faculty_id"
     t.index ["head_building_id"], name: "index_buildings_on_head_building_id"
   end
 
   create_table "classroom_events", force: :cascade do |t|
     t.bigint "event_id"
-    t.bigint "specific_id"
+    t.bigint "specific_schedule_id"
     t.bigint "classroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["classroom_id"], name: "index_classroom_events_on_classroom_id"
     t.index ["event_id"], name: "index_classroom_events_on_event_id"
-    t.index ["specific_id"], name: "index_classroom_events_on_specific_id"
+    t.index ["specific_schedule_id"], name: "index_classroom_events_on_specific_schedule_id"
   end
 
   create_table "classroom_schedules", force: :cascade do |t|
     t.bigint "classroom_id"
     t.bigint "group_id"
-    t.bigint "subject_id"
     t.bigint "cyclic_schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["classroom_id"], name: "index_classroom_schedules_on_classroom_id"
     t.index ["cyclic_schedule_id"], name: "index_classroom_schedules_on_cyclic_schedule_id"
     t.index ["group_id"], name: "index_classroom_schedules_on_group_id"
-    t.index ["subject_id"], name: "index_classroom_schedules_on_subject_id"
   end
 
   create_table "classrooms", force: :cascade do |t|
@@ -172,6 +170,7 @@ ActiveRecord::Schema.define(version: 20180320193401) do
     t.bigint "type_classroom_id"
     t.bigint "external_person_id"
     t.string "state"
+    t.date "request_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "request_alternative_id"
@@ -184,14 +183,14 @@ ActiveRecord::Schema.define(version: 20180320193401) do
 
   create_table "specific_requests", force: :cascade do |t|
     t.bigint "request_alternative_id"
-    t.bigint "specific_id"
+    t.bigint "specific_schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["request_alternative_id"], name: "index_specific_requests_on_request_alternative_id"
-    t.index ["specific_id"], name: "index_specific_requests_on_specific_id"
+    t.index ["specific_schedule_id"], name: "index_specific_requests_on_specific_schedule_id"
   end
 
-  create_table "specifics", force: :cascade do |t|
+  create_table "specific_schedules", force: :cascade do |t|
     t.date "date"
     t.time "begin_at"
     t.time "end_at"
@@ -233,11 +232,10 @@ ActiveRecord::Schema.define(version: 20180320193401) do
   add_foreign_key "buildings", "head_buildings"
   add_foreign_key "classroom_events", "classrooms"
   add_foreign_key "classroom_events", "events"
-  add_foreign_key "classroom_events", "specifics"
+  add_foreign_key "classroom_events", "specific_schedules"
   add_foreign_key "classroom_schedules", "classrooms"
   add_foreign_key "classroom_schedules", "cyclic_schedules"
   add_foreign_key "classroom_schedules", "groups"
-  add_foreign_key "classroom_schedules", "subjects"
   add_foreign_key "classrooms", "buildings"
   add_foreign_key "classrooms", "departments"
   add_foreign_key "classrooms", "type_classrooms"
@@ -256,5 +254,5 @@ ActiveRecord::Schema.define(version: 20180320193401) do
   add_foreign_key "requests", "teachers"
   add_foreign_key "requests", "type_classrooms"
   add_foreign_key "specific_requests", "request_alternatives"
-  add_foreign_key "specific_requests", "specifics"
+  add_foreign_key "specific_requests", "specific_schedules"
 end
