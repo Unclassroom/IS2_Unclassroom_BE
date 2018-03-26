@@ -7,5 +7,5 @@ class Teacher < ApplicationRecord
     
     ## associations
     has_many :requests
-    has_many :departments
+    has_one :departments
 end
