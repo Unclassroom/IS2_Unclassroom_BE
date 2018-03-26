@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: cyclic_schedules
+#
+#  id         :integer          not null, primary key
+#  day        :integer
+#  begin_at   :time
+#  end_at     :time
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class CyclicSchedule < ApplicationRecord
     validates :day, presence: true, numericality: { only_integer: true }
     validates :begin_at, presence: true

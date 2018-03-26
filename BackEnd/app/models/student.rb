@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: students
+#
+#  id         :integer          not null, primary key
+#  cc         :integer
+#  first_name :string
+#  last_name  :string
+#  email      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Student < ApplicationRecord
     ## validates
     validates :cc, presence: true, numericality: { only_integer: true }
