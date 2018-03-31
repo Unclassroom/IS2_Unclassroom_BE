@@ -25,7 +25,7 @@ class Department < ApplicationRecord
   validates :faculty_id, presence: true, numericality: { only_integer: true }
   validates :name, presence: true
 
-  belongs_to :faculty
+  belongs_to :faculty, class_name: 'User', foreign_key: 'user_id'
   belongs_to :teacher
   has_many :classrooms
   has_many :classroom_schedules, through: :classrooms

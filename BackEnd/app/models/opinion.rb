@@ -24,6 +24,6 @@ class Opinion < ApplicationRecord
   validates :classroom_schedule_id, presence: true, numericality: { only_integer: true }
   validates :description, presence: true
 
-  belongs_to :student
+  belongs_to :student, class_name: 'User', foreign_key: 'user_id'
   belongs_to :classroom_schedule
 end
