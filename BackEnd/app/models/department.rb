@@ -25,8 +25,14 @@ class Department < ApplicationRecord
   validates :faculty_id, presence: true, numericality: { only_integer: true }
   validates :name, presence: true
 
-  belongs_to :faculty
-  belongs_to :teacher
-  has_many :classrooms
-  has_many :classroom_schedules, through: :classrooms
+  def self.Faculty(d_id)
+    Faculty.joins(:Department).select('faculties.name').where('departments.id = ?',d_id )
+  end
+
+  belongs_to :Faculty
+  belongs_to :Teacher
+  has_many :Classrooms
+  has_many :ClassroomSchedule, through: :Classroom
+
+
 end

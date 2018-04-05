@@ -4,12 +4,22 @@ class HeadBuildingsController < ApplicationController
   # GET /head_buildings
   def index
     @head_buildings = HeadBuilding.all
-
-    render json: @head_buildings
+    info = Array.new
+    for i in HeadBuilding.all
+      tmp = Hash.new
+      tmp["No"]=i.id
+      tmp["Facultad"]=HeadBuilding.Faculty(i.id)
+      tmp["Head_building"]=i
+      tmp["Building"]=HeadBuilding.Building(i.id)
+      tmp["Department"]=HeadBuilding.Department(i.id)
+      info.push(tmp)
+    end
+    render json: info
   end
 
   # GET /head_buildings/1
   def show
+    #@hb_more = HeadBuilding.joins(:Building, :Department, :Faculty )
     render json: @head_building
   end
 

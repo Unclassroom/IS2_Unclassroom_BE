@@ -11,6 +11,8 @@
 #
 
 class CyclicSchedule < ApplicationRecord
+    include ActiveModel::Serialization
+
     validates :day, presence: true, numericality: { only_integer: true }
     validates :begin_at, presence: true
     validates :end_at, presence: true

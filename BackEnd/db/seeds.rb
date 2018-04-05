@@ -14,8 +14,8 @@ Request.destroy_all #check
 Department.destroy_all # check
 Group.destroy_all # check
 Classroom.destroy_all # check
-Building.destroy_all # check
 HeadBuilding.destroy_all # check
+Building.destroy_all # check
 Student.destroy_all # check
 Manager.destroy_all # check
 ExternalPerson.destroy_all # check
@@ -126,33 +126,32 @@ puts 'loading students'
 end
 puts 'end'
 
+puts 'loading buildings'
+def create_Building(cnt = 20)
+        for j in Faculty.all
+            Building.create!(
+                faculty_id: j.id,
+                name: Faker::Educator.course
+            )
+        end
+end
+create_Building(30)
+puts 'done'
+
 puts 'loading headbuildings'
-55.times do |row|
+for i in Building.all
     HeadBuilding.create!(
         cc: Faker::Number.unique.number(8),
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         email: Faker::Internet.unique.email, 
+        building_id: i.id
         #created_at: Faker::Date.backward(370),
         #updated_at: Faker::Date.between(1.year.ago, Date.today)
       )
 end
 puts 'done'
 
-puts 'loading buildings'
-def create_Building(cnt = 20)
-    for i in HeadBuilding.all
-        for j in Faculty.all
-            Building.create!(
-                head_building_id: i.id,
-                faculty_id: j.id,
-                name: Faker::Educator.campus
-            )
-        end
-    end
-end
-create_Building(30)
-puts 'done'
 
 puts 'loading classrooms'
 def create_Classroom(cnt = 20)
@@ -198,12 +197,7 @@ def create_Department(cnt = 20)
                 faculty_id: i.id,
                 teacher_id: j.id,
                 name: Faker::Educator.campus
-            )
-            
-            cnt -= 1
-            if cnt == 0
-                return 
-            end
+            )            
         end
     end
 end

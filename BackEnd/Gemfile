@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'faker', '~> 1.8', '>= 1.8.7'
-
+gem 'carrierwave'
 gem 'json'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

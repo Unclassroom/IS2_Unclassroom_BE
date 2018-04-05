@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320151301) do
+ActiveRecord::Schema.define(version: 20180405061157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 20180320151301) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "building_id"
+    t.index ["building_id"], name: "index_head_buildings_on_building_id"
   end
 
   create_table "managers", force: :cascade do |t|
@@ -170,7 +172,6 @@ ActiveRecord::Schema.define(version: 20180320151301) do
     t.bigint "type_classroom_id"
     t.bigint "external_person_id"
     t.string "state"
-    t.date "request_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "request_alternative_id"
@@ -244,6 +245,7 @@ ActiveRecord::Schema.define(version: 20180320151301) do
   add_foreign_key "departments", "faculties"
   add_foreign_key "departments", "teachers"
   add_foreign_key "groups", "subjects"
+  add_foreign_key "head_buildings", "buildings"
   add_foreign_key "opinions", "classroom_schedules"
   add_foreign_key "opinions", "students"
   add_foreign_key "reports", "classrooms"

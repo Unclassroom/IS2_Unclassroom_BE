@@ -12,11 +12,28 @@
 #
 
 class HeadBuilding < ApplicationRecord
+    include ActiveModel::Serialization
     validates :cc, presence: true, numericality: { only_integer: true }
+    validates :building_id, presence: true, numericality: { only_integer: true }
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :email, presence: true
     
-    has_one :building
-    has_many :classrooms, through: :building
+    def self.Faculty(hb_id)
+        Faculty.joins(:Department, :Building, :HeadBuilding).where('head_buildings.id = ?',hb_id).select('faculties.*').limit(1) 
+    end
+    def self.Department(hb_id)
+        Faculty.joins(:Department, :Building, :HeadBuilding).where('head_buildings.id = ?',hb_id).select('faculties.*').limit(1) 
+    end
+    def self.Building(hb_id)
+        Faculty.joins(:Department, :Building, :HeadBuilding).where('head_buildings.id = ?',hb_id).select('faculties.*').limit(1) 
+    end
+    
+
+    belongs_to :Building
+    has_many :Faculty, through: :Building
+    has_many :Classrooms, through: :Building
+
+    
+
 end

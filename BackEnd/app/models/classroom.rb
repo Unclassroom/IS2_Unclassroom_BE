@@ -24,6 +24,8 @@
 #
 
 class Classroom < ApplicationRecord
+  include ActiveModel::Serialization
+
   validates :type_classroom_id, presence: true, numericality: { only_integer: true }
   validates :building_id, presence: true, numericality: { only_integer: true }
   validates :department_id, presence: true, numericality: { only_integer: true }
@@ -40,4 +42,6 @@ class Classroom < ApplicationRecord
   has_many :classroom_events
   has_many :specific_schedules, through: :classroom_events
   has_many :specific_requests, through: :specific_schedules
+
+
 end

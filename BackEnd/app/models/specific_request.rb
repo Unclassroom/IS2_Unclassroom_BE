@@ -20,6 +20,7 @@
 #
 
 class SpecificRequest < ApplicationRecord
+  include ActiveModel::Serialization
   validates :request_alternative_id, presence: true, numericality: { only_integer: true }
   validates :specific_schedule_id, presence: true, numericality: { only_integer: true }
   

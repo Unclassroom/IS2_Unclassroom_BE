@@ -148,6 +148,7 @@
 # 
 
 Rails.application.routes.draw do
+  resources :specific_schedules
   resources :departments
   resources :reports
   resources :classroom_events

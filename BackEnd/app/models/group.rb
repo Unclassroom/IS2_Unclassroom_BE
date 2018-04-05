@@ -18,6 +18,7 @@
 #
 
 class Group < ApplicationRecord
+  include ActiveModel::Serialization
   validates :subject_id, presence: true, numericality: { only_integer: true }
   validates :number, presence: true, numericality: { only_integer: true }
 
