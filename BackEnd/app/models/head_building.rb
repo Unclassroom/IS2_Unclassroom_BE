@@ -17,7 +17,6 @@ class HeadBuilding < ApplicationRecord
     validates :building_id, presence: true, numericality: { only_integer: true }
     validates :first_name, presence: true
     validates :last_name, presence: true
-    validates :email, presence: true
     
     def self.Faculty(hb_id)
         Faculty.joins(:Department, :Building, :HeadBuilding).where('head_buildings.id = ?',hb_id).select('faculties.*').limit(1) 

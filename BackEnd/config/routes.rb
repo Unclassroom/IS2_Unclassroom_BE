@@ -148,14 +148,16 @@
 # 
 
 Rails.application.routes.draw do
-  resources :specific_schedules
+  mount_devise_token_auth_for 'User', at: 'auth'
+
+  root to: 'home#index'
   resources :departments
   resources :reports
   resources :classroom_events
   resources :events
   resources :opinions
   resources :specific_requests
-  resources :specifics
+  resources :specific_schedules
   resources :cyclic_requests
   resources :classroom_schedules
   resources :cyclic_schedules
