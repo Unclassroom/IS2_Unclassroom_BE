@@ -8,7 +8,6 @@
 #  type_classroom_id      :integer
 #  external_person_id     :integer
 #  state                  :string
-#  request_date           :date
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  request_alternative_id :integer

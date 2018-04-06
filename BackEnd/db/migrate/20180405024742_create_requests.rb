@@ -6,7 +6,6 @@ class CreateRequests < ActiveRecord::Migration[5.1]
       t.references :type_classroom, foreign_key: true
       t.references :external_person, foreign_key: true
       t.string :state
-      t.date :request_date
 
       t.timestamps
     end

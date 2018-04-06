@@ -10,6 +10,8 @@
 #
 
 class Event < ApplicationRecord
+    include ActiveModel::Serialization
+
     validates :name, presence: true
     validates :description, presence: true
 

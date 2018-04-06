@@ -12,6 +12,7 @@
 #
 
 class Student < ApplicationRecord
+    include ActiveModel::Serialization
     ## validates
     validates :cc, presence: true, numericality: { only_integer: true }
     validates :first_name, presence: true

@@ -9,6 +9,7 @@
 #
 
 class PurposeClassroom < ApplicationRecord
+    include ActiveModel::Serialization
     validates :name, presence: { message: "must be given please" }, uniqueness: true
 
     has_many :requests

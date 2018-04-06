@@ -18,6 +18,7 @@
 #
 
 class Report < ApplicationRecord
+  include ActiveModel::Serialization
   validates :classroom_id, presence: true, numericality: { only_integer: true }
   validates :description, presence: true
 

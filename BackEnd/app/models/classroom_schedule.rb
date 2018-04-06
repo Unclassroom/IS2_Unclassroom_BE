@@ -23,6 +23,8 @@
 #
 
 class ClassroomSchedule < ApplicationRecord
+  include ActiveModel::Serialization
+
   validates :classroom_id, presence: true, numericality: { only_integer: true }
   validates :group_id, presence: true, numericality: { only_integer: true }
   validates :cyclic_schedule_id, presence: true, numericality: { only_integer: true }
