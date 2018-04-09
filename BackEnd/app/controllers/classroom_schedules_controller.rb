@@ -3,9 +3,16 @@ class ClassroomSchedulesController < ApplicationController
 
   # GET /classroom_schedules
   def index
-    @classroom_schedules = ClassroomSchedule.all
+    info = Array.new
+    for i in ClassroomSchedule.all
+      tmp = Hash.new
+      tmp["Data"]=ClassroomSchedule.get_data(i.id)
+      info.push(tmp)
+    end
+    render json: info
 
-    render json: @classroom_schedules
+    # @classroom_schedules = ClassroomSchedule.all
+    # render json: @classroom_schedules
   end
 
   # GET /classroom_schedules/1

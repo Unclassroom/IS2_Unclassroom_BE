@@ -20,5 +20,5 @@ class Teacher < ApplicationRecord
     
     has_many :requests
     has_one :departments
-    belongs_to :user
+    #belongs_to :user
 end

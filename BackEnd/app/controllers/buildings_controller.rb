@@ -3,9 +3,15 @@ class BuildingsController < ApplicationController
 
   # GET /buildings
   def index
-    @buildings = Building.all
-
-    render json: @buildings
+    info = Array.new
+    for i in Building.all
+      tmp = Hash.new
+      tmp["Build"]=Building.get_classroms(i.id)
+      info.push(tmp)
+    end
+    render json: info
+    # @building = Building.all
+    # render json: @building
   end
 
   # GET /buildings/1

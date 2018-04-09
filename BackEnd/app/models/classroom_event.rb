@@ -32,4 +32,11 @@ class ClassroomEvent < ApplicationRecord
   belongs_to :event
   belongs_to :specific_schedule
   belongs_to :classroom
+
+  def self.get_data(hb_id)
+    ClassroomEvent
+    .joins(:event, :specific_schedule, :classroom)
+    .where('classroom_events.id = ?',hb_id)
+    .select('classrooms.id AS idclass, events.name AS nameevent').limit(1) 
+  end
 end

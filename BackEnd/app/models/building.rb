@@ -26,10 +26,21 @@ class Building < ApplicationRecord
   validates :name, presence: true,  length: { maximum: 50 }
   validates :faculty_id, presence: true, numericality: { only_integer: true }
   
-  
+  belongs_to :head_building
+  belongs_to :faculty
+  has_many  :classrooms
+  has_many :type_classrooms, through: :classrooms
+  has_many :departments, through: :faculty
+  has_many  :classroom_schedules, through: :classrooms
 
-  has_one :HeadBuilding
-  belongs_to :Faculty
-  has_many  :Classroom
-  has_many  :classroomSchedules, through: :Classroom
+  def self.get_classrooms(hb_id)
+    Building
+    .joins(:faculty, :departments, :classrooms, :type_classrooms)
+    .where('buildings.id = ?',hb_id)
+    .select('buildings.name AS buildname, classrooms.id AS classid, type_classrooms.name AS typename').limit(1) 
+  end
+  def self.check_user
+    user_id = User.find_by id: ("#{User.current.id}")
+    HeadBuilding.joins(:departments, :departments, :faculties, :buildings).where('head_buildings.id = ?', user_id).select('head_buildings.first_name, head_buildings.cc, buildings.name AS buildiname, faculties.name').limit(1) 
+  end
 end

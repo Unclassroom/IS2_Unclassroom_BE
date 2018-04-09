@@ -1,3 +1,4 @@
+## or just rake db:drop
 class DropTables < ActiveRecord::Migration[5.1]
     def change
       drop_table :specific_requests

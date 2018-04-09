@@ -19,5 +19,5 @@ class Student < ApplicationRecord
     validates :last_name, presence: true
     
     has_many :opinion
-    belongs_to :user
+    # belongs_to :user
 end

@@ -3,18 +3,15 @@ class HeadBuildingsController < ApplicationController
 
   # GET /head_buildings
   def index
-    @head_buildings = HeadBuilding.all
     info = Array.new
     for i in HeadBuilding.all
       tmp = Hash.new
-      tmp["No"]=i.id
-      tmp["Facultad"]=HeadBuilding.Faculty(i.id)
-      tmp["Head_building"]=i
-      tmp["Building"]=HeadBuilding.Building(i.id)
-      tmp["Department"]=HeadBuilding.Department(i.id)
+      tmp["Buildings"]=HeadBuilding.get_data(i.id)
       info.push(tmp)
     end
     render json: info
+    # @head_buildings = HeadBuilding.all
+    # render json: @head_building
   end
 
   # GET /head_buildings/1

@@ -29,9 +29,16 @@ class ClassroomSchedule < ApplicationRecord
   validates :group_id, presence: true, numericality: { only_integer: true }
   validates :cyclic_schedule_id, presence: true, numericality: { only_integer: true }
 
-
   belongs_to :classroom
   belongs_to :group
   belongs_to :cyclic_schedule
   has_many :opinions
+  has_many :subjects, through: :group
+
+  def self.get_data(hb_id)
+    ClassroomSchedule
+    .joins(:classroom, :group, :cyclic_schedule, :opinions, :subjects)
+    .where('classroom_schedules.id = ?',hb_id)
+    .select('classrooms.id, groups.id AS idgroup, subjects.name AS namesu, cyclic_schedules.day, cyclic_schedules.begin_at, cyclic_schedules.end_at').limit(1) 
+  end
 end
