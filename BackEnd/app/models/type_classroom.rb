@@ -13,4 +13,6 @@ class TypeClassroom < ApplicationRecord
     validates :name, presence: { message: "must be given please" }, uniqueness: true
 
     has_many :classrooms
+
+    # I think that it isnt necesaary make queries here. Make in all classroom models 
 end

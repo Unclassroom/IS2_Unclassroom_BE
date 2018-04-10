@@ -19,4 +19,6 @@ class ExternalPerson < ApplicationRecord
     validates :last_name, presence: true
 
     has_many :requests
+
+    # I think that it isnt necesaary make queries here.
 end

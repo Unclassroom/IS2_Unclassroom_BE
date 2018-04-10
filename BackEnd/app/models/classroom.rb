@@ -41,12 +41,13 @@ class Classroom < ApplicationRecord
   has_many :classroom_events
   has_many :specific_schedules, through: :classroom_events
   has_many :specific_requests, through: :specific_schedules
+
+  # add query for opinion, not in opinion, because I think that it is no necesaary
   def self.get_data(hb_id)
     Classroom
     .joins(:type_classroom)
     .where('classrooms.id = ?',hb_id)
     .select('type_classrooms.name').limit(1) 
   end
-
  # It is important change the where for other that search classrooms availables
 end

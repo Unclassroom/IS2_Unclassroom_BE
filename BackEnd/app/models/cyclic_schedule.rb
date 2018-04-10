@@ -23,4 +23,12 @@ class CyclicSchedule < ApplicationRecord
     has_many :groups, through: :classroom_schedules
     has_many :subjects, through: :groups
     has_many :classrooms, through: :classroom_schedules
+    
+    # Change function for other more important
+    def self.get_data(hb_id)
+        CyclicSchedule
+        .joins(:cyclic_requests, :request_alternatives)
+        .where('cyclic_schedules.id = ?',hb_id)
+        .select('cyclic_schedules.day, cyclic_schedules.begin_at, cyclic_schedules.end_at, cyclic_requests.id AS idrequest').limit(1) 
+    end
 end

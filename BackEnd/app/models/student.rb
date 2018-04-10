@@ -20,4 +20,6 @@ class Student < ApplicationRecord
     
     has_many :opinion
     # belongs_to :user
+
+    # I think that it isnt necesaary make queries here.
 end

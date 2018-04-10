@@ -27,4 +27,6 @@ class Group < ApplicationRecord
   has_many :classrooms, through: :classroom_schedules
   has_many :cyclic_schedules, through: :classroom_schedules
   has_many :opinions, through: :classroom_schedules
+
+  # I think that it isnt necesaary make queries here.
 end

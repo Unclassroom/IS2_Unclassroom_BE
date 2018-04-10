@@ -21,4 +21,6 @@ class Teacher < ApplicationRecord
     has_many :requests
     has_one :departments
     #belongs_to :user
+
+    # I think that it isnt necesaary make queries here.
 end
