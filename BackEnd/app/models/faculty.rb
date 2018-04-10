@@ -19,10 +19,6 @@ class Faculty < ApplicationRecord
     has_many :head_buildings, through: :buildings
     has_many :classrooms, through: :departments
 
-    # def self.get_data(hb_id)
-    #     Faculty
-    #     .joins(:departments, :classrooms)
-    #     .where('head_buildings.id = ?',hb_id)
-    #     .select('head_buildings.first_name, head_buildings.cc, buildings.name AS buildiname, faculties.name').limit(1) 
-    # end
+# I think that it isnt necesaary make queries here.
+
 end

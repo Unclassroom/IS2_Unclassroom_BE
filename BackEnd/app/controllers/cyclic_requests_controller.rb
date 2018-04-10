@@ -3,9 +3,16 @@ class CyclicRequestsController < ApplicationController
 
   # GET /cyclic_requests
   def index
-    @cyclic_requests = CyclicRequest.all
+    info = Array.new
+    for i in CyclicRequest.all
+      tmp = Hash.new
+      tmp["Data"]=CyclicRequest.get_data(i.id)
+      info.push(tmp)
+    end
+    render json: info
 
-    render json: @cyclic_requests
+    # @cyclic_requests = CyclicRequest.all
+    # render json: @cyclic_requests
   end
 
   # GET /cyclic_requests/1

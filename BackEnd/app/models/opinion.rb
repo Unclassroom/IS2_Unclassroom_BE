@@ -28,4 +28,6 @@ class Opinion < ApplicationRecord
 
   belongs_to :student
   belongs_to :classroom_schedule
+
+  #Make the query in classroom and classroom request and classroom schedule and classroom event
 end

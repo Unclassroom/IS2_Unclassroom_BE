@@ -45,4 +45,19 @@ class Request < ApplicationRecord
   has_many :request_alternatives
   has_many :cyclic_requests, through: :request_alternatives
   has_many :specific_requests, through: :request_alternatives
+  has_many :cyclic_schedule, through: :cyclic_requests
+  has_many :specific_schedule, through: :specific_requests
+ 
+  def self.get_cyclic(hb_id)
+    Request
+    .joins(:cyclic_schedule, :request_alternatives, :cyclic_requests)
+    .where('requests.id = ?',hb_id)
+    .select('cyclic_schedules.day, cyclic_schedules.begin_at, cyclic_schedules.end_at').limit(1) 
+  end
+  def self.get_specific(hb_id)
+    Request
+    .joins(:specific_schedule, :request_alternatives, :specific_requests)
+    .where('requests.id = ?',hb_id)
+    .select('specific_schedules.date, specific_schedules.begin_at, specific_schedules.end_at').limit(1) 
+  end
 end

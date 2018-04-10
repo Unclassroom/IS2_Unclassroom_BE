@@ -3,9 +3,17 @@ class RequestsController < ApplicationController
 
   # GET /requests
   def index
-    @requests = Request.all
+    info = Array.new
+    for i in Request.all
+      tmp = Hash.new
+      tmp["Cyclic"]=Request.get_cyclic(i.id)
+      tmp["Specific"]=Request.get_specific(i.id)
+      info.push(tmp)
+    end
+    render json: info
 
-    render json: @requests
+    # @requests = Request.all
+    # render json: @requests
   end
 
   # GET /requests/1
