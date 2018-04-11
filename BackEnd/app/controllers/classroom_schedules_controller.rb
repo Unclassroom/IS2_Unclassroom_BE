@@ -12,7 +12,7 @@ class ClassroomSchedulesController < ApplicationController
     render json: info
 
     # @classroom_schedules = ClassroomSchedule.all
-    # render json: @classroom_schedules
+    # render json: ClassroomSchedule.all
   end
 
   # GET /classroom_schedules/1
