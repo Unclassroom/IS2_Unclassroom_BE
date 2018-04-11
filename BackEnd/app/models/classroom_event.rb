@@ -23,7 +23,7 @@
 #
 
 class ClassroomEvent < ApplicationRecord
-  include ActiveModel::Serialization
+  # include ActiveModel::Serialization
 
   validates :event_id, presence: true, numericality: { only_integer: true }
   validates :specific_schedule_id, presence: true, numericality: { only_integer: true }

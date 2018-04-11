@@ -16,6 +16,7 @@ class ClassroomsController < ApplicationController
 
   # GET /classrooms/1
   def show
+    @classrooms = Classroom.all
     render json: @classroom
   end
 
