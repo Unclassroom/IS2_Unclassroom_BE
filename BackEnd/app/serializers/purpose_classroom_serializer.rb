@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: purpose_classrooms
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class PurposeClassroomSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name
 end

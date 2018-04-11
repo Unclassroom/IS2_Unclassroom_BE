@@ -11,7 +11,7 @@ class ClassroomEventsController < ApplicationController
     end
     render json: info
     # @classroom_events = ClassroomEvent.all
-    # render json: @classroom_events
+    # render json: ClassroomEvent.all
   end
 
   # GET /classroom_events/1

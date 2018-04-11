@@ -11,7 +11,7 @@ class HeadBuildingsController < ApplicationController
     end
     render json: info
     # @head_buildings = HeadBuilding.all
-    # render json: @head_building
+    # render json: HeadBuilding.all
   end
 
   # GET /head_buildings/1
