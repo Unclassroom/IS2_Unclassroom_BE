@@ -10,12 +10,18 @@ class ClassroomsController < ApplicationController
       info.push(tmp)
     end
     render json: info
-    # @classrooms = Classroom.all
+    @classrooms = Classroom.all
     # render json: @classrooms
   end
 
   # GET /classrooms/1
   def show
+    # respond_to do |format|
+    #   format.html
+    #   format.pdf do
+    #     render pdf: "file_name"   # Excluding ".pdf" extension.
+    #   end
+    # end
     render json: @classroom
   end
 
