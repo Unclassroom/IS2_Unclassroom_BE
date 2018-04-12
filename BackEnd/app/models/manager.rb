@@ -18,4 +18,5 @@ class Manager < ApplicationRecord
     validates :last_name, presence: true
     
     #belongs_to :user
+# I think that it isnt necesaary make queries here.
 end

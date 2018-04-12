@@ -26,4 +26,11 @@ class CyclicRequest < ApplicationRecord
   
   belongs_to :request_alternative
   belongs_to :cyclic_schedule
+ ## add scopes for just cyclic request and just for specific_request
+  def self.get_data(hb_id)
+    CyclicRequest
+    .joins(:cyclic_schedule, :request_alternative)
+    .where('cyclic_requests.id = ?',hb_id)
+    .select('cyclic_schedules.day, cyclic_schedules.begin_at, cyclic_schedules.end_at').limit(1) 
+  end
 end

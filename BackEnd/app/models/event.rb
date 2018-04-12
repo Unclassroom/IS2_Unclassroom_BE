@@ -18,4 +18,5 @@ class Event < ApplicationRecord
     has_many :classroom_events
     has_many :classrooms, through: :classroom_events
 
+    # I think that it isnt necesaary make queries here. Make in classroom event
 end

@@ -20,4 +20,6 @@ class SpecificSchedule < ApplicationRecord
     has_many :request_alternatives, through: :specific_requests
     has_many :classroom_events
     has_many :classrooms, through: :classroom_events
+
+    # I think that it isnt necesaary make queries here.
 end

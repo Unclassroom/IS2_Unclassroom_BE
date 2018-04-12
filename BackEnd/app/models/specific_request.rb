@@ -26,4 +26,11 @@ class SpecificRequest < ApplicationRecord
   
   belongs_to :request_alternative
   belongs_to :specific_schedule
+
+  def self.get_data(hb_id)
+    SpecificRequest
+    .joins(:specific_schedule, :request_alternative)
+    .where('specific_requests.id = ?',hb_id)
+    .select('specific_schedules.date, specific_schedules.begin_at, specific_schedules.end_at').limit(1) 
+  end
 end

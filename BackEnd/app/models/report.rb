@@ -23,4 +23,11 @@ class Report < ApplicationRecord
   validates :description, presence: true
 
   belongs_to :classroom
+# Maybe this query isnt necesarry
+  def self.get_data(hb_id)
+    Report
+    .joins(:classroom)
+    .where('reports.id = ?',hb_id)
+    .select('classrooms.id AS classid').limit(1) 
+  end
 end

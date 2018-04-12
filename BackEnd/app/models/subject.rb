@@ -15,4 +15,6 @@ class Subject < ApplicationRecord
     
     has_many :groups
     has_many :classroom_schedules, through: :groups
+
+    # I think that it isnt necesaary make queries here. Make in cllassroom_schedules
 end

@@ -6,7 +6,7 @@ class BuildingsController < ApplicationController
     info = Array.new
     for i in Building.all
       tmp = Hash.new
-      tmp["Build"]=Building.get_classroms(i.id)
+      tmp["Build"]=Building.get_classrooms(i.id)
       info.push(tmp)
     end
     render json: info
