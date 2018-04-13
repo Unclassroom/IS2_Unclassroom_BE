@@ -139,6 +139,7 @@ puts 'loading headbuildings'
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         email: Faker::Internet.unique.email, 
+        #file: "/home/fffeelipe/Documents/"
         #created_at: Faker::Date.backward(370),
         #updated_at: Faker::Date.between(1.year.ago, Date.today)
       )

@@ -13,7 +13,7 @@
 #
 
 class HeadBuildingSerializer < ActiveModel::Serializer
-  attributes :id, :cc, :first_name, :last_name, :email, :buildingname, :buildingid, 
+  attributes :id, :cc, :first_name, :last_name, :email, :buildingname, :buildingid, :facultyid, :facultyname
   # has_one :buildings
   def buildingid
     if HeadBuilding.joins(:buildings).select("buildings.id").where('head_buildings.id = ?', object.id).present?
@@ -26,6 +26,24 @@ class HeadBuildingSerializer < ActiveModel::Serializer
   def buildingname
     if HeadBuilding.joins(:buildings).select("buildings.name").where('head_buildings.id = ?', object.id).present?
       HeadBuilding.joins(:buildings).select("buildings.name").where('head_buildings.id = ?', object.id).first.name
+    else
+      -1
+    end
+    
+  end
+
+  def facultyname
+    if HeadBuilding.joins(:faculties).select("faculties.name").where('head_buildings.id = ?', object.id).present?
+      HeadBuilding.joins(:faculties).select("faculties.name").where('head_buildings.id = ?', object.id).first.name
+    else
+      -1
+    end
+    
+  end
+
+  def facultyid
+    if HeadBuilding.joins(:faculties).select("faculties.id").where('head_buildings.id = ?', object.id).present?
+      HeadBuilding.joins(:faculties).select("faculties.id").where('head_buildings.id = ?', object.id).first.id
     else
       -1
     end
