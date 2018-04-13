@@ -1,4 +1,4 @@
-class HeadBuildingsController < ApplicationController#::Base
+class HeadBuildingsController < ApplicationController
   before_action :set_head_building, only: [:show, :update, :destroy]
 
   # GET /head_buildings
