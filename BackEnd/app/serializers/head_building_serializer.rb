@@ -12,6 +12,7 @@
 #  file       :string
 #
 
+
 class HeadBuildingSerializer < ActiveModel::Serializer
   attributes :id, :cc, :first_name, :last_name, :email, :buildingname, :buildingid, :facultyid, :facultyname
   # has_one :buildings
@@ -51,4 +52,9 @@ class HeadBuildingSerializer < ActiveModel::Serializer
   end
 
 
+end
+
+
+class HeadBuildingSerializer2 < HeadBuildingSerializer
+  attributes :id, :cc, :first_name, :last_name, :email
 end

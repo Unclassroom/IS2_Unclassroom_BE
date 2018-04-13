@@ -3,15 +3,11 @@ class HeadBuildingsController < ApplicationController
 
   # GET /head_buildings
   def index
-    info = Array.new
-    for i in HeadBuilding.all
-      tmp = Hash.new
-      tmp["Buildings"]=HeadBuilding.get_data(i.id)
-      info.push(tmp)
-    end
-    # render json: info
-    render json: HeadBuilding.all
+    @head_building = HeadBuilding.all
+    render json: @head_building, each_serializer: HeadBuildingSerializer
+
   end
+
 
   # GET /head_buildings/1
   def show

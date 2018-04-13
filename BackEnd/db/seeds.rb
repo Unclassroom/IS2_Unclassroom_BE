@@ -11,6 +11,7 @@ RequestAlternative.destroy_all #check
 Request.destroy_all #check
 Group.destroy_all # check
 Classroom.destroy_all # check
+Teacher.destroy_all #check
 Department.destroy_all # check
 Building.destroy_all # check
 CyclicSchedule.destroy_all # check
@@ -20,7 +21,6 @@ HeadBuilding.destroy_all # check
 Student.destroy_all # check
 Manager.destroy_all # check
 ExternalPerson.destroy_all # check
-Teacher.destroy_all #check
 Subject.destroy_all # check
 TypeClassroom.destroy_all # check
 PurposeClassroom.destroy_all # check
@@ -80,18 +80,6 @@ puts 'loading user'
 User.create(email: 'user@example.com', nickname: 'UOne', name: 'User One', password: "monkey67")
 puts 'done'
 
-puts 'loading teachers'
-10.times do |row|
-    Teacher.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        #created_at: Faker::Date.backward(370),
-        #updated_at: Faker::Date.between(1.year.ago, Date.today)
-      )
-end
-puts 'done'
 
 puts 'lading external_people'
 10.times do |row|
@@ -201,17 +189,32 @@ puts 'done'
 puts 'loading departments'
 def create_Department(cnt = 20)
     for i in Faculty.all
-        for j in Teacher.all
-            Department.create!(
-                faculty_id: i.id,
-                teacher_id: j.id,
-                name: Faker::Educator.campus
-            )            
-        end
+        for j in 1..2 
+        Department.create!(
+            faculty_id: i.id,
+            name: Faker::Educator.campus
+        )
+        end            
     end
 end
 create_Department(20)
 puts 'done'
+
+puts 'loading teachers'
+for i in Department.all
+5.times do |row|
+    Teacher.create!(
+        cc: Faker::Number.unique.number(8),
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        email: Faker::Internet.unique.email, 
+        department_id: i.id,
+        role: Faker::Hacker.adjective
+      )
+end
+end
+puts 'done'
+
 
 puts 'loading classrooms'
 def create_Classroom(cnt = 1)
@@ -233,12 +236,15 @@ puts 'done'
 
 puts 'loading groups'
 def create_Group(cnt = 5)
+    teacher_id_count = Teacher.first.id
     for i in Subject.take(2)
         for j in 1..cnt
             Group.create!(
                 subject_id: i.id,
-                number: j
+                number: j,
+                teacher_id: teacher_id_count
             )
+            teacher_id_count += 1
             end
     end
 end
@@ -257,6 +263,7 @@ def create_Request(cnt  = 5)
                         purpose_classroom_id: c.id,
                         type_classroom_id: d.id,
                         state: "pending",
+                        motive: Faker::BackToTheFuture.quote
                     )
                     cnt -= 1
                     if cnt == 0
@@ -328,10 +335,6 @@ def create_Report(cnt = 5)
             description: "found " + Faker::DragonBall.character,
             classroom_id: i.id
         )
-        cnt -= 1
-        if cnt == 0
-            return 
-        end
     end
 end
 create_Report(5)

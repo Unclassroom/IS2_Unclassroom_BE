@@ -3,16 +3,9 @@ class RequestAlternativesController < ApplicationController
 
   # GET /request_alternatives
   def index
-    info = Array.new
-    for i in RequestAlternative.all
-      tmp = Hash.new
-      tmp["Data"]=RequestAlternative.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-
-    # @request_alternatives = RequestAlternative.all
-    # render json: @request_alternatives
+    
+    @request_alternatives = RequestAlternative.all
+    render json: @request_alternatives
   end
 
   # GET /request_alternatives/1

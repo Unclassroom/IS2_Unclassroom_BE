@@ -11,6 +11,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  request_alternative_id :integer
+#  motive                 :text
 #
 # Indexes
 #
@@ -36,7 +37,6 @@ class Request < ApplicationRecord
   validates :external_person_id, presence: true, numericality: { only_integer: true }
   validates :purpose_classroom_id, presence: true, numericality: { only_integer: true }
   validates :type_classroom_id, presence: true, numericality: { only_integer: true }
-  validates :state, presence: true 
   
   belongs_to :teacher
   belongs_to :purpose_classroom

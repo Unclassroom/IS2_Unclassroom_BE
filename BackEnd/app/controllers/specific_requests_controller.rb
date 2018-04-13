@@ -3,16 +3,8 @@ class SpecificRequestsController < ApplicationController
 
   # GET /specific_requests
   def index
-    info = Array.new
-    for i in SpecificRequest.all
-      tmp = Hash.new
-      tmp["Data"]=SpecificRequest.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-
-    # @specific_requests = SpecificRequest.all
-    # render json: @specific_requests
+    @specific_requests = SpecificRequest.all
+    render json: @specific_requests
   end
 
   # GET /specific_requests/1
