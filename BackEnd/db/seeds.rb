@@ -185,14 +185,13 @@ puts 'done'
 
 puts 'loading buildings'
 def create_Building(cnt = 5)
-    for i in HeadBuilding.all
-        for j in Faculty.all
-            Building.create!(
-                head_building_id: i.id,
-                faculty_id: j.id,
+    for i in 0..5
+
+            Building.create!(   
+                head_building_id: HeadBuilding.find(i + HeadBuilding.first.id).id,
+                faculty_id: Faculty.find(i + Faculty.first.id).id,
                 name: Faker::Educator.campus
             )
-        end
     end
 end
 create_Building(5)

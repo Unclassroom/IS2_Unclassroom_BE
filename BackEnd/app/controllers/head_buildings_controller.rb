@@ -20,7 +20,7 @@ class HeadBuildingsController < ApplicationController
   end
 
   def all
-    render json: HeadBuilding.basicInfo
+    render json: HeadBuilding.all
   end
 
 

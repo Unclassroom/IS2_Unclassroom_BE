@@ -9,6 +9,7 @@
 #  email      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  file       :string
 #
 
 class HeadBuilding < ApplicationRecord
@@ -35,7 +36,7 @@ class HeadBuilding < ApplicationRecord
         HeadBuilding.joins(:departments, :faculties, :buildings).where('head_buildings.id = ?', user_id).select('head_buildings.first_name, head_buildings.cc, buildings.name AS buildiname, faculties.name').limit(1) 
     end
     def self.basicInfo
-        HeadBuilding.select("cc, first_name, last_name, email")
+        HeadBuilding.joins(:buildings).select("last_name, email")
     end
 
 end
