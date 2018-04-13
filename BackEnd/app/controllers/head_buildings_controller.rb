@@ -1,4 +1,4 @@
-class HeadBuildingsController < ApplicationController
+class HeadBuildingsController < ApplicationController#::Base
   before_action :set_head_building, only: [:show, :update, :destroy]
 
   # GET /head_buildings
@@ -9,9 +9,8 @@ class HeadBuildingsController < ApplicationController
       tmp["Buildings"]=HeadBuilding.get_data(i.id)
       info.push(tmp)
     end
-    render json: info
-    # @head_buildings = HeadBuilding.all
-    # render json: HeadBuilding.all
+    # render json: info
+    render json: HeadBuilding.all
   end
 
   # GET /head_buildings/1
@@ -19,6 +18,11 @@ class HeadBuildingsController < ApplicationController
     #@hb_more = HeadBuilding.joins(:Building, :Department, :Faculty )
     render json: @head_building
   end
+
+  def all
+    render json: HeadBuilding.basicInfo
+  end
+
 
   # POST /head_buildings
   def create

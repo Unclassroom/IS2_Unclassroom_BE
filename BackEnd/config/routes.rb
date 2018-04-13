@@ -176,5 +176,7 @@ Rails.application.routes.draw do
   resources :type_classrooms
   resources :purpose_classrooms
   resources :faculties
+  get '/all_head_buildings(.:format)', to: 'head_buildings#all'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end
