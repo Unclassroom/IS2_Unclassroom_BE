@@ -11,6 +11,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  request_alternative_id :integer
+#  motive                 :text
+#  file                   :string
 #
 # Indexes
 #
@@ -30,11 +32,23 @@
 #
 
 class RequestSerializer < ActiveModel::Serializer
-  attributes :id, :teacher_id, :purpose_classroom_id, :type_classroom_id, :external_person_id, :state, :request_alternative_id
-  
+  attributes :id, :state, :times, :purpose_classroom, :type_classroom, :motive
+  has_one :purpose_classroom
+  has_one :type_classroom
+  has_one :teacher
   belongs_to :teacher
-  belongs_to :purpose_classroom
-  belongs_to :type_classroom
-  belongs_to :external_person
   
+  def times
+    if object.request_alternatives.exists?
+      object.request_alternatives.first.specific_schedules.select('specific_schedules.id, date, begin_at, end_at')
+    else
+      -1
+    end
+  end
+  def purpose_classroom
+    PurposeClassroom.find(object.purpose_classroom_id).name
+  end
+  def type_classroom
+    TypeClassroom.find(object.type_classroom_id).name
+  end
 end

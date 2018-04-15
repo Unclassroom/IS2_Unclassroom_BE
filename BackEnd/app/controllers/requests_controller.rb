@@ -3,22 +3,36 @@ class RequestsController < ApplicationController
 
   # GET /requests
   def index
-    info = Array.new
-    for i in Request.all
-      tmp = Hash.new
-      tmp["Cyclic"]=Request.get_cyclic(i.id)
-      tmp["Specific"]=Request.get_specific(i.id)
-      info.push(tmp)
-    end
-    render json: info
-
-    # @requests = Request.all
-    # render json: @requests
+    @requests = Request.all
+    render json: @requests
   end
 
   # GET /requests/1
   def show
-    render json: @request
+    respond_to do |format|
+      format.json {render json: @request}
+      format.pdf {
+        send_data @request.receipt.render,
+          filename: "#{@request.created_at.strftime("%Y-%m-%d")}-UN-Classroom.pdf",
+          type: "application/pdf",
+          disposition: :inline
+      }
+    end
+    
+  end
+
+  def get_pdf
+    respond_to do |format|
+      format.html
+      format.json {render json: 1234}
+      format.pdf {
+        send_data @request.receipt.render,
+          filename: "#{@charge.created_at.strftime("%Y-%m-%d")}-UN-Classroom.pdf",
+          type: "application/pdf",
+          disposition: :inline
+      }
+    end
+    
   end
 
   # POST /requests
@@ -56,4 +70,6 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:teacher_id, :external_person_id, :purpose_classroom_id, :type_classroom_id, :state, :accepted_alternative)
     end
+
+    
 end

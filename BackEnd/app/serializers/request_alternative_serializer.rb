@@ -18,4 +18,6 @@
 
 class RequestAlternativeSerializer < ActiveModel::Serializer
   attributes :id, :request_id
+  #belongs_to :requests
+  has_many :specific_requests
 end

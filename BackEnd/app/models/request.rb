@@ -11,6 +11,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  request_alternative_id :integer
+#  motive                 :text
+#  file                   :string
 #
 # Indexes
 #
@@ -31,12 +33,14 @@
 
 class Request < ApplicationRecord
   include ActiveModel::Serialization
+  mount_uploader :file, ImageUploader
+
   ## validates
+  
   validates :teacher_id, presence: true, numericality: { only_integer: true }
   validates :external_person_id, presence: true, numericality: { only_integer: true }
   validates :purpose_classroom_id, presence: true, numericality: { only_integer: true }
   validates :type_classroom_id, presence: true, numericality: { only_integer: true }
-  validates :state, presence: true 
   
   belongs_to :teacher
   belongs_to :purpose_classroom
@@ -60,4 +64,29 @@ class Request < ApplicationRecord
     .where('requests.id = ?',hb_id)
     .select('specific_schedules.date, specific_schedules.begin_at, specific_schedules.end_at').limit(1) 
   end
+
+  def receipt
+
+    Receipts::Receipt.new(
+      id: id,
+      product: "classroom request",
+      company: {  
+        name: "Universidad Nacional de Colombia",
+        address: "Bogotá D.C Colombia",
+        email: "email@unal.edu.co",
+        logo: Rails.root.join("app/views/logo.png")
+      },
+      line_items: [
+        ["Date",           created_at.to_s],
+        ["id",   id],
+        ["times",   request_alternatives.first.specific_schedules.select('specific_schedules.id, date, begin_at, end_at').to_json],
+        ["purpose_classroom",   PurposeClassroom.find(purpose_classroom_id).name],
+        ["type_classroom",   TypeClassroom.find(type_classroom_id).name],
+        ["motive",   motive ],
+        ["teacher",   teacher.first_name + "  " + teacher.last_name ],
+        
+        ]
+    )
+  end
+
 end

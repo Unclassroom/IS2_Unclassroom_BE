@@ -3,22 +3,22 @@ class HeadBuildingsController < ApplicationController
 
   # GET /head_buildings
   def index
-    info = Array.new
-    for i in HeadBuilding.all
-      tmp = Hash.new
-      tmp["Buildings"]=HeadBuilding.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-    # @head_buildings = HeadBuilding.all
-    # render json: HeadBuilding.all
+    @head_building = HeadBuilding.all
+    render json: @head_building, each_serializer: HeadBuildingSerializer
+
   end
+
 
   # GET /head_buildings/1
   def show
     #@hb_more = HeadBuilding.joins(:Building, :Department, :Faculty )
     render json: @head_building
   end
+
+  def all
+    render json: HeadBuilding.all
+  end
+
 
   # POST /head_buildings
   def create
