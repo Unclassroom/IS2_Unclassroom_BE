@@ -1,9 +1,24 @@
-IS2_Unclassroom_BE
+# README
 
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-notes first push:
-    * We are going to use allways postgresql 9.5 in order to work as production enviroment (Heroku)  -> tutorial: https://gorails.com/setup/ubuntu/17.10
-    * Postgresql user: admin Pass:123456
-    * Rails proyect's name is "BackEnd"
-    
-added script for creating tables and models with foreign keys (create_tables.rb)
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
