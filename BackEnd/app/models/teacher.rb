@@ -29,7 +29,7 @@ class Teacher < ApplicationRecord
     validates :last_name, presence: true
     has_many :groups
     has_many :requests
-    has_one :departments
+    belongs_to :departments
     #belongs_to :user
 
     # I think that it isnt necesaary make queries here.

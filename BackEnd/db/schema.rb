@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413220935) do
+ActiveRecord::Schema.define(version: 20180413233354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 20180413220935) do
     t.datetime "updated_at", null: false
     t.bigint "request_alternative_id"
     t.text "motive"
+    t.string "file"
     t.index ["external_person_id"], name: "index_requests_on_external_person_id"
     t.index ["purpose_classroom_id"], name: "index_requests_on_purpose_classroom_id"
     t.index ["request_alternative_id"], name: "index_requests_on_request_alternative_id"
