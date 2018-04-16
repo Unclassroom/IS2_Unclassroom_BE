@@ -40,7 +40,7 @@ class RequestSerializer < ActiveModel::Serializer
   
   def times
     if object.request_alternatives.exists?
-      object.request_alternatives.first.specific_schedules.select('specific_schedules.id, date, begin_at, end_at')
+      object.request_alternatives.first.specific_schedules.select('specific_schedules.*')
     else
       -1
     end

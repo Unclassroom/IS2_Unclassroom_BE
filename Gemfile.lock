@@ -165,6 +165,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stamp (0.6.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     ttfunk (1.5.1)
@@ -203,6 +204,7 @@ DEPENDENCIES
   receipts
   spring
   spring-watcher-listen (~> 2.0.0)
+  stamp
   tzinfo-data
   wicked_pdf
   will_paginate (~> 3.1.1)
