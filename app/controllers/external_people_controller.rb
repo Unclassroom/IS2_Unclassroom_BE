@@ -19,6 +19,8 @@ class ExternalPeopleController < ApplicationController
 
     if @external_person.save
       render json: @external_person, status: :created, location: @external_person
+            #RequestMailer.new_request(@external_person).deliver_now
+
     else
       render json: @external_person.errors, status: :unprocessable_entity
     end
