@@ -23,16 +23,11 @@ class RequestsController < ApplicationController
 
   def get_pdf
     respond_to do |format|
-      format.html
-      format.json {render json: 1234}
-      format.pdf {
-        send_data @request.receipt.render,
-          filename: "#{@charge.created_at.strftime("%Y-%m-%d")}-UN-Classroom.pdf",
-          type: "application/pdf",
-          disposition: :inline
-      }
+      # format.html
+      @request = Request.find(params[:id])
+      format.json {render json: params[:id] }
+      format.pdf { render template: "generated/gen", pdf: 'request' }
     end
-    
   end
 
   # POST /requests
