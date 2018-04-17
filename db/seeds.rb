@@ -29,32 +29,36 @@ User.destroy_all
 puts "done"
 
 puts "loading faculties"
-Faculty.create!(name: "Agronomia")
-Faculty.create!(name: "Ciencias")
-Faculty.create!(name: "Ciencias Económicas")
-Faculty.create!(name: "Ciencias Humanas")
-Faculty.create!(name: "Derecho, Ciencias Políticas y Sociales")
-Faculty.create!(name: "Enfermería")
-Faculty.create!(name: "Ingenieria")
-Faculty.create!(name: "Medicina")
-Faculty.create!(name: "Medicina Veterinaria y Zootecnia")
-Faculty.create!(name: "Odontologia")
+for i in 1..4
+Faculty.create!(name: "Agronomia" + i.to_s)
+Faculty.create!(name: "Ciencias" + i.to_s)
+Faculty.create!(name: "Ciencias Económicas" + i.to_s)
+Faculty.create!(name: "Ciencias Humanas" + i.to_s)
+Faculty.create!(name: "Derecho, Ciencias Políticas y Sociales" + i.to_s)
+Faculty.create!(name: "Enfermería" + i.to_s)
+Faculty.create!(name: "Ingenieria" + i.to_s)
+Faculty.create!(name: "Medicina" + i.to_s)
+Faculty.create!(name: "Medicina Veterinaria y Zootecnia" + i.to_s)
+Faculty.create!(name: "Odontologia" + i.to_s)
 puts "done"
+end
 
 puts "loadingn Purpose clasroom"
-PurposeClassroom.create(name: "clase academica")
-PurposeClassroom.create(name: "conferencia academica")
-PurposeClassroom.create(name: "coloquio academico")
-PurposeClassroom.create(name: "reunion grupo de ivestigacion")
-PurposeClassroom.create(name: "conferencia empresarial")
-PurposeClassroom.create(name: "clase academica practica")
-PurposeClassroom.create(name: "actividad ludica")
-PurposeClassroom.create(name: "celebracion grados")
-PurposeClassroom.create(name: "concierto")
-PurposeClassroom.create(name: "evento cultural")
-PurposeClassroom.create(name: "presentacion examenes")
-PurposeClassroom.create(name: "practicas academicas")
+for i in 1..5
+PurposeClassroom.create(name: "clase academica" + "  " + i.to_s)
+PurposeClassroom.create(name: "conferencia academica" + "  " + i.to_s)
+PurposeClassroom.create(name: "coloquio academico" + "  " + i.to_s)
+PurposeClassroom.create(name: "reunion grupo de ivestigacion" + "  " + i.to_s)
+PurposeClassroom.create(name: "conferencia empresarial" + "  " + i.to_s)
+PurposeClassroom.create(name: "clase academica practica" + "  " + i.to_s)
+PurposeClassroom.create(name: "actividad ludica" + "  " + i.to_s)
+PurposeClassroom.create(name: "celebracion grados" + "  " + i.to_s)
+PurposeClassroom.create(name: "concierto" + "  " + i.to_s)
+PurposeClassroom.create(name: "evento cultural" + "  " + i.to_s)
+PurposeClassroom.create(name: "presentacion examenes" + "  " + i.to_s)
+PurposeClassroom.create(name: "practicas academicas" + "  " + i.to_s)
 puts "done"
+end
 
 puts 'loading type classrooms'
 TypeClassroom.create(name: "salon de clase")
@@ -135,17 +139,11 @@ end
 puts 'done'
 
 puts 'loading events'
-Event.create!(name: "boring stuff", description:  "many people asking many stuff and things")
-Event.create!(name: "grados de colegio pepito", description:  "many people asking many stuff and things, and kids who are going to fail in live")
-Event.create!(name: "diplomado en data science", description:  "people learning about computer learning and stuff")
-Event.create!(name: "salida de campo", description:  "charla sobre cosas de animalitos")
-Event.create!(name: "coloquio de matematicas", description:  "gente muy ñoña hablando de mates")
-Event.create!(name: "huellas que inspiran", description:  "buuuuuuuuuuuuu")
-Event.create!(name: "Bogotá musical", description:  "una clase muy genial, concierto gratis :V")
-Event.create!(name: "no se", description:  "descripciones de aburiadsfjasñofjadsjfñads")
-Event.create!(name: "conferencia", description:  "viene el presidente quizás (?)")
-Event.create!(name: "cosas de rep. estudiantil", description:  "buuuuuu, vendidos, buuuuuuuu")
-Event.create!(name: "lab extra quimica", description:  "fluidos, lab de reposición por paro")
+
+30.times do |i|
+    Event.create!(name: Faker::HarryPotter.quote, description:  Faker::ChuckNorris.fact)
+end
+
 puts 'done'
 
 puts 'loading specific_schedules'

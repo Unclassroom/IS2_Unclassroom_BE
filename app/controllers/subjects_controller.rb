@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects
   def index
-    @subjects = Subject.all
+    @subjects = Subject.paginate(:page => params[:page], per_page: 2)
 
     render json: @subjects
   end

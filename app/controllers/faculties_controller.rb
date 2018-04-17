@@ -3,7 +3,8 @@ class FacultiesController < ApplicationController
 
   # GET /faculties
   def index
-    @faculties = Faculty.all
+    @faculties = Faculty.paginate(:page => params[:page], per_page: 2)
+    #must send http://localhost:3000/faculties?page={number}
 
     render json: @faculties
   end
