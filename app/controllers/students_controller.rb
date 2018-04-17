@@ -19,6 +19,7 @@ class StudentsController < ApplicationController
 
     if @student.save
       render json: @student, status: :created, location: @student
+      #RequestMailer.new_request(@student).deliver_now
     else
       render json: @student.errors, status: :unprocessable_entity
     end
