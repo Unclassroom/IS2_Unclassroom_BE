@@ -3,7 +3,7 @@ class PurposeClassroomsController < ApplicationController
 
   # GET /purpose_classrooms
   def index
-    @purpose_classrooms = PurposeClassroom.all
+    @purpose_classrooms = PurposeClassroom.paginate(:page => params[:page], per_page: 2)
 
     render json: @purpose_classrooms
   end
