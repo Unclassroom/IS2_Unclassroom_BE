@@ -148,10 +148,21 @@
 # 
 
 Rails.application.routes.draw do
-  resources :pets
-  mount_devise_token_auth_for 'User', at: 'auth'
-
-  root to: 'home#index'
+  # Add endpoints
+  # Home controller routes.
+  root   'home#index'
+  get    'auth'            => 'home#auth'
+    
+  # Get login token from Knock
+  post   'user_token'      => 'user_token#create'
+    
+  # User actions
+  get    '/users'          => 'users#index'
+  get    '/users/current'  => 'users#current'
+  post   '/users/create'   => 'users#create'
+  patch  '/user/:id'       => 'users#update'
+  delete '/user/:id'       => 'users#destroy'
+  
   resources :departments
   resources :reports
   resources :classroom_events

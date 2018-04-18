@@ -1,17 +1,19 @@
 class BuildingsController < ApplicationController
-  before_action :set_building, only: [:show, :update, :destroy]
+  # before_action :authenticate_user,  only: [:index]
+  # before_action :authenticate_user,  only: [:auth]
+  # before_action :set_building, only: [:show, :update, :destroy]
 
   # GET /buildings
   def index
-    info = Array.new
-    for i in Building.all
-      tmp = Hash.new
-      tmp["Build"]=Building.get_classrooms(i.id)
-      info.push(tmp)
-    end
-    render json: info
-    # @building = Building.all
-    # render json: @building
+    # info = Array.new
+    # for i in Building.all
+    #   tmp = Hash.new
+    #   tmp["Build"]=Building.get_classroms(i.id)
+    #   info.push(tmp)
+    # end
+    # render json: info
+    @building = Building.all
+    render json: @building
   end
 
   # GET /buildings/1

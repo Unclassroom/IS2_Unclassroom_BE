@@ -11,8 +11,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  request_alternative_id :integer
-#  motive                 :text
-#  file                   :string
 #
 # Indexes
 #

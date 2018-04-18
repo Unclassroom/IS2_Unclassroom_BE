@@ -15,7 +15,7 @@ class HeadBuildingsController < ApplicationController
     render json: @head_building
   end
 
-  def all
+def all
     render json: HeadBuilding.all
   end
 
@@ -26,7 +26,7 @@ class HeadBuildingsController < ApplicationController
 
     if @head_building.save
       render json: @head_building, status: :created, location: @head_building
-      #RequestMailer.new_request(@head_building).deliver_now
+            #RequestMailer.new_request(@head_building).deliver_now
 
     else
       render json: @head_building.errors, status: :unprocessable_entity

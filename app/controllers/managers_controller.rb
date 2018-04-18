@@ -19,8 +19,8 @@ class ManagersController < ApplicationController
 
     if @manager.save
       render json: @manager, status: :created, location: @manager
-    #RequestMailer.new_request(@manager).deliver_now
-    else
+        #RequestMailer.new_request(@manager).deliver_now
+else
       render json: @manager.errors, status: :unprocessable_entity
     end
   end

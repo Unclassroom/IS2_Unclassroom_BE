@@ -20,6 +20,10 @@ module BackEnd
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     #config.load_defaults 5.1
+    config.session_store :cookie_store, key: "_YOUR_APP_session_#{Rails.env}"
+    config.middleware.use ActionDispatch::Cookies # Required for all session management
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'

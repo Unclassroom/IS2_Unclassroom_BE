@@ -2,43 +2,45 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  provider               :string           default("email"), not null
-#  uid                    :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  allow_password_change  :boolean          default(FALSE)
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string
-#  last_sign_in_ip        :string
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string
-#  name                   :string
-#  nickname               :string
-#  image                  :string
-#  email                  :string
-#  tokens                 :json
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  email           :string           not null
+#  password_digest :string
+#  role            :string           default("user"), not null
+#  last_login      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
-#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_users_on_uid_and_provider      (uid,provider) UNIQUE
+#  index_users_on_email  (email)
 #
 
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  include DeviseTokenAuth::Concerns::User
+class User < ApplicationRecord
+    # Necessary to authenticate.
+    has_secure_password
+    
+    # Basic password validation, configure to your liking.
+    validates_length_of       :password, maximum: 72, minimum: 8, allow_nil: true, allow_blank: false
+    validates_confirmation_of :password, allow_nil: true, allow_blank: false
+
+    before_validation { 
+        (self.email = self.email.to_s.downcase) && (self.username = self.username.to_s.downcase) 
+    }
+
+    # Make sure email and username are present and unique.
+    validates_presence_of     :email
+    validates_presence_of     :username
+    validates_uniqueness_of   :email
+    validates_uniqueness_of   :username
+
+    # This method gives us a simple call to check if a user has permission to modify.
+    def can_modify_user?(user_id)
+        role == 'admin' || id.to_s == user_id.to_s
+    end
+
+    # This method tells us if the user is an admin or not.
+    def is_admin?
+        role == 'admin'
+    end
 end

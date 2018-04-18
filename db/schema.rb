@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413233354) do
+ActiveRecord::Schema.define(version: 20180414160343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,9 +79,11 @@ ActiveRecord::Schema.define(version: 20180413233354) do
   create_table "departments", force: :cascade do |t|
     t.bigint "faculty_id"
     t.string "name"
+    t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["faculty_id"], name: "index_departments_on_faculty_id"
+    t.index ["teacher_id"], name: "index_departments_on_teacher_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -111,9 +113,7 @@ ActiveRecord::Schema.define(version: 20180413233354) do
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "teacher_id"
     t.index ["subject_id"], name: "index_groups_on_subject_id"
-    t.index ["teacher_id"], name: "index_groups_on_teacher_id"
   end
 
   create_table "head_buildings", force: :cascade do |t|
@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20180413233354) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "file"
   end
 
   create_table "managers", force: :cascade do |t|
@@ -143,14 +142,6 @@ ActiveRecord::Schema.define(version: 20180413233354) do
     t.string "description"
     t.index ["classroom_schedule_id"], name: "index_opinions_on_classroom_schedule_id"
     t.index ["student_id"], name: "index_opinions_on_student_id"
-  end
-
-  create_table "pets", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "purpose_classrooms", force: :cascade do |t|
@@ -183,8 +174,6 @@ ActiveRecord::Schema.define(version: 20180413233354) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "request_alternative_id"
-    t.text "motive"
-    t.string "file"
     t.index ["external_person_id"], name: "index_requests_on_external_person_id"
     t.index ["purpose_classroom_id"], name: "index_requests_on_purpose_classroom_id"
     t.index ["request_alternative_id"], name: "index_requests_on_request_alternative_id"
@@ -231,9 +220,6 @@ ActiveRecord::Schema.define(version: 20180413233354) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "department_id"
-    t.string "role"
-    t.index ["department_id"], name: "index_teachers_on_department_id"
   end
 
   create_table "type_classrooms", force: :cascade do |t|
@@ -243,33 +229,14 @@ ActiveRecord::Schema.define(version: 20180413233354) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.boolean "allow_password_change", default: false
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.string "name"
-    t.string "nickname"
-    t.string "image"
-    t.string "email"
-    t.json "tokens"
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password_digest"
+    t.string "role", default: "user", null: false
+    t.datetime "last_login"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email"
   end
 
   add_foreign_key "buildings", "faculties"
@@ -286,8 +253,8 @@ ActiveRecord::Schema.define(version: 20180413233354) do
   add_foreign_key "cyclic_requests", "cyclic_schedules"
   add_foreign_key "cyclic_requests", "request_alternatives"
   add_foreign_key "departments", "faculties"
+  add_foreign_key "departments", "teachers"
   add_foreign_key "groups", "subjects"
-  add_foreign_key "groups", "teachers"
   add_foreign_key "opinions", "classroom_schedules"
   add_foreign_key "opinions", "students"
   add_foreign_key "reports", "classrooms"
@@ -299,5 +266,4 @@ ActiveRecord::Schema.define(version: 20180413233354) do
   add_foreign_key "requests", "type_classrooms"
   add_foreign_key "specific_requests", "request_alternatives"
   add_foreign_key "specific_requests", "specific_schedules"
-  add_foreign_key "teachers", "departments"
 end

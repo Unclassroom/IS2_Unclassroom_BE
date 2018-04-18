@@ -9,5 +9,5 @@
 #
 
 class PurposeClassroomSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id
 end

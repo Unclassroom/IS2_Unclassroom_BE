@@ -11,8 +11,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  request_alternative_id :integer
-#  motive                 :text
-#  file                   :string
 #
 # Indexes
 #
@@ -36,11 +34,11 @@ class Request < ApplicationRecord
   mount_uploader :file, ImageUploader
 
   ## validates
-  
   validates :teacher_id, presence: true, numericality: { only_integer: true }
   #validates :external_person_id, presence: true, numericality: { only_integer: true }
   validates :purpose_classroom_id, presence: true, numericality: { only_integer: true }
   validates :type_classroom_id, presence: true, numericality: { only_integer: true }
+  validates :state, presence: true 
   
   belongs_to :teacher
   belongs_to :purpose_classroom
@@ -88,5 +86,5 @@ class Request < ApplicationRecord
         ]
     )
   end
-
+  
 end

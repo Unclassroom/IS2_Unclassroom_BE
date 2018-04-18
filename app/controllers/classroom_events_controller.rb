@@ -3,15 +3,9 @@ class ClassroomEventsController < ApplicationController
 
   # GET /classroom_events
   def index
-    info = Array.new
-    for i in ClassroomEvent.all
-      tmp = Hash.new
-      tmp["Data"]=ClassroomEvent.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-    # @classroom_events = ClassroomEvent.all
-    # render json: ClassroomEvent.all
+    
+    @classroom_events = ClassroomEvent.all
+    render json: @classroom_events
   end
 
   # GET /classroom_events/1

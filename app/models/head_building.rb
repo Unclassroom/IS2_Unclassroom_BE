@@ -9,7 +9,6 @@
 #  email      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  file       :string
 #
 
 class HeadBuilding < ApplicationRecord
@@ -38,5 +37,4 @@ class HeadBuilding < ApplicationRecord
     def self.basicInfo
         HeadBuilding.joins(:buildings).select("last_name, email")
     end
-
 end

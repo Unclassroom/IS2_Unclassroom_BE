@@ -2,17 +2,9 @@ class ClassroomSchedulesController < ApplicationController
   before_action :set_classroom_schedule, only: [:show, :update, :destroy]
 
   # GET /classroom_schedules
-  def index
-    info = Array.new
-    for i in ClassroomSchedule.all
-      tmp = Hash.new
-      tmp["Data"]=ClassroomSchedule.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-
-    # @classroom_schedules = ClassroomSchedule.all
-    # render json: ClassroomSchedule.all
+  
+    @classroom_schedules = ClassroomSchedule.all
+    render json: @classroom_schedules
   end
 
   # GET /classroom_schedules/1

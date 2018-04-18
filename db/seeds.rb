@@ -1,4 +1,9 @@
 require 'faker'
+puts 'loading user'
+# User.create(email: 'user1@example.com', password: "monkey67")
+User.create(email: 'user1@example.com', username: 'User One', password: "monkey123")
+User.create(email: 'user2@example.com', username: 'User Two', password: "monkey456")
+puts 'done'
 
 puts "destruying"
 ClassroomEvent.destroy_all #check

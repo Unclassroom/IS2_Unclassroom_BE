@@ -10,9 +10,9 @@ gem 'faker', '~> 1.8', '>= 1.8.7'
 gem 'carrierwave'
 gem 'json'
 gem 'stamp'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
-gem 'mini_magick', '~> 4.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -31,7 +31,9 @@ gem 'rails_12factor'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'devise_token_auth'
+gem 'knock'
+gem 'jwt'
+# gem 'devise_token_auth'
 gem 'omniauth'
 #gem 'simple_token_authentication', '~> 1.0' # see semver.org
 # Use Capistrano for deployment

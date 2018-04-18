@@ -36,8 +36,8 @@ class RequestsController < ApplicationController
 
     if @request.save
       render json: @request, status: :created, location: @request
-      #RequestMailer.new_request(@request).deliver_now
-      # I dont want the account blocked, so this line is commented unless it's in production.
+    #RequestMailer.new_request(@request).deliver_now
+    # I dont want the account blocked, so this line is commented unless it's in production.
     else
       render json: @request.errors, status: :unprocessable_entity
     end
@@ -67,6 +67,4 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:teacher_id, :external_person_id, :purpose_classroom_id, :type_classroom_id, :state, :accepted_alternative)
     end
-
-    
 end
