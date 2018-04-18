@@ -32,8 +32,7 @@
 #
 
 class Request < ApplicationRecord
-  include ActiveModel::Serialization
-  mount_uploader :file, ImageUploader
+  mount_uploader :file, FileUploader
 
   ## validates
   validates :teacher_id, presence: true, numericality: { only_integer: true }

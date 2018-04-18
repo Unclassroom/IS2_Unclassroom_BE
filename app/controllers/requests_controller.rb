@@ -9,16 +9,7 @@ class RequestsController < ApplicationController
 
   # GET /requests/1
   def show
-    respond_to do |format|
-      format.json {render json: @request}
-      format.pdf {
-        send_data @request.receipt.render,
-          filename: "#{@request.created_at.strftime("%Y-%m-%d")}-UN-Classroom.pdf",
-          type: "application/pdf",
-          disposition: :inline
-      }
-    end
-    
+    render json: @request    
   end
 
   def get_pdf
@@ -64,10 +55,10 @@ class RequestsController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def request_params
-      params.require(:request).permit(:teacher_id, :external_person_id, :purpose_classroom_id, :type_classroom_id, 
-        :state, :accepted_alternative, :file, :motive)
-    end
+    #def request_params
+    #  params.require(:request).permit(:teacher_id, :external_person_id, :purpose_classroom_id, :type_classroom_id, 
+    #    :state, :accepted_alternative, :file, :motive)
+    #end
 
     
 end
