@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   # Include Knock within your application.
   include Knock::Authenticable
   before_action :authenticate_user,  only: [:auth]
