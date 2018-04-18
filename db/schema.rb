@@ -79,11 +79,9 @@ ActiveRecord::Schema.define(version: 20180414160343) do
   create_table "departments", force: :cascade do |t|
     t.bigint "faculty_id"
     t.string "name"
-    t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["faculty_id"], name: "index_departments_on_faculty_id"
-    t.index ["teacher_id"], name: "index_departments_on_teacher_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -113,7 +111,9 @@ ActiveRecord::Schema.define(version: 20180414160343) do
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "teacher_id"
     t.index ["subject_id"], name: "index_groups_on_subject_id"
+    t.index ["teacher_id"], name: "index_groups_on_teacher_id"
   end
 
   create_table "head_buildings", force: :cascade do |t|
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20180414160343) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
   end
 
   create_table "managers", force: :cascade do |t|
@@ -142,6 +143,14 @@ ActiveRecord::Schema.define(version: 20180414160343) do
     t.string "description"
     t.index ["classroom_schedule_id"], name: "index_opinions_on_classroom_schedule_id"
     t.index ["student_id"], name: "index_opinions_on_student_id"
+  end
+
+  create_table "pets", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "purpose_classrooms", force: :cascade do |t|
@@ -174,6 +183,8 @@ ActiveRecord::Schema.define(version: 20180414160343) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "request_alternative_id"
+    t.text "motive"
+    t.string "file"
     t.index ["external_person_id"], name: "index_requests_on_external_person_id"
     t.index ["purpose_classroom_id"], name: "index_requests_on_purpose_classroom_id"
     t.index ["request_alternative_id"], name: "index_requests_on_request_alternative_id"
@@ -220,6 +231,9 @@ ActiveRecord::Schema.define(version: 20180414160343) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "department_id"
+    t.string "role"
+    t.index ["department_id"], name: "index_teachers_on_department_id"
   end
 
   create_table "type_classrooms", force: :cascade do |t|
@@ -253,8 +267,8 @@ ActiveRecord::Schema.define(version: 20180414160343) do
   add_foreign_key "cyclic_requests", "cyclic_schedules"
   add_foreign_key "cyclic_requests", "request_alternatives"
   add_foreign_key "departments", "faculties"
-  add_foreign_key "departments", "teachers"
   add_foreign_key "groups", "subjects"
+  add_foreign_key "groups", "teachers"
   add_foreign_key "opinions", "classroom_schedules"
   add_foreign_key "opinions", "students"
   add_foreign_key "reports", "classrooms"
@@ -266,4 +280,5 @@ ActiveRecord::Schema.define(version: 20180414160343) do
   add_foreign_key "requests", "type_classrooms"
   add_foreign_key "specific_requests", "request_alternatives"
   add_foreign_key "specific_requests", "specific_schedules"
+  add_foreign_key "teachers", "departments"
 end

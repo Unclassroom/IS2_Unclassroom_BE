@@ -1,9 +1,4 @@
 require 'faker'
-puts 'loading user'
-# User.create(email: 'user1@example.com', password: "monkey67")
-User.create(email: 'user1@example.com', username: 'User One', password: "monkey123")
-User.create(email: 'user2@example.com', username: 'User Two', password: "monkey456")
-puts 'done'
 
 puts "destruying"
 ClassroomEvent.destroy_all #check
@@ -32,6 +27,12 @@ PurposeClassroom.destroy_all # check
 Faculty.destroy_all # check
 User.destroy_all
 puts "done"
+
+puts 'loading user'
+# User.create(email: 'user1@example.com', password: "monkey67")
+User.create(email: 'user1@example.com', username: 'User One', password: "monkey123")
+User.create(email: 'user2@example.com', username: 'User Two', password: "monkey456")
+puts 'done'
 
 puts "loading faculties"
 for i in 1..4
@@ -83,12 +84,6 @@ puts 'loading subjects'
   )
 end
 puts 'done'
-
-puts 'loading user'
-# User.create(email: 'user1@example.com', password: "monkey67")
-User.create(email: 'user@example.com', nickname: 'UOne', name: 'User One', password: "monkey67")
-puts 'done'
-
 
 puts 'lading external_people'
 10.times do |row|
