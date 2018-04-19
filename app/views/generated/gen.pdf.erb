@@ -1,24 +1,64 @@
 <!DOCTYPE html>
 <head> 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<link href="grid.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+<title> </title>
+<meta charset="utf-8">
 </head>
 <html>
 <body>
 
 <h1> UN Classoom </h1>
 
-<p>Here are the details for your request </p>
+<p>Acá están los detalles de su solicitud: </p>
 
-<div class="row">
-    <div class="col-md-6">.col-md-8</div>
-    <div class="col-md-2">.col-md-4</div>
-</div>
-
-
-<h1>
-<%= @request.id %>
-</h1>
+<table class="table">
+    <thead>
+        <tr> 
+        <th style="width: 200px;"></th>
+        <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr> 
+        <th>Estado</th>
+        <td><%= @request.state %></td>
+        </tr>
+ 
+        <tr> 
+        <th>Propósito del salón</th>
+        <td><%= PurposeClassroom.find(@request.purpose_classroom_id).name %></td>
+        </tr>
+ 
+        <tr> 
+        <th>Tipo de salón</th>
+        <td><%=TypeClassroom.find(@request.type_classroom_id).name %></td>
+        </tr>
+ 
+        <tr> 
+        <th>Motivo</th>
+        <td><%= @request.motive %></td>
+        </tr>
+ 
+        <tr> 
+        <th>Profesor solicitante</th>
+        <td><%= @request.teacher.first_name + "  " +  @request.teacher.last_name %></td>
+        </tr>
+ 
+        <tr> 
+        <th>Correo profesor solicitante</th>
+        <td><%= @request.teacher.email %></td>
+        </tr>
+ 
+       <tr> 
+        <th></th>
+        <td></td>
+        </tr>
+ 
+ 
+     </tbody>
+</table>
+<p>Gracias por hacer su solicitud, en cuanto sea aceptada o rechazada se le enviará un correo.</p>
 </body>
 </html>
 

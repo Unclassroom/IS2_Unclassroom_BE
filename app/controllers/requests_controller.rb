@@ -24,7 +24,6 @@ class RequestsController < ApplicationController
   # POST /requests
   def create
     @request = Request.new(request_params)
-
     if @request.save
       render json: @request, status: :created, location: @request
       #RequestMailer.new_request(@request).deliver_now
@@ -56,8 +55,8 @@ class RequestsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def request_params
-      params.require(:request).permit(:teacher_id, :external_person_id, :purpose_classroom_id, :type_classroom_id, 
-        :state, :accepted_alternative, :file, :motive)
+      params.permit(:teacher_id, :external_person_id, :purpose_classroom_id, 
+        :type_classroom_id, :state, :accepted_alternative, :file, :motive)
     end
 
     
