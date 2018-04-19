@@ -19,7 +19,8 @@ class TeachersController < ApplicationController
 
     if @teacher.save
       render json: @teacher, status: :created, location: @teacher
-            #RequestMailer.new_request(@teacher).deliver_now
+      @user = @teacher
+      #WelcomeMailer.new_user(@user).deliver_now
     else
       render json: @teacher.errors, status: :unprocessable_entity
     end
