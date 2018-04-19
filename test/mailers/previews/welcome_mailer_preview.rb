@@ -7,3 +7,4 @@ class WelcomeMailerPreview < ActionMailer::Preview
   end
 
 end
+  
