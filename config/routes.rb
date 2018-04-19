@@ -1,6 +1,25 @@
 # == Route Map
 #
 #               Prefix Verb   URI Pattern                         Controller#Action
+#                 root GET    /                                   home#index
+#                 auth GET    /auth(.:format)                     home#auth
+#           user_token POST   /user_token(.:format)               user_token#create
+#                users GET    /users(.:format)                    users#index
+#        users_current GET    /users/current(.:format)            users#current
+#         users_create POST   /users/create(.:format)             users#create
+#                      PATCH  /user/:id(.:format)                 users#update
+#                      DELETE /user/:id(.:format)                 users#destroy
+#                      GET    /users(.:format)                    users#index
+#                      GET    /users/current(.:format)            users#current
+#                      POST   /users/create(.:format)             users#create
+#                      PATCH  /user/:id(.:format)                 users#update
+#                      DELETE /user/:id(.:format)                 users#destroy
+#    social_auth_index GET    /social_auth(.:format)              social_auth#index
+#                      POST   /social_auth(.:format)              social_auth#create
+#          social_auth GET    /social_auth/:id(.:format)          social_auth#show
+#                      PATCH  /social_auth/:id(.:format)          social_auth#update
+#                      PUT    /social_auth/:id(.:format)          social_auth#update
+#                      DELETE /social_auth/:id(.:format)          social_auth#destroy
 #          departments GET    /departments(.:format)              departments#index
 #                      POST   /departments(.:format)              departments#create
 #           department GET    /departments/:id(.:format)          departments#show
@@ -37,12 +56,12 @@
 #                      PATCH  /specific_requests/:id(.:format)    specific_requests#update
 #                      PUT    /specific_requests/:id(.:format)    specific_requests#update
 #                      DELETE /specific_requests/:id(.:format)    specific_requests#destroy
-#            specifics GET    /specifics(.:format)                specifics#index
-#                      POST   /specifics(.:format)                specifics#create
-#             specific GET    /specifics/:id(.:format)            specifics#show
-#                      PATCH  /specifics/:id(.:format)            specifics#update
-#                      PUT    /specifics/:id(.:format)            specifics#update
-#                      DELETE /specifics/:id(.:format)            specifics#destroy
+#   specific_schedules GET    /specific_schedules(.:format)       specific_schedules#index
+#                      POST   /specific_schedules(.:format)       specific_schedules#create
+#    specific_schedule GET    /specific_schedules/:id(.:format)   specific_schedules#show
+#                      PATCH  /specific_schedules/:id(.:format)   specific_schedules#update
+#                      PUT    /specific_schedules/:id(.:format)   specific_schedules#update
+#                      DELETE /specific_schedules/:id(.:format)   specific_schedules#destroy
 #      cyclic_requests GET    /cyclic_requests(.:format)          cyclic_requests#index
 #                      POST   /cyclic_requests(.:format)          cyclic_requests#create
 #       cyclic_request GET    /cyclic_requests/:id(.:format)      cyclic_requests#show
@@ -145,6 +164,8 @@
 #                      PATCH  /faculties/:id(.:format)            faculties#update
 #                      PUT    /faculties/:id(.:format)            faculties#update
 #                      DELETE /faculties/:id(.:format)            faculties#destroy
+#                      GET    /all_head_buildings(.:format)       head_buildings#all
+#                      GET    /pdf_request/:id(.:format)          requests#get_pdf
 # 
 
 Rails.application.routes.draw do
@@ -162,7 +183,14 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   patch  '/user/:id'       => 'users#update'
   delete '/user/:id'       => 'users#destroy'
-  
+
+  get    '/users'          => 'users#index'
+  get    '/users/current'  => 'users#current'
+  post   '/users/create'   => 'users#create'
+  patch  '/user/:id'       => 'users#update'
+  delete '/user/:id'       => 'users#destroy'
+  resources :social_auth
+  # resources :users
   resources :departments
   resources :reports
   resources :classroom_events
