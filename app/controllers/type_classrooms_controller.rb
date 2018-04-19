@@ -2,8 +2,14 @@ class TypeClassroomsController < ApplicationController
   before_action :set_type_classroom, only: [:show, :update, :destroy]
 
   # GET /type_classrooms
-  def index
+  def index_no_paginate
     @type_classrooms = TypeClassroom.all
+
+    render json: @type_classrooms
+  end
+
+  def index
+    @type_classrooms = TypeClassroom.paginate(:page => params[:page], per_page: 2)
 
     render json: @type_classrooms
   end

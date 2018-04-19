@@ -7,6 +7,10 @@ class PurposeClassroomsController < ApplicationController
 
     render json: @purpose_classrooms
   end
+  def index_no_paginate
+    @purpose_classrooms = PurposeClassroom.all
+    render json: @purpose_classrooms
+  end
 
   # GET /purpose_classrooms/1
   def show
