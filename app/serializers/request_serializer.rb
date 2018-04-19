@@ -32,7 +32,7 @@
 #
 
 class RequestSerializer < ActiveModel::Serializer
-  attributes :id, :state, :times, :purpose_classroom, :type_classroom, :motive
+  attributes :id, :state, :times, :purpose_classroom, :type_classroom, :motive, :file
   has_one :purpose_classroom
   has_one :type_classroom
   has_one :teacher

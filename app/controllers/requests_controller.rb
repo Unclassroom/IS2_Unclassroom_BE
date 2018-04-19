@@ -9,16 +9,7 @@ class RequestsController < ApplicationController
 
   # GET /requests/1
   def show
-    respond_to do |format|
-      format.json {render json: @request}
-      format.pdf {
-        send_data @request.receipt.render,
-          filename: "#{@request.created_at.strftime("%Y-%m-%d")}-UN-Classroom.pdf",
-          type: "application/pdf",
-          disposition: :inline
-      }
-    end
-    
+    render json: @request    
   end
 
   def get_pdf
@@ -33,10 +24,9 @@ class RequestsController < ApplicationController
   # POST /requests
   def create
     @request = Request.new(request_params)
-
     if @request.save
       render json: @request, status: :created, location: @request
-      #RequestMailer.new_request(@request).deliver_now
+      RequestMailer.new_request(@request).deliver_now
       # I dont want the account blocked, so this line is commented unless it's in production.
     else
       render json: @request.errors, status: :unprocessable_entity
@@ -65,7 +55,8 @@ class RequestsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def request_params
-      params.require(:request).permit(:teacher_id, :external_person_id, :purpose_classroom_id, :type_classroom_id, :state, :accepted_alternative)
+      params.permit(:teacher_id, :external_person_id, :purpose_classroom_id, 
+        :type_classroom_id, :state, :accepted_alternative, :file, :motive)
     end
 
     
