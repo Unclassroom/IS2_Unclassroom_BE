@@ -18,10 +18,11 @@ class UsersController < ApplicationController
 
     # Method to create a new user using the safe params we setup.
     def create
-        user = User.new(user_params)
+        @user = User.new(user_params)
         # password_confirmation = password
-        if user.save
+        if @user.save
             render json: {status: 200, msg: 'User was created.'}
+            RequestMailer.new_request(@user).deliver_now
         else
             render json: {msg: 'User doesnt creat.'}
         end
