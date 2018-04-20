@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         # password_confirmation = password
         if @user.save
             render json: {status: 200, msg: 'User was created.'}
-            RequestMailer.new_request(@user).deliver_now
+            WelcomeMailer.new_user(@user).deliver_now
         else
             render json: {msg: 'User doesnt creat.'}
         end
