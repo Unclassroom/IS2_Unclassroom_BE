@@ -1,0 +1,18 @@
+Mailers -> Felipe
+Validaciones a nivel de vista -> Jonathan
+Paginate -> Felipe
+protección de rutas -> Adriana, Jonathan
+serializadores -> Felipe
+envío de archivos a Back -> Elmar
+visualización pdf -> Elmar
+Formularios con validaciones -> Jonathan
+Cargue de archivos utilizando carrierwave -> Felipe
+Reportes en formato pdf -> Felipe
+Sign In con redes sociales -> Adriana, Jonathan
+Heroku y rama de iteración -> Felipe, Adriana
+Implementar la autenticación (SignUp y SignIn) -> Adriana
+
+
+Heroku:
+https://unclassroom-backend.herokuapp.com/
+https://unclassroom-frontend.herokuapp.com/
