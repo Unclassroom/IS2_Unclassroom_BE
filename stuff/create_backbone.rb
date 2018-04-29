@@ -40,6 +40,9 @@ rails g scaffold opinion classroom_schedule:references student:references  -s
 
 rails g scaffold classroom_event event:references specific_schedule:references classroom:references -s
 
+rails g scaffold auto_request file
+rails g scaffold auto_request_failed auto_request:references code group day time building classroom
+
 # init all again
 bin/rails db:environment:set RAILS_ENV=development
 rake db:drop:all

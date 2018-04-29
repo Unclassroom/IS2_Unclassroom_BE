@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414160343) do
+ActiveRecord::Schema.define(version: 20180429004906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auto_request_faileds", force: :cascade do |t|
+    t.bigint "auto_request_id"
+    t.string "code"
+    t.string "group"
+    t.string "day"
+    t.string "time"
+    t.string "building"
+    t.string "classroom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auto_request_id"], name: "index_auto_request_faileds_on_auto_request_id"
+  end
+
+  create_table "auto_requests", force: :cascade do |t|
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "buildings", force: :cascade do |t|
     t.string "name"
@@ -253,6 +272,7 @@ ActiveRecord::Schema.define(version: 20180414160343) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "auto_request_faileds", "auto_requests"
   add_foreign_key "buildings", "faculties"
   add_foreign_key "buildings", "head_buildings"
   add_foreign_key "classroom_events", "classrooms"

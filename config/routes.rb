@@ -169,6 +169,8 @@
 # 
 
 Rails.application.routes.draw do
+  resources :auto_request_faileds
+  resources :auto_requests
   # Add endpoints
   # Home controller routes.
   root   'home#index'
