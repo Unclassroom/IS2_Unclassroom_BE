@@ -81,6 +81,7 @@ puts 'loading subjects'
 50.times do |row|
     Subject.create!(
     name: Faker::Educator.unique.course,
+    code: Random.rand(1100000000)
   )
 end
 puts 'done'
@@ -151,8 +152,10 @@ def create_SpecificSchedule(cnt = 5)
     for i in 1..cnt
         SpecificSchedule.create!(
             date: Faker::Date.forward(23),
-            begin_at: Faker::Time.between(2.days.ago, Date.today, :morning),
-            end_at: Faker::Time.between(2.days.ago, Date.today, :afternoon),
+            begin_at_hour: Random.rand(23) ,
+            end_at_minute: Random.rand(59),
+            begin_at_minute: Random.rand(59),
+            end_at_hour: Random.rand(23)
   
         )
     end
@@ -164,10 +167,12 @@ puts 'loading cyclic schedules'
 10.times do |i|
     CyclicSchedule.create!(
         day: Random.rand(8),
-        begin_at: Faker::Time.between(2.days.ago, Date.today, :morning),
-        end_at: Faker::Time.between(2.days.ago, Date.today, :afternoon),
-   ) 
-end
+        begin_at_hour: Random.rand(23) ,
+        end_at_minute: Random.rand(59),
+        begin_at_minute: Random.rand(59),
+        end_at_hour: Random.rand(23)
+    ) 
+    end
 puts 'done'
 
 puts 'loading buildings'

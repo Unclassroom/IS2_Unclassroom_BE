@@ -18,7 +18,7 @@ class AutoRequest < ApplicationRecord
         s.selected_sheet = s.sheets.first
         data = false
         line = 11
-        while s.cell(line, 1) != nil do 
+        while s.cell(line, 1) != nil 
             p code = s.cell(line, 1).to_i
             p subject = s.cell(line, 2).to_s
             p group = s.cell(line, 3).to_i
@@ -29,6 +29,25 @@ class AutoRequest < ApplicationRecord
             p buildign = s.cell(line, 14).to_i
             p classroom = s.cell(line, 15).to_i
             
+            if Subject.find_by code: code == nil
+                Subject.create(
+                    name: subject,
+                    code: code
+                )
+            end
+            sub = Subject.find_by(code: code)
+
+            #if Group.find_by (number: group, subject_id: sub.id ) == nil
+            #    group.create(
+            #        number: group,
+            #        subject_id: sub.id
+            #    )
+            #end
+            #gr = Group.find_by (number: group, subject_id: sub.id )
+
+
+
+
 
             line += 1
         end
