@@ -17,9 +17,11 @@
 class SpecificSchedule < ApplicationRecord
     include ActiveModel::Serialization
     validates :date, presence: true
-    validates :begin_at, presence: true
-    validates :end_at, presence: true
-
+    validates :begin_at_hour, presence: true
+    validates :end_at_hour, presence: true
+    validates :begin_at_minute, presence: true
+    validates :end_at_minute, presence: true
+  
     has_many :specific_requests
     has_many :request_alternatives, through: :specific_requests
     has_many :classroom_events

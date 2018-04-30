@@ -9,7 +9,7 @@ class SubjectsController < ApplicationController
   end
 
   def index_no_paginate
-    @subjects = Subject.paginate(:page => params[:page], per_page: 2)
+    @subjects = Subject.all
 
     render json: @subjects
   end

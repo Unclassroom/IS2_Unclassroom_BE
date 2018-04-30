@@ -60,6 +60,8 @@ rails g migration add_begin_at_minute_to_specific_schedule begin_at_minute:integ
 rails g migration add_end_at_hour_to_specific_schedule end_at_hour:integer
 rails g migration add_end_at_minute_to_specific_schedule end_at_minute:integer
 
+rails g migration add_number_to_building number:integer
+rails g migration add_number_to_classroom number:integer
 
 
 

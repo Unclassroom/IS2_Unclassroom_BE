@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430032838) do
+ActiveRecord::Schema.define(version: 20180430041942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180430032838) do
     t.bigint "faculty_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
     t.index ["faculty_id"], name: "index_buildings_on_faculty_id"
     t.index ["head_building_id"], name: "index_buildings_on_head_building_id"
   end
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20180430032838) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
     t.index ["building_id"], name: "index_classrooms_on_building_id"
     t.index ["department_id"], name: "index_classrooms_on_department_id"
     t.index ["type_classroom_id"], name: "index_classrooms_on_type_classroom_id"

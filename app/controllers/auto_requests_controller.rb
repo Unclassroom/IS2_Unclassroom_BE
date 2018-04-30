@@ -18,6 +18,7 @@ class AutoRequestsController < ApplicationController
     @auto_request = AutoRequest.new(auto_request_params)
 
     if @auto_request.save
+      @auto_request.addDataFromExcel
       render json: @auto_request, status: :created, location: @auto_request
     else
       render json: @auto_request.errors, status: :unprocessable_entity

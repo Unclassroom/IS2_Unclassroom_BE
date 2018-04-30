@@ -1,6 +1,7 @@
 require 'faker'
 
 puts "destruying"
+AutoRequest.destroy_all 
 ClassroomEvent.destroy_all #check
 Opinion.destroy_all #check
 ClassroomSchedule.destroy_all #check
@@ -35,6 +36,7 @@ User.create(email: 'user2@example.com', username: 'User Two', password: "monkey4
 puts 'done'
 
 puts "loading faculties"
+Faculty.create!(name: "Ingenieria")
 for i in 1..4
 Faculty.create!(name: "Agronomia" + i.to_s)
 Faculty.create!(name: "Ciencias" + i.to_s)
@@ -182,7 +184,8 @@ def create_Building(cnt = 5)
             Building.create!(   
                 head_building_id: HeadBuilding.find(i + HeadBuilding.first.id).id,
                 faculty_id: Faculty.find(i + Faculty.first.id).id,
-                name: Faker::Educator.campus
+                name: Faker::Educator.campus,
+                number: Random.rand(999)
             )
     end
 end
@@ -228,7 +231,8 @@ def create_Classroom(cnt = 1)
                     type_classroom_id: i.id,
                     building_id: j.id,
                     department_id: k.id,
-                    capacity: Random.rand(200)
+                    capacity: Random.rand(200),
+                    number: Random.rand(999)
                 )
             end
         end
