@@ -3,16 +3,8 @@ class CyclicSchedulesController < ApplicationController
 
   # GET /cyclic_schedules
   def index
-    info = Array.new
-    for i in CyclicSchedule.all
-      tmp = Hash.new
-      tmp["Data"]=CyclicSchedule.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-
-    # @cyclic_schedules = CyclicSchedule.all
-    # render json: @cyclic_schedules
+    @cyclic_schedules = CyclicSchedule.all
+    render json: @cyclic_schedules
   end
 
   # GET /cyclic_schedules/1

@@ -8,6 +8,12 @@ class SubjectsController < ApplicationController
     render json: @subjects
   end
 
+  def index_no_paginate
+    @subjects = Subject.paginate(:page => params[:page], per_page: 2)
+
+    render json: @subjects
+  end
+
   # GET /subjects/1
   def show
     render json: @subject

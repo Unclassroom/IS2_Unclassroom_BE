@@ -7,6 +7,12 @@ class GroupsController < ApplicationController
 
     render json: @groups
   end
+  
+  def index_no_paginate
+    @groups = Group.all
+    render json: @groups
+  end
+  
 
   # GET /groups/1
   def show
