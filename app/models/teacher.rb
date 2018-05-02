@@ -26,9 +26,10 @@
 class Teacher < ApplicationRecord
     include ActiveModel::Serialization
     ## validates
-    validates :cc, numericality: { only_integer: true }
+    # validates :cc, numericality: { only_integer: true }
     validates :first_name, presence: true
     validates :last_name, presence: true
+    
     has_many :groups
     has_many :requests
     belongs_to :departments

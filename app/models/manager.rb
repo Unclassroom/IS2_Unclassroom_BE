@@ -21,7 +21,7 @@
 
 class Manager < ApplicationRecord
     include ActiveModel::Serialization
-    validates :cc, numericality: { only_integer: true }
+    # validates :cc, numericality: { only_integer: true }
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :user_id, presence: true
