@@ -169,6 +169,8 @@
 # 
 
 Rails.application.routes.draw do
+  resources :auto_request_faileds
+  resources :auto_requests
   # Add endpoints
   # Home controller routes.
   root   'home#index'
@@ -215,12 +217,14 @@ Rails.application.routes.draw do
   resources :type_classrooms
   resources :purpose_classrooms
   resources :faculties
-  resources :pets
   
   get '/all_head_buildings(.:format)', to: 'head_buildings#all'
   get '/pdf_request/:id(.:format)', to: 'requests#get_pdf'
   get '/purpose_classrooms_no_paginate/(.:format)',  to: 'purpose_classrooms#index_no_paginate'
   get '/type_classrooms_no_paginate/(.:format)',  to: 'type_classrooms#index_no_paginate'
+  get '/faculties_no_paginate/(.:format)',  to: 'faculties#index_no_paginate'
+  get '/groups_no_paginate/(.:format)',  to: 'groups#index_no_paginate'
+  get '/subjects_no_paginate/(.:format)',  to: 'subjects#index_no_paginate'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end

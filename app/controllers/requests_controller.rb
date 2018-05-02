@@ -25,8 +25,9 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     if @request.save
-      render json: @request, status: :created, location: @request
-      RequestMailer.new_request(@request).deliver_now
+      # render json: @request, status: :created, location: @request
+      redirect_to "localhost:4200/layout/request/register"
+      RequestMailer.new_request(@request).deliver_later
       # I dont want the account blocked, so this line is commented unless it's in production.
     else
       render json: @request.errors, status: :unprocessable_entity

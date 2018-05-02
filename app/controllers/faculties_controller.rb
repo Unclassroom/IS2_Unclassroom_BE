@@ -5,7 +5,10 @@ class FacultiesController < ApplicationController
   def index
     @faculties = Faculty.paginate(:page => params[:page], per_page: 2)
     #must send http://localhost:3000/faculties?page={number}
-
+    render json: @faculties
+  end
+  def index_no_paginate
+    @faculties = Faculty.all
     render json: @faculties
   end
 

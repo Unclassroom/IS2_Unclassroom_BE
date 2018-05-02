@@ -40,6 +40,31 @@ rails g scaffold opinion classroom_schedule:references student:references  -s
 
 rails g scaffold classroom_event event:references specific_schedule:references classroom:references -s
 
+rails g scaffold auto_request file
+rails g scaffold auto_request_failed auto_request:references code group day time building classroom
+
+rails g migration add_code_to_subject code -s
+
+rails g migration remove_begin_at_from_specific_schedule 
+rails g migration remove_end_at_from_specific_schedule 
+rails g migration remove_begin_at_from_cyclic_schedule 
+rails g migration remove_end_at_from_cyclic_schedule
+
+rails g migration add_begin_at_hour_to_cyclic_schedule begin_at_hour:integer
+rails g migration add_begin_at_minute_to_cyclic_schedule begin_at_minute:integer
+rails g migration add_end_at_hour_to_cyclic_schedule end_at_hour:integer
+rails g migration add_end_at_minute_to_cyclic_schedule end_at_minute:integer
+
+rails g migration add_begin_at_hour_to_specific_schedule begin_at_hour:integer
+rails g migration add_begin_at_minute_to_specific_schedule begin_at_minute:integer
+rails g migration add_end_at_hour_to_specific_schedule end_at_hour:integer
+rails g migration add_end_at_minute_to_specific_schedule end_at_minute:integer
+
+rails g migration add_number_to_building number:integer
+rails g migration add_number_to_classroom number:integer
+
+
+
 # init all again
 bin/rails db:environment:set RAILS_ENV=development
 rake db:drop:all
