@@ -43,4 +43,7 @@ class User < ApplicationRecord
     def is_admin?
         role == 'admin'
     end
+    has_many :students
+    has_many :managers
+    has_many :teachers
 end

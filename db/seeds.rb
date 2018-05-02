@@ -77,6 +77,8 @@ TypeClassroom.create(name: "cancha de baloncesto")
 TypeClassroom.create(name: "estadio")
 puts 'done'
 
+Student.create(cc: 767890320,first_name: "Laura",last_name: "Gutierrez", user_id: 25)
+
 puts 'loading subjects'
 50.times do |row|
     Subject.create!(
@@ -122,6 +124,7 @@ puts 'lading students'
         #updated_at: Faker::Date.between(1.year.ago, Date.today)
   )
 end
+
 puts 'done'
 
 puts 'loading headbuildings'
