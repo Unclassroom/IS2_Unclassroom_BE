@@ -3,15 +3,8 @@ class ClassroomsController < ApplicationController
 
   # GET /classrooms
   def index
-    info = Array.new
-    for i in Classroom.all
-      tmp = Hash.new
-      tmp["Data"]=Classroom.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-    # @classrooms = Classroom.all
-    # render json: @classrooms
+    @classrooms = Classroom.all
+    render json: @classrooms
   end
 
   # GET /classrooms/1

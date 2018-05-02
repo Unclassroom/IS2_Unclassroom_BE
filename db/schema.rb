@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180501221642) do
+=======
+ActiveRecord::Schema.define(version: 20180430041942) do
+>>>>>>> develop
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auto_request_faileds", force: :cascade do |t|
+    t.bigint "auto_request_id"
+    t.string "code"
+    t.string "group"
+    t.string "day"
+    t.string "time"
+    t.string "building"
+    t.string "classroom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auto_request_id"], name: "index_auto_request_faileds_on_auto_request_id"
+  end
+
+  create_table "auto_requests", force: :cascade do |t|
+    t.string "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "buildings", force: :cascade do |t|
     t.string "name"
@@ -21,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.bigint "faculty_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
     t.index ["faculty_id"], name: "index_buildings_on_faculty_id"
     t.index ["head_building_id"], name: "index_buildings_on_head_building_id"
   end
@@ -54,6 +78,7 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number"
     t.index ["building_id"], name: "index_classrooms_on_building_id"
     t.index ["department_id"], name: "index_classrooms_on_department_id"
     t.index ["type_classroom_id"], name: "index_classrooms_on_type_classroom_id"
@@ -74,6 +99,10 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.time "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "begin_at_hour"
+    t.integer "begin_at_minute"
+    t.integer "end_at_hour"
+    t.integer "end_at_minute"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -146,14 +175,6 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.index ["student_id"], name: "index_opinions_on_student_id"
   end
 
-  create_table "pets", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "purpose_classrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -208,6 +229,10 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.time "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "begin_at_hour"
+    t.integer "begin_at_minute"
+    t.integer "end_at_hour"
+    t.integer "end_at_minute"
   end
 
   create_table "students", force: :cascade do |t|
@@ -224,6 +249,7 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "code"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -256,6 +282,7 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "auto_request_faileds", "auto_requests"
   add_foreign_key "buildings", "faculties"
   add_foreign_key "buildings", "head_buildings"
   add_foreign_key "classroom_events", "classrooms"
