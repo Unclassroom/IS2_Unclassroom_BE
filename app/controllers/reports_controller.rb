@@ -3,16 +3,8 @@ class ReportsController < ApplicationController
 
   # GET /reports
   def index
-    info = Array.new
-    for i in Report.all
-      tmp = Hash.new
-      tmp["Data"]=Report.get_data(i.id)
-      info.push(tmp)
-    end
-    render json: info
-
-    # @reports = Report.all
-    # render json: @reports
+    @reports = Report.all
+    render json: @reports
   end
 
   # GET /reports/1
