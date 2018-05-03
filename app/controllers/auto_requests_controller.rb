@@ -19,7 +19,9 @@ class AutoRequestsController < ApplicationController
 
     if @auto_request.save
       @auto_request.addDataFromExcel
-      render json: @auto_request, status: :created, location: @auto_request
+      #render json: @auto_request, status: :created, location: @auto_request
+      redirect_back fallback_location: "http://localhost:4200/layout/loadrequest"
+      #redirect_to "http://www.rubyonrails.org", alert: "Watch it, mister!"
     else
       render json: @auto_request.errors, status: :unprocessable_entity
     end
