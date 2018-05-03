@@ -63,6 +63,9 @@ rails g migration add_end_at_minute_to_specific_schedule end_at_minute:integer
 rails g migration add_number_to_building number:integer
 rails g migration add_number_to_classroom number:integer
 
+rails g migration remove_classroom_schedule_id_from_opinion
+rails g migration add_classroom_id_to_opinion classroom:references
+
 
 
 # init all again
