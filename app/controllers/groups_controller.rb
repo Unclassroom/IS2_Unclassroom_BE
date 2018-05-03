@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   # GET /groups
   def index
-    @groups = Group.paginate(:page => params[:page], per_page: 2)
+    @groups = Group.paginate(:page => params[:page], per_page: 10)
 
     render json: @groups
   end
@@ -13,6 +13,11 @@ class GroupsController < ApplicationController
     render json: @groups
   end
   
+  def number_pages
+    pages = Group .all.count
+    render json: (pages/10).ceil
+  end
+
 
   # GET /groups/1
   def show

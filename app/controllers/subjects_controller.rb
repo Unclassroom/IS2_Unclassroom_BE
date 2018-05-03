@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects
   def index
-    @subjects = Subject.paginate(:page => params[:page], per_page: 2)
+    @subjects = Subject.paginate(:page => params[:page], per_page: 10)
 
     render json: @subjects
   end
@@ -13,6 +13,12 @@ class SubjectsController < ApplicationController
 
     render json: @subjects
   end
+
+  def number_pages
+    pages = Subject .all.count
+    render json: (pages/10).ceil
+  end
+
 
   # GET /subjects/1
   def show
