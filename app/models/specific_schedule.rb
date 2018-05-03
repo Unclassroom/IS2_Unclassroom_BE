@@ -22,8 +22,7 @@ class SpecificSchedule < ApplicationRecord
     validates :begin_at_minute, presence: true
     validates :end_at_minute, presence: true
   
-    has_many :specific_requests
-    has_many :request_alternatives, through: :specific_requests
+    has_and_belongs_to_many :specific_requests
     has_many :classroom_events
     has_many :classrooms, through: :classroom_events
 

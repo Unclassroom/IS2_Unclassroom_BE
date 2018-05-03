@@ -46,6 +46,6 @@ class OpinionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def opinion_params
-      params.require(:opinion).permit(:student_id, :classroom_schedule_id, :description)
+      params.require(:opinion).permit(:student_id, :description, :classroom_id)
     end
 end

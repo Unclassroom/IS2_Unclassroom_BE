@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501221642) do
+ActiveRecord::Schema.define(version: 20180503052059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,11 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.datetime "updated_at", null: false
     t.index ["cyclic_schedule_id"], name: "index_cyclic_requests_on_cyclic_schedule_id"
     t.index ["request_alternative_id"], name: "index_cyclic_requests_on_request_alternative_id"
+  end
+
+  create_table "cyclic_requests_schedules", id: false, force: :cascade do |t|
+    t.bigint "cyclic_request_id", null: false
+    t.bigint "cyclic_schedule_id", null: false
   end
 
   create_table "cyclic_schedules", force: :cascade do |t|
@@ -167,6 +172,8 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
+    t.bigint "classroom_id"
+    t.index ["classroom_id"], name: "index_opinions_on_classroom_id"
     t.index ["classroom_schedule_id"], name: "index_opinions_on_classroom_schedule_id"
     t.index ["student_id"], name: "index_opinions_on_student_id"
   end
@@ -217,6 +224,11 @@ ActiveRecord::Schema.define(version: 20180501221642) do
     t.datetime "updated_at", null: false
     t.index ["request_alternative_id"], name: "index_specific_requests_on_request_alternative_id"
     t.index ["specific_schedule_id"], name: "index_specific_requests_on_specific_schedule_id"
+  end
+
+  create_table "specific_requests_schedules", id: false, force: :cascade do |t|
+    t.bigint "specific_request_id", null: false
+    t.bigint "specific_schedule_id", null: false
   end
 
   create_table "specific_schedules", force: :cascade do |t|
@@ -297,6 +309,7 @@ ActiveRecord::Schema.define(version: 20180501221642) do
   add_foreign_key "groups", "teachers"
   add_foreign_key "managers", "users"
   add_foreign_key "opinions", "classroom_schedules"
+  add_foreign_key "opinions", "classrooms"
   add_foreign_key "opinions", "students"
   add_foreign_key "reports", "classrooms"
   add_foreign_key "request_alternatives", "requests"

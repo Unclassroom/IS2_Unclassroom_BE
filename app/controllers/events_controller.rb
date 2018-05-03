@@ -3,10 +3,21 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.paginate(:page => params[:page], per_page: 2)
-
+    @events = Event.paginate(:page => params[:page], per_page: 10)
     render json: @events
   end
+
+  def index_no_paginate
+    @events = Event.all
+    render json: @events
+  end
+
+
+  def number_pages
+    pages = Event.all.count
+    render json: (pages/10).ceil
+  end
+
 
   # GET /events/1
   def show

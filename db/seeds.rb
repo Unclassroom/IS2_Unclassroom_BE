@@ -139,33 +139,6 @@ end
 
 puts 'done'
 
-puts 'loading specific_schedules'
-def create_SpecificSchedule(cnt = 5)
-    for i in 1..cnt
-        SpecificSchedule.create!(
-            date: Faker::Date.forward(23),
-            begin_at_hour: Random.rand(23) ,
-            end_at_minute: Random.rand(59),
-            begin_at_minute: Random.rand(59),
-            end_at_hour: Random.rand(23)
-  
-        )
-    end
-end
-create_SpecificSchedule(5);
-puts 'done'
-
-puts 'loading cyclic schedules'
-10.times do |i|
-    CyclicSchedule.create!(
-        day: Random.rand(8),
-        begin_at_hour: Random.rand(23) ,
-        end_at_minute: Random.rand(59),
-        begin_at_minute: Random.rand(59),
-        end_at_hour: Random.rand(23)
-    ) 
-    end
-puts 'done'
 
 puts 'loading buildings'
 def create_Building(cnt = 5)
@@ -288,16 +261,9 @@ puts 'done'
 puts 'loading cyclic requests'
 def create_CyclicRequest(cnt = 5)
     for i in RequestAlternative.take(2)
-        for j in CyclicSchedule.take(2)
             CyclicRequest.create(
                 request_alternative_id: i.id,
-                cyclic_schedule_id: j.id
             )
-            cnt -= 1
-            if cnt == 0
-                return
-            end 
-        end
     end
 end
 create_CyclicRequest(5)
@@ -306,20 +272,44 @@ puts 'done'
 puts 'loading specific_requests'
 def create_SpecificRequest(cnt = 5)
     for i in RequestAlternative.take(2)
-        for j in SpecificSchedule.take(2)
             SpecificRequest.create!(
                 request_alternative_id: i.id,
-                specific_schedule_id: j.id
             )
-            cnt -= 1
-            if cnt == 0
-                return
-            end
-        end
     end
 end
 create_SpecificRequest
 puts 'done'
+
+puts 'loading specific_schedules'
+def create_SpecificSchedule(cnt = 5)
+    for i in SpecificRequest.all
+        spch = SpecificSchedule.create!(
+            date: Faker::Date.forward(23),
+            begin_at_hour: Random.rand(23) ,
+            end_at_minute: Random.rand(59),
+            begin_at_minute: Random.rand(59),
+            end_at_hour: Random.rand(23)
+  
+        )
+        i.specific_schedule << spch
+    end
+end
+create_SpecificSchedule(5);
+puts 'done'
+
+puts 'loading cyclic schedules'
+for i in CyclicRequest.all
+    cs = CyclicSchedule.create!(
+        day: Random.rand(8),
+        begin_at_hour: Random.rand(23) ,
+        end_at_minute: Random.rand(59),
+        begin_at_minute: Random.rand(59),
+        end_at_hour: Random.rand(23)
+    )
+    i.cyclic_schedule << cs 
+    end
+puts 'done'
+
 
 puts 'loading reports'
 def create_Report(cnt = 5)
@@ -360,16 +350,12 @@ puts 'done'
 puts 'loading opinions'
 def create_Opinion (cnt = 1)
     for i in Student.take(2)
-        for j in ClassroomSchedule.take(2)
+        for j in Classroom.take(2)
             Opinion.create!(
                 student_id: i.id,
-                classroom_schedule_id: j.id,
+                classroom_id: j.id,
                 description: "this is " + Faker::HowIMetYourMother.catch_phrase 
             )
-            cnt -= 1
-            if cnt == 0
-                return 
-            end
         end
     end
 end

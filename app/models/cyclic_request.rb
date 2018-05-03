@@ -22,10 +22,9 @@
 class CyclicRequest < ApplicationRecord
 
   validates :request_alternative_id, presence: true, numericality: { only_integer: true }
-  validates :cyclic_schedule_id, presence: true, numericality: { only_integer: true }
   
   belongs_to :request_alternative
-  belongs_to :cyclic_schedule
+  has_and_belongs_to_many :cyclic_schedule
  ## add scopes for just cyclic request and just for specific_request
   def self.get_data(hb_id)
     CyclicRequest

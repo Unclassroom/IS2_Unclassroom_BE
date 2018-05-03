@@ -23,8 +23,7 @@ class CyclicSchedule < ApplicationRecord
     validates :begin_at_minute, presence: true
     validates :end_at_minute, presence: true
   
-    has_many :cyclic_requests
-    has_many :request_alternatives, through: :cyclic_requests
+    has_and_belongs_to_many :cyclic_requests
     has_many :classroom_schedules
     has_many :groups, through: :classroom_schedules
     has_many :subjects, through: :groups

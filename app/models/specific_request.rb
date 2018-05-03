@@ -22,10 +22,9 @@
 class SpecificRequest < ApplicationRecord
   include ActiveModel::Serialization
   validates :request_alternative_id, presence: true, numericality: { only_integer: true }
-  validates :specific_schedule_id, presence: true, numericality: { only_integer: true }
   
   belongs_to :request_alternative
-  belongs_to :specific_schedule
+  has_and_belongs_to_many :specific_schedule
 
   def self.get_data(hb_id)
     SpecificRequest
