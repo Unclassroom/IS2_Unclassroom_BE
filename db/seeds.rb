@@ -226,32 +226,45 @@ create_Classroom(1)
 puts 'done'
 
 
-puts 'loading groups'
+puts 'loading variables'
+numberGro = 3
+numberTea = Teacher.count
+numberSub = Subject.count
+numberPur = PurposeClassroom.count
+numberTyp = TypeClassroom.count
+purA = PurposeClassroom.take(numberPur)
+typA = TypeClassroom.take(numberTyp)
+teaA = Teacher.take(numberTea)
+subA = Subject.take(numberSub)
+puts 'done'
 
-def create_Group(cnt = 3)
-    for i in 1..cnt
-        Group.create!(
-            subject_id: sX.id,
-            number: i,
-            teacher_id: tX.id
-        )       
+puts 'loading groups'
+def create_Group(numberGro, numberTea,teaA, subA)
+    for i in 1..numberGro
+        for j in 0..numberTea-1
+            Group.create!(
+                subject_id: subA[i].id,
+                number: i,
+                teacher_id: teaA[j].id
+            )
+        end   
     end
 end
-sX = Subject.first
-tX = Teacher.first
-create_Group()
-sX = Subject.last
-tX = Teacher.last
-create_Group()
+create_Group(numberGro,numberTea,teaA, subA)
 puts 'done'
 
 puts 'loading requests'
-
-t = Teacher.first
-Request.create!(
-    teacher_id: a.id,
-    purpose_classroom_id: c.id,
-    type_classroom_id: d.id,
+Request.create(
+    teacher_id: teaA[0].id,
+    purpose_classroom_id: purA[0].id,
+    type_classroom_id: typA[0].id,
+    state: "pending",
+    motive: Faker::BackToTheFuture.quote
+)
+Request.create(
+    teacher_id: teaA[1].id,
+    purpose_classroom_id: purA[0].id,
+    type_classroom_id: typA[0].id,
     state: "pending",
     motive: Faker::BackToTheFuture.quote
 )   
