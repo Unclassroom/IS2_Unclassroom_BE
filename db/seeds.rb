@@ -31,8 +31,51 @@ puts "done"
 
 puts 'loading user'
 # User.create(email: 'user1@example.com', password: "monkey67")
-User.create(email: 'user1@example.com', username: 'User One', password: "monkey123")
-User.create(email: 'user2@example.com', username: 'User Two', password: "monkey456")
+User.create(email: 'user1@example.com', username: 'user1', password: "Monkey123", role:"student")
+userX = User.last
+Student.create(first_name: "Lorena", last_name: "King", user_id: userX.id)
+User.create(email: 'user2@example.com', username: 'user2', password: "Monkey123", role:"student")
+userX = User.last
+Student.create(first_name: "Carla", last_name: "Yang", user_id: userX.id)
+User.create(email: 'user3@example.com', username: 'user3', password: "Monkey123", role:"student")
+userX = User.last
+Student.create(first_name: "Alejandra", last_name: "Lu", user_id: userX.id)
+User.create(email: 'user4@example.com', username: 'user4', password: "Monkey123", role:"student")
+userX = User.last
+Student.create(first_name: "Felipe", last_name: "Calamaro", user_id: userX.id)
+User.create(email: 'man1@example.com', username: 'man1', password: "Monkey123", role:"manager")
+userX = User.last
+Manager.create(first_name: "Patrick", last_name: "Gutierrez", user_id: userX.id)
+User.create(email: 'man2@example.com', username: 'man2', password: "Monkey123", role:"manager")
+userX = User.last
+Manager.create(first_name: "Juan", last_name: "Quintero", user_id: userX.id)
+puts 'done'
+
+puts 'lading external_people'
+10.times do |row|
+    ExternalPerson.create!(
+        cc: Faker::Number.unique.number(8),
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        email: Faker::Internet.unique.email, 
+        #created_at: Faker::Date.backward(370),
+        #updated_at: Faker::Date.between(1.year.ago, Date.today)
+  )
+end
+puts 'done'
+
+puts 'loading headbuildings'
+10.times do |row|
+    HeadBuilding.create!(
+        cc: Faker::Number.unique.number(8),
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        email: Faker::Internet.unique.email, 
+        #file: "/home/fffeelipe/Documents/"
+        #created_at: Faker::Date.backward(370),
+        #updated_at: Faker::Date.between(1.year.ago, Date.today)
+      )
+end
 puts 'done'
 
 puts "loading faculties"
@@ -85,59 +128,6 @@ puts 'loading subjects'
     name: Faker::Educator.unique.course,
     code: Random.rand(1100000000)
   )
-end
-puts 'done'
-
-puts 'lading external_people'
-10.times do |row|
-    ExternalPerson.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        #created_at: Faker::Date.backward(370),
-        #updated_at: Faker::Date.between(1.year.ago, Date.today)
-  )
-end
-puts 'done'
-
-puts 'loading managers'
-5.times do |row|
-    Manager.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        #created_at: Faker::Date.backward(370),
-        #updated_at: Faker::Date.between(1.year.ago, Date.today)
-      )
-end
-puts 'done'
-
-puts 'lading students'
-10.times do |row|
-    Student.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        #created_at: Faker::Date.backward(370),
-        #updated_at: Faker::Date.between(1.year.ago, Date.today)
-  )
-end
-puts 'done'
-
-puts 'loading headbuildings'
-10.times do |row|
-    HeadBuilding.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        #file: "/home/fffeelipe/Documents/"
-        #created_at: Faker::Date.backward(370),
-        #updated_at: Faker::Date.between(1.year.ago, Date.today)
-      )
 end
 puts 'done'
 
@@ -205,22 +195,16 @@ def create_Department(cnt = 20)
 end
 create_Department(20)
 puts 'done'
-
 puts 'loading teachers'
-for i in Department.all
-5.times do |row|
-    Teacher.create!(
-        cc: Faker::Number.unique.number(8),
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.unique.email, 
-        department_id: i.id,
-        role: Faker::Hacker.adjective
-      )
-end
-end
+User.create(email: 'tea1@example.com', username: 'tea1', password: "Monkey123", role:"teacher")
+userX = User.last
+depX = Department.first
+Teacher.create(first_name: "Morfeo", last_name: "Lozano", user_id: userX.id, role: "head", department_id: depX.id)
+User.create(email: 'tea2@example.com', username: 'tea2', password: "Monkey123", role:"teacher")
+userX = User.last
+depX = Department.last
+Teacher.create(first_name: "Dimitri", last_name: "Kento", user_id: userX.id, role: "assistent", department_id: depX.id)
 puts 'done'
-
 
 puts 'loading classrooms'
 def create_Classroom(cnt = 1)
@@ -242,9 +226,9 @@ create_Classroom(1)
 puts 'done'
 
 puts 'loading groups'
-def create_Group(cnt = 5)
+def create_Group(cnt = 1)
     teacher_id_count = Teacher.first.id
-    for i in Subject.take(2)
+    for i in Subject.take(1)
         for j in 1..cnt
             Group.create!(
                 subject_id: i.id,
@@ -255,7 +239,7 @@ def create_Group(cnt = 5)
             end
     end
 end
-create_Group(5)
+create_Group(1)
 puts 'done'
 
 puts 'loading requests'

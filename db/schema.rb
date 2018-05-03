@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430041942) do
+ActiveRecord::Schema.define(version: 20180501221642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,9 +155,10 @@ ActiveRecord::Schema.define(version: 20180430041942) do
     t.integer "cc"
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_managers_on_user_id"
   end
 
   create_table "opinions", force: :cascade do |t|
@@ -234,9 +235,10 @@ ActiveRecord::Schema.define(version: 20180430041942) do
     t.integer "cc"
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -250,12 +252,13 @@ ActiveRecord::Schema.define(version: 20180430041942) do
     t.integer "cc"
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "department_id"
     t.string "role"
+    t.bigint "user_id"
     t.index ["department_id"], name: "index_teachers_on_department_id"
+    t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
   create_table "type_classrooms", force: :cascade do |t|
@@ -292,6 +295,7 @@ ActiveRecord::Schema.define(version: 20180430041942) do
   add_foreign_key "departments", "faculties"
   add_foreign_key "groups", "subjects"
   add_foreign_key "groups", "teachers"
+  add_foreign_key "managers", "users"
   add_foreign_key "opinions", "classroom_schedules"
   add_foreign_key "opinions", "students"
   add_foreign_key "reports", "classrooms"
@@ -303,5 +307,7 @@ ActiveRecord::Schema.define(version: 20180430041942) do
   add_foreign_key "requests", "type_classrooms"
   add_foreign_key "specific_requests", "request_alternatives"
   add_foreign_key "specific_requests", "specific_schedules"
+  add_foreign_key "students", "users"
   add_foreign_key "teachers", "departments"
+  add_foreign_key "teachers", "users"
 end
