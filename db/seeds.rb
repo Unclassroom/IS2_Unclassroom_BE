@@ -296,7 +296,7 @@ create_SpecificSchedule(5);
 puts 'done'
 
 puts 'loading cyclic schedules'
-for i in CyclicRequest
+for i in CyclicRequest.all
     cs = CyclicSchedule.create!(
         day: Random.rand(8),
         begin_at_hour: Random.rand(23) ,
