@@ -358,16 +358,12 @@ puts 'done'
 puts 'loading opinions'
 def create_Opinion (cnt = 1)
     for i in Student.take(2)
-        for j in ClassroomSchedule.take(2)
+        for j in Classroom.take(2)
             Opinion.create!(
                 student_id: i.id,
-                classroom_schedule_id: j.id,
+                classroom_id: j.id,
                 description: "this is " + Faker::HowIMetYourMother.catch_phrase 
             )
-            cnt -= 1
-            if cnt == 0
-                return 
-            end
         end
     end
 end
