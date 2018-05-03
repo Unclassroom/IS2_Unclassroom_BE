@@ -41,8 +41,7 @@ class RequestsController < ApplicationController
                 )
                 sr.specific_schedule << sy
             end
-          elsif params[:type_request] == "cyclic"
-            render json: {msg: 'cyclic'}
+          elsif @tr == "cyclic"
             cr = CyclicRequest.create!(request_alternative_id: ra.id)
             ra.cyclic_requests << cr
             for j in i[:cyclic]
@@ -55,9 +54,6 @@ class RequestsController < ApplicationController
                 )
                 cr.cyclic_schedule << cy
             end
-          else
-            # render json: {msg: 'empty type'}
-          end
         end
 
         # render json: {msg: @tr}
