@@ -65,6 +65,11 @@ rails g migration add_number_to_classroom number:integer
 
 rails g migration remove_classroom_schedule_id_from_opinion
 rails g migration add_classroom_id_to_opinion classroom:references
+rails g migration remove_cyclic_schedule_id_from_cyclic_request
+rails g migration remove_specific_schedule_id_from_specific_request
+
+rails g migration CreateJoinTableCyclicRequestCyclicSchedule cyclic_request cyclic_schedule
+rails g migration CreateJoinTableSpecificRequestSpecificSchedule specific_request specific_schedule
 
 
 
