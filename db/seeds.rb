@@ -225,47 +225,36 @@ end
 create_Classroom(1)
 puts 'done'
 
+
 puts 'loading groups'
-def create_Group(cnt = 1)
-    teacher_id_count = Teacher.first.id
-    for i in Subject.take(1)
-        for j in 1..cnt
-            Group.create!(
-                subject_id: i.id,
-                number: j,
-                teacher_id: teacher_id_count
-            )
-            teacher_id_count += 1
-            end
+
+def create_Group(cnt = 3)
+    for i in 1..cnt
+        Group.create!(
+            subject_id: sX.id,
+            number: i,
+            teacher_id: tX.id
+        )       
     end
 end
-create_Group(1)
+sX = Subject.first
+tX = Teacher.first
+create_Group()
+sX = Subject.last
+tX = Teacher.last
+create_Group()
 puts 'done'
 
 puts 'loading requests'
-def create_Request(cnt  = 5)
-    for a in Teacher.take(2)
-        for b in ExternalPerson.take(2)
-            for c in PurposeClassroom.take(2)
-                for d in TypeClassroom.take(2)
-                    Request.create!(
-                        teacher_id: a.id,
-                        external_person_id: b.id,
-                        purpose_classroom_id: c.id,
-                        type_classroom_id: d.id,
-                        state: "pending",
-                        motive: Faker::BackToTheFuture.quote
-                    )
-                    cnt -= 1
-                    if cnt == 0
-                        return 
-                    end
-                end
-            end
-        end
-    end
-end
-create_Request(5)
+
+t = Teacher.first
+Request.create!(
+    teacher_id: a.id,
+    purpose_classroom_id: c.id,
+    type_classroom_id: d.id,
+    state: "pending",
+    motive: Faker::BackToTheFuture.quote
+)   
 puts 'done'
 
 puts 'loading request alternatives'
