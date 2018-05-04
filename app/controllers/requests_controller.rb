@@ -77,6 +77,12 @@ class RequestsController < ApplicationController
     end
   end
 
+  def count_by_purpose
+    data = Array.new
+    ans = Request.get_between_dates(params[:begin_date],params[:end_date])
+    render json: ans
+  end
+
   # DELETE /requests/1
   def destroy
     @request.destroy
