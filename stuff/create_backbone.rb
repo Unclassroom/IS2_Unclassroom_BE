@@ -71,6 +71,7 @@ rails g migration remove_specific_schedule_id_from_specific_request
 rails g migration CreateJoinTableCyclicRequestCyclicSchedule cyclic_request cyclic_schedule
 rails g migration CreateJoinTableSpecificRequestSpecificSchedule specific_request specific_schedule
 
+rails g migration add_image_to_opinion image
 
 
 # init all again

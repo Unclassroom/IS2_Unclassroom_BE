@@ -220,11 +220,18 @@ Rails.application.routes.draw do
   get '/faculties_no_paginate/(.:format)',  to: 'faculties#index_no_paginate'
   get '/groups_no_paginate/(.:format)',  to: 'groups#index_no_paginate'
   get '/subjects_no_paginate/(.:format)',  to: 'subjects#index_no_paginate'
+  get '/requests_no_paginate/(.:format)',  to: 'requests#index_no_paginate'
 
   get '/faculties_pages(.:format)',  to: 'faculties#number_pages'
   get '/events_pages(.:format)',  to: 'events#number_pages'
   get '/subjects_pages(.:format)',  to: 'subjects#number_pages'
   get '/groups_pages(.:format)',  to: 'groups#number_pages'
   get '/purpose_classrooms_pages(.:format)',  to: 'purpose_classrooms#number_pages'
+  get '/requests_pages(.:format)',  to: 'requests#number_pages'
+
+  get '/request_count_by_purpose(.:format)',  to: 'requests#count_by_purpose'
+  get '/request_count_by_month(.:format)',  to: 'requests#count_by_month'
+  get '/request_count_by_state(.:format)',  to: 'requests#count_by_state'
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end

@@ -51,6 +51,10 @@ class Request < ApplicationRecord
   has_many :cyclic_schedule, through: :cyclic_requests
   has_many :specific_schedule, through: :specific_requests
  
+
+  scope :group_by_month,   -> { group("date_trunc('month', created_at) ") }
+  scope :exclude_user_ids, -> (ids) { where("user_id is not in (?)",ids) }
+
   def self.get_cyclic(hb_id)
     Request
     .joins(:cyclic_schedule, :request_alternatives, :cyclic_requests)
@@ -63,5 +67,36 @@ class Request < ApplicationRecord
     .where('requests.id = ?',hb_id)
     .select('specific_schedules.date, specific_schedules.begin_at, specific_schedules.end_at').limit(1) 
   end
+
+  def self.get_between_dates_by_purpose(begin_date, end_date)
+    if(begin_date == nil)
+      begin_date = "1-1-1000"
+      end_date = "1-1-3000" 
+    end
+    return  PurposeClassroom.joins(:requests).where("requests.created_at >= ?", begin_date).
+    where("requests.created_at <= ?", end_date).group(:name).count
+  end
+
+  def self.get_between_dates_by_month(begin_date, end_date)
+    if(begin_date == nil)
+      begin_date = "1-1-1000"
+      end_date = "1-1-3000" 
+    end
+    return  Request.where("requests.created_at >= ?", begin_date).
+    where("requests.created_at <= ?", end_date).group("TO_CHAR(created_at, 'Month YYYY')").count
+
+  end
+
+  def self.get_between_dates_by_state(begin_date, end_date)
+    if(begin_date == nil)
+      begin_date = "1-1-1000"
+      end_date = "1-1-3000" 
+    end
+    return  Request.where("requests.created_at >= ?", begin_date).
+    where("requests.created_at <= ?", end_date).group(:state).count
+  end
+
+  
+
 
 end

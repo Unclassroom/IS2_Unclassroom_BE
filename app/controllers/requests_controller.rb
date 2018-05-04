@@ -3,9 +3,20 @@ class RequestsController < ApplicationController
 
   # GET /requests
   def index
+    @requests = Request.paginate(:page => params[:page], per_page: 10)
+    render json: @requests
+  end
+
+  def index_no_paginate
     @requests = Request.all
     render json: @requests
   end
+
+  def number_pages
+    pages = Request.all.count
+    render json: (pages/10).ceil
+  end
+
 
   # GET /requests/1
   def show
@@ -73,6 +84,24 @@ class RequestsController < ApplicationController
     else
       render json: @request.errors, status: :unprocessable_entity
     end
+  end
+
+  def count_by_purpose
+    data = Array.new
+    ans = Request.get_between_dates_by_purpose(params[:begin_date],params[:end_date])
+    render json: ans
+  end
+
+  def count_by_month
+    data = Array.new
+    ans = Request.get_between_dates_by_month(params[:begin_date],params[:end_date])
+    render json: ans
+  end
+
+  def count_by_state
+    data = Array.new
+    ans = Request.get_between_dates_by_state(params[:begin_date],params[:end_date])
+    render json: ans
   end
 
   # DELETE /requests/1

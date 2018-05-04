@@ -95,7 +95,7 @@ puts "done"
 end
 
 puts "loadingn Purpose clasroom"
-for i in 1..5
+for i in 1..3
 PurposeClassroom.create(name: "clase academica" + "  " + i.to_s)
 PurposeClassroom.create(name: "conferencia academica" + "  " + i.to_s)
 PurposeClassroom.create(name: "coloquio academico" + "  " + i.to_s)
@@ -227,20 +227,31 @@ create_Group(numberGro,numberTea,teaA, subA)
 puts 'done'
 
 puts 'loading requests'
-Request.create(
-    teacher_id: teaA[0].id,
-    purpose_classroom_id: purA[0].id,
-    type_classroom_id: typA[0].id,
-    state: "pending",
-    motive: Faker::BackToTheFuture.quote
-)
-Request.create(
-    teacher_id: teaA[1].id,
-    purpose_classroom_id: purA[0].id,
-    type_classroom_id: typA[0].id,
-    state: "pending",
-    motive: Faker::BackToTheFuture.quote
-)   
+def create_Request(cnt  = 5)
+    stat = ["pending", "in process", "denied", "seen", "accepted"]
+    for a in Teacher.take(2)
+        for b in ExternalPerson.take(2)
+            for c in PurposeClassroom.all
+                for d in TypeClassroom.all
+                    Request.create!(
+                        teacher_id: a.id,
+                        external_person_id: b.id,
+                        purpose_classroom_id: c.id,
+                        type_classroom_id: d.id,
+                        state: stat[Random.rand(5)],
+                        motive: Faker::BackToTheFuture.quote,
+                        created_at: Faker::Time.between(300.days.ago, Date.today, :all)
+                    )
+                    ran = Random.rand(100)
+                    if ran < 11
+                        break
+                    end
+                end
+            end
+        end
+    end
+end
+create_Request(5)
 puts 'done'
 
 puts 'loading request alternatives'

@@ -9,6 +9,7 @@
 #  updated_at            :datetime         not null
 #  description           :string
 #  classroom_id          :integer
+#  image                 :string
 #
 # Indexes
 #
@@ -24,13 +25,14 @@
 #
 
 class Opinion < ApplicationRecord
-  include ActiveModel::Serialization
+  mount_uploader :image, ImageUploader
+    
   # validates :student_id, presence: true, numericality: { only_integer: true }
   validates :classroom_id, presence: true, numericality: { only_integer: true }
   validates :description, presence: true
 
   belongs_to :student
-  belongs_to :classroom_schedule
+  belongs_to :classroom
 
   #Make the query in classroom and classroom request and classroom schedule and classroom event
 end

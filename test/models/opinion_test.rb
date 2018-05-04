@@ -9,6 +9,7 @@
 #  updated_at            :datetime         not null
 #  description           :string
 #  classroom_id          :integer
+#  image                 :string
 #
 # Indexes
 #

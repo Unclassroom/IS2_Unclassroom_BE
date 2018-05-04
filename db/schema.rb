@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(version: 20180503113708) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.bigint "classroom_id"
+    t.string "image"
     t.index ["classroom_id"], name: "index_opinions_on_classroom_id"
     t.index ["classroom_schedule_id"], name: "index_opinions_on_classroom_schedule_id"
     t.index ["student_id"], name: "index_opinions_on_student_id"
