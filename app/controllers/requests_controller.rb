@@ -3,9 +3,20 @@ class RequestsController < ApplicationController
 
   # GET /requests
   def index
+    @requests = Request.paginate(:page => params[:page], per_page: 10)
+    render json: @requests
+  end
+
+  def index_no_paginate
     @requests = Request.all
     render json: @requests
   end
+
+  def number_pages
+    pages = Request.all.count
+    render json: (pages/10).ceil
+  end
+
 
   # GET /requests/1
   def show
