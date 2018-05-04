@@ -64,10 +64,17 @@ class Request < ApplicationRecord
     .select('specific_schedules.date, specific_schedules.begin_at, specific_schedules.end_at').limit(1) 
   end
 
-  def self.get_between_dates(begin_date, end_date)
+  def self.get_between_dates_by_purpose(begin_date, end_date)
     return  PurposeClassroom.joins(:requests).where("requests.created_at >= ?", begin_date).
     where("requests.created_at <= ?", end_date).group(:name).count
   end
+
+  def self.get_between_dates_by_state(begin_date, end_date)
+    return  Request.where("requests.created_at >= ?", begin_date).
+    where("requests.created_at <= ?", end_date).group(:state).count
+  end
+
+  
 
 
 end

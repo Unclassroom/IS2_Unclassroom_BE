@@ -228,6 +228,7 @@ Rails.application.routes.draw do
   get '/purpose_classrooms_pages(.:format)',  to: 'purpose_classrooms#number_pages'
 
   get '/request_count_by_purpose(.:format)',  to: 'requests#count_by_purpose'
+  get '/request_count_by_state(.:format)',  to: 'requests#count_by_state'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end
