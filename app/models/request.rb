@@ -78,13 +78,20 @@ class Request < ApplicationRecord
   end
 
   def self.get_between_dates_by_month(begin_date, end_date)
-
+    if(begin_date == nil)
+      begin_date = "1-1-1000"
+      end_date = "1-1-3000" 
+    end
     return  Request.where("requests.created_at >= ?", begin_date).
     where("requests.created_at <= ?", end_date).group("TO_CHAR(created_at, 'Month YYYY')").count
 
   end
 
   def self.get_between_dates_by_state(begin_date, end_date)
+    if(begin_date == nil)
+      begin_date = "1-1-1000"
+      end_date = "1-1-3000" 
+    end
     return  Request.where("requests.created_at >= ?", begin_date).
     where("requests.created_at <= ?", end_date).group(:state).count
   end
