@@ -20,6 +20,18 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :email, :username, :role, :last_login, :first_name, :last_name
   
   # has_one :students
+  def id
+    case 
+    when User.joins(:students).select("students.id").where('students.user_id = ?', object.id).present?
+      User.joins(:students).select("students.id").where('students.user_id = ?', object.id).first.id
+    when User.joins(:teachers).select("teachers.id").where('teachers.user_id = ?', object.id).present?
+      User.joins(:teachers).select("teachers.id").where('teachers.user_id = ?', object.id).first.id
+    when User.joins(:managers).select("managers.id").where('managers.user_id = ?', object.id).present?
+      User.joins(:managers).select("managers.id").where('managers.user_id = ?', object.id).first.id
+    else
+      -1
+    end
+  end
   def first_name
     case 
     when User.joins(:students).select("students.first_name").where('students.user_id = ?', object.id).present?

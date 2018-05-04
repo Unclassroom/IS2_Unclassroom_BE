@@ -54,6 +54,8 @@ class RequestsController < ApplicationController
                 )
                 cr.cyclic_schedule << cy
             end
+          
+          end
         end
 
         # render json: {msg: @tr}
