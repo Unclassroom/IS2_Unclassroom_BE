@@ -32,7 +32,7 @@ class Opinion < ApplicationRecord
   validates :description, presence: true
 
   belongs_to :student
-  belongs_to :classroom_schedule
+  belongs_to :classroom
 
   #Make the query in classroom and classroom request and classroom schedule and classroom event
 end
