@@ -54,10 +54,8 @@ class RequestsController < ApplicationController
                 )
                 cr.cyclic_schedule << cy
             end
-          
           end
         end
-
         # render json: {msg: @tr}
       render json: @request, status: :created, location: @request
       #redirect_to "localhost:4200/layout/request/register"
