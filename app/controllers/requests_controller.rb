@@ -83,6 +83,12 @@ class RequestsController < ApplicationController
     render json: ans
   end
 
+  def count_by_month
+    data = Array.new
+    ans = Request.get_between_dates_by_month(params[:begin_date],params[:end_date])
+    render json: ans
+  end
+
   def count_by_state
     data = Array.new
     ans = Request.get_between_dates_by_state(params[:begin_date],params[:end_date])
