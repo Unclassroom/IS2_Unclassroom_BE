@@ -2,7 +2,7 @@ class ClassroomSchedulesController < ApplicationController
   before_action :set_classroom_schedule, only: [:show, :update, :destroy]
 
   # GET /classroom_schedules
-  
+  def index
     @classroom_schedules = ClassroomSchedule.all
     render json: @classroom_schedules
   end
