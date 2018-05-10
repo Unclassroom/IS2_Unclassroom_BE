@@ -25,7 +25,6 @@
 #
 
 class OpinionSerializer < ActiveModel::Serializer
-  attributes :id, :classroom_schedule_id, :student_id, :description
+  attributes :id, :student_id, :description
 
-  belongs_to :classroom_schedule
 end

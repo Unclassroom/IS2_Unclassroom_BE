@@ -4,7 +4,6 @@ class OpinionsController < ApplicationController
   # GET /opinions
   def index
     @opinions = Opinion.all
-
     render json: @opinions
   end
 
