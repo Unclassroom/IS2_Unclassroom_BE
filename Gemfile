@@ -11,6 +11,7 @@ gem 'simple-spreadsheet'
 
 gem 'faker', '~> 1.8', '>= 1.8.7'
 gem 'carrierwave'
+gem 'whenever', require: false
 gem 'json'
 gem 'stamp'
 gem 'responders'

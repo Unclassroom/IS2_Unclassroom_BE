@@ -1,0 +1,6 @@
+Cron#pending_requests
+
+<%= @greeting %>
+
+You have <%= Request.where("state = ?", "pending").count %> requests pending.
+
