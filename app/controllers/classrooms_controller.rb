@@ -7,11 +7,8 @@ class ClassroomsController < ApplicationController
     render json: @classrooms
   end
 
-  # GET /classrooms/1
-  def show
-    @classrooms = Classroom.all
-    render json: @classroom
-  end
+  
+
 
   # POST /classrooms
   def create
