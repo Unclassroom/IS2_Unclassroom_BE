@@ -4,7 +4,6 @@ class OpinionsController < ApplicationController
   # GET /opinions
   def index
     @opinions = Opinion.all
-
     render json: @opinions
   end
 
@@ -46,7 +45,7 @@ class OpinionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def opinion_params
-      #params.require(:opinion).permit(:student_id, :classroom_id, :description) --Revisar
+      #params.require(:opinion).permit(:student_id, :classroom_id, :description)#Revisar
       params.permit(:student_id, :classroom_id, :description, :image)
     end
 end

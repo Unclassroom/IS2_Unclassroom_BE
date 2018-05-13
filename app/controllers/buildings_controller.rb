@@ -21,6 +21,20 @@ class BuildingsController < ApplicationController
     render json: @building
   end
 
+# GET /building_classrooms/1
+  def building_classrooms
+    
+    render json: Building.find(params[:id]).classrooms
+  end
+
+
+  # GET /buildings/1
+  def show_classrooms
+    render json: @building.classrooms
+  end
+
+  
+
   # POST /buildings
   def create
     @building = Building.new(building_params)

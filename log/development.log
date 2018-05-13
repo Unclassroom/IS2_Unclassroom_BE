@@ -1,0 +1,73 @@
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: 265cbfe7-41d4-4796-bb78-57cf9ac4b7c6) to Async(mailers) with arguments: "CronMailer", "pending_requests", "deliver_now"
+  Rendering cron_mailer/pending_requests.html.erb within layouts/mailer
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "requests" WHERE (state = 'pending')[0m
+  Rendered cron_mailer/pending_requests.html.erb within layouts/mailer (24.8ms)
+  Rendering cron_mailer/pending_requests.text.erb within layouts/mailer
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "requests" WHERE (state = 'pending')[0m
+  Rendered cron_mailer/pending_requests.text.erb within layouts/mailer (2.4ms)
+CronMailer#pending_requests: processed outbound mail in 267.5ms
+Sent mail to fffeelipe@hotmail.com (3963.6ms)
+Date: Sat, 12 May 2018 16:39:02 -0500
+From: unclassroommailer@gmail.com
+To: fffeelipe@hotmail.com
+Message-ID: <5af75ef66c373_2c0c2ab2ac072f404204f@localhost.localdomain.mail>
+Subject: Daily resume
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5af75ef66a959_2c0c2ab2ac072f40419e4";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5af75ef66a959_2c0c2ab2ac072f40419e4
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Cron#pending_requests
+
+
+
+You have 180 requests pending.
+
+
+
+thanks, 
+
+any comments, just reply this email.
+----==_mimepart_5af75ef66a959_2c0c2ab2ac072f40419e4
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Cron#pending_requests</h1>
+
+<p>
+  
+  
+</p>
+
+<p>
+You have 180 requests pending.  
+</p>
+
+    thanks, 
+    </body>
+    <p>
+    any comments, just reply this email.
+  </p>
+</html>
+
+----==_mimepart_5af75ef66a959_2c0c2ab2ac072f40419e4--
+
+Running via Spring preloader in process 11276

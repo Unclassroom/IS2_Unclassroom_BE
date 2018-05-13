@@ -96,6 +96,9 @@ class Request < ApplicationRecord
     where("requests.created_at <= ?", end_date).group(:state).count
   end
 
+  def self.dailyMailer
+    CronMailer.pending_requests().deliver_now
+  end
   
 
 

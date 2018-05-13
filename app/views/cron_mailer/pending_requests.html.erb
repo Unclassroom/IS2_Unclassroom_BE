@@ -1,0 +1,10 @@
+<h1>Cron#pending_requests</h1>
+
+<p>
+  <%= @greeting %>
+  
+</p>
+
+<p>
+You have <%= Request.where("state = ?", "pending").count %> requests pending.  
+</p>

@@ -228,10 +228,13 @@ Rails.application.routes.draw do
   get '/groups_pages(.:format)',  to: 'groups#number_pages'
   get '/purpose_classrooms_pages(.:format)',  to: 'purpose_classrooms#number_pages'
   get '/requests_pages(.:format)',  to: 'requests#number_pages'
-
+  # namespaces (?)
+  #edit delete endpoints
   get '/request_count_by_purpose(.:format)',  to: 'requests#count_by_purpose'
   get '/request_count_by_month(.:format)',  to: 'requests#count_by_month'
   get '/request_count_by_state(.:format)',  to: 'requests#count_by_state'
+  
+  get '/building_classrooms/:id(.:format)',  to: 'buildings#building_classrooms'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end
