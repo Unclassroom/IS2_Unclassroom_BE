@@ -7,8 +7,6 @@ class ClassroomsController < ApplicationController
     render json: @classrooms
   end
 
-  
-
 
   # POST /classrooms
   def create

@@ -13,6 +13,8 @@ class ClassroomEventsController < ApplicationController
     render json: @classroom_event
   end
 
+  
+
   # POST /classroom_events
   def create
     @classroom_event = ClassroomEvent.new(classroom_event_params)

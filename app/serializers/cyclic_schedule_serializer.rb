@@ -15,5 +15,5 @@
 #
 
 class CyclicScheduleSerializer < ActiveModel::Serializer
-  
+    attributes :id, :day, :begin_at_hour, :begin_at_minute, :end_at_hour, :end_at_minute
 end

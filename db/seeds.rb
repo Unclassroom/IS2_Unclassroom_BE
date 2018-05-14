@@ -296,10 +296,10 @@ def create_SpecificSchedule(cnt = 5)
     for i in SpecificRequest.all
         spch = SpecificSchedule.create!(
             date: Faker::Date.forward(23),
-            begin_at_hour: Random.rand(23) ,
-            end_at_minute: Random.rand(59),
-            begin_at_minute: Random.rand(59),
-            end_at_hour: Random.rand(23)
+            begin_at_hour: 8,
+            end_at_minute: 00,
+            begin_at_minute: 00,
+            end_at_hour: 10
   
         )
         i.specific_schedule << spch
@@ -312,10 +312,10 @@ puts 'loading cyclic schedules'
 for i in CyclicRequest.all
     cs = CyclicSchedule.create!(
         day: Random.rand(8),
-        begin_at_hour: Random.rand(23) ,
-        end_at_minute: Random.rand(59),
-        begin_at_minute: Random.rand(59),
-        end_at_hour: Random.rand(23)
+        begin_at_hour: 10,
+        end_at_minute: 00,
+        begin_at_minute: 00,
+        end_at_hour: 12
     )
     i.cyclic_schedule << cs 
     end

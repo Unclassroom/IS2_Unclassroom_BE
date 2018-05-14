@@ -11,6 +11,7 @@ class ClassroomSchedulesController < ApplicationController
   def show
     render json: @classroom_schedule
   end
+  
 
   # POST /classroom_schedules
   def create
