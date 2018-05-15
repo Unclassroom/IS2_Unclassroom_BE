@@ -72,6 +72,7 @@ rails g migration CreateJoinTableCyclicRequestCyclicSchedule cyclic_request cycl
 rails g migration CreateJoinTableSpecificRequestSpecificSchedule specific_request specific_schedule
 
 rails g migration add_image_to_opinion image
+rails g migration add_image_to_report image
 
 
 # init all again
