@@ -25,4 +25,16 @@ class SpecificSchedule < ApplicationRecord
     has_many :classrooms, through: :classroom_events
 
     # I think that it isnt necesaary make queries here.
+
+
+    def self.available_classrooms(ini, fin)
+        ans = Array.new
+        Classroom.find_each do |c|
+            if c.is_specific_available(ini, fin)
+                ans.push(c)
+            end
+          end
+        return ans 
+    end
+
 end

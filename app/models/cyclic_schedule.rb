@@ -36,4 +36,14 @@ class CyclicSchedule < ApplicationRecord
         .where('cyclic_schedules.id = ?',hb_id)
         .select('cyclic_schedules.day, cyclic_schedules.begin_at, cyclic_schedules.end_at, cyclic_requests.id AS idrequest').limit(1) 
     end
+
+    def self.available_classrooms(day, b_h, b_m, e_h, e_m)
+        ans = Array.new
+        Classroom.find_each do |c|
+            if c.is_cyclic_available(day, b_h, b_m, e_h, e_m)
+                ans.push(c)
+            end
+          end
+          return ans
+    end
 end

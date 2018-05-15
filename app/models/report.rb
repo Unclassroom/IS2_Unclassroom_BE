@@ -19,6 +19,8 @@
 
 class Report < ApplicationRecord
   include ActiveModel::Serialization
+  mount_uploader :image, ImageUploader
+  
   validates :classroom_id, presence: true, numericality: { only_integer: true }
   validates :description, presence: true
 

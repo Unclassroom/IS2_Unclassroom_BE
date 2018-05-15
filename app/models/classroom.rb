@@ -51,29 +51,89 @@ class Classroom < ApplicationRecord
     .select('type_classrooms.name').limit(1) 
   end
 
-  def self.get_specific_classrooms(date, begin_hour,begin_minute, end_hour, end_minute)
-  
-    d1  = Time.parse(begin_hour+begin_minute)
-    d2  = Time.parse(end_hour+end_minute)
-    if Classroom.select("specific_schedules.date").where('specific_schedules.id = ?', object.id).present?
-      Classroom.select("specific_schedules.date").where('specific_schedules.id = ?', object.id).first.date.wday
-    else
-      -1
+  def taken_schedules(a, b)
+    ini = DateTime.parse(a)
+    fin = DateTime.parse(b)
+    
+    ans = Array.new
+    
+    cs = classroom_schedules
+    for i in cs
+      gr = i.group.number.to_s
+      subj = i.group.subject.name
+      teach = i.group.teacher
+      cyc = i.cyclic_schedule
+      ini2 = DateTime.new(ini.year, ini.month, ini.day, cyc.begin_at_hour, cyc.begin_at_minute, 0)
+      fin2 = DateTime.new(ini.year, ini.month, ini.day, cyc.end_at_hour, cyc.end_at_minute, 0)
+      while(ini2 <= fin)
+        if ini2.wday ==  cyc.day
+          hash = Hash.new
+          hash[:title] = subj + ' - ' + gr +' - ' + teach.first_name + ' ' + teach.last_name
+          hash[:start] = ini2
+          hash[:end] = fin2
+          ans.push(hash)
+          
+        end
+        ini2 = ini2.next_day
+        fin2 = fin2.next_day 
+      end
     end
-    instance = Classroom
-    .joins(:classroom_events, :specific_schedules)
-    .where('classrooms_events.classroom_id = ?',object.id)
-    .where('specific_schedules.date').
-    .select('classrooms.id').limit(1) 
-p instance.between?( d1, d2 ) # => true
-    Classroom
-    .joins(:classroom_events, :specific_schedules)
-    .where('classrooms_events.classroom_id = ?',object.id)
-    .where('specific_schedules.date').
-    .select('classrooms.id').limit(1) 
-    return  Request.where("requests.created_at >= ?", begin_date).
-    where("requests.created_at <= ?", end_date).group("TO_CHAR(created_at, 'Month YYYY')").count
+
+    clse = classroom_events
+    for i in clse
+      ss = i.specific_schedule
+      temp_date = ss.date
+      cde = DateTime.new(temp_date.year, temp_date.month, temp_date.day, ss.begin_at_hour, ss.begin_at_minute, 0)
+      if (cde <= fin &&  cde >= ini)
+        hash = Hash.new
+        eve = i.event
+        hash[:title] = eve.name + ' - ' + eve.description 
+        hash[:start] = ini2
+        hash[:end] = fin2
+        ans.push(hash)
+        
+      end
+    end
+    return ans
   end
 
- # It is important change the where for other that search classrooms availables
+  def is_cyclic_available(day, b_h, b_m, e_h, e_m)
+    for i in classroom_schedules
+      cyc = i.cyclic_schedule
+      req_ini = DateTime.new(2000,1,1,b_h.to_i, b_m.to_i, 0)
+      req_end = DateTime.new(2000,1,1,e_h.to_i, e_m.to_i, 0)
+      taken_ini = DateTime.new(2000,1,1,cyc.begin_at_hour, cyc.begin_at_minute, 0)
+      taken_end = DateTime.new(2000,1,1,cyc.end_at_hour, cyc.end_at_minute, 0)
+      
+      if cyc.day != day || req_ini >= taken_end || req_end <= taken_ini
+        a = 1
+      else
+        return false
+      end
+    end
+    return true
+  end
+
+  def is_specific_available(ini, fin)
+    req_ini = DateTime.parse(ini)
+    req_end = DateTime.parse(fin)
+    for i in classroom_events
+      sc = i.specific_schedule
+      dsc = sc.date
+      taken_ini = DateTime.new(dsc.year, dsc.month, dsc.day, sc.begin_at_hour, sc.begin_at_minute, 0)
+      taken_end = DateTime.new(dsc.year, dsc.month, dsc.day, sc.end_at_hour, sc.end_at_minute, 0)
+      if req_ini >= taken_end || req_end <= taken_ini
+        a = 1
+      else
+        return false
+      end
+
+    end
+
+    return is_cyclic_available(req_ini.wday, req_ini.hour, req_ini.minute, req_end.hour, req_end.minute)
+
+
+  end
+
+
 end

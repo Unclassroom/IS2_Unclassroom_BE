@@ -13,6 +13,10 @@ class SpecificSchedulesController < ApplicationController
     render json: @specific_schedule
   end
 
+  def available_classrooms
+    render json: SpecificSchedule.available_classrooms(params[:ini_date], params[:end_date])
+  end
+
   # POST /specific_schedules
   def create
     @specific_schedule = SpecificSchedule.new(specific_schedule_params)
