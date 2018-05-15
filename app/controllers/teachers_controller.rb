@@ -13,6 +13,12 @@ class TeachersController < ApplicationController
     render json: @teacher
   end
 
+  # GET /teacher_requests/1
+  def requests
+    render json: Teacher.find(params[:id]).requests
+  end
+
+
   # POST /teachers
   def create
     @teacher = Teacher.new(teacher_params)
