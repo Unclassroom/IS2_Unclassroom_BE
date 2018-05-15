@@ -50,5 +50,52 @@ class Classroom < ApplicationRecord
     .where('classrooms.id = ?',hb_id)
     .select('type_classrooms.name').limit(1) 
   end
- # It is important change the where for other that search classrooms availables
+
+  def taken_schedules(a, b)
+    ini = DateTime.parse(a)
+    fin = DateTime.parse(b)
+    
+    ans = Array.new
+    
+    cs = classroom_schedules
+    for i in cs
+      gr = i.group.number.to_s
+      subj = i.group.subject.name
+      teach = i.group.teacher
+      cyc = i.cyclic_schedule
+      ini2 = DateTime.new(ini.year, ini.month, ini.day, cyc.begin_at_hour, cyc.begin_at_minute, 0)
+      fin2 = DateTime.new(ini.year, ini.month, ini.day, cyc.end_at_hour, cyc.end_at_minute, 0)
+      while(ini2 <= fin)
+        if ini2.wday ==  cyc.day
+          hash = Hash.new
+          hash[:title] = subj + ' - ' + gr +' - ' + teach.first_name + ' ' + teach.last_name
+          hash[:start] = ini2
+          hash[:end] = fin2
+          ans.push(hash)
+          
+        end
+        ini2 = ini2.next_day
+        fin2 = fin2.next_day 
+      end
+    end
+
+    clse = classroom_events
+    for i in clse
+      ss = i.specific_schedule
+      temp_date = ss.date
+      cde = DateTime.new(temp_date.year, temp_date.month, temp_date.day, ss.begin_at_hour, ss.begin_at_minute, 0)
+      if (cde <= fin &&  cde >= ini)
+        hash = Hash.new
+        eve = i.event
+        hash[:title] = eve.name + ' - ' + eve.description 
+        hash[:start] = ini2
+        hash[:end] = fin2
+        ans.push(hash)
+        
+      end
+    end
+
+
+    return ans
+  end
 end

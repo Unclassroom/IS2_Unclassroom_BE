@@ -36,4 +36,9 @@ class CyclicSchedule < ApplicationRecord
         .where('cyclic_schedules.id = ?',hb_id)
         .select('cyclic_schedules.day, cyclic_schedules.begin_at, cyclic_schedules.end_at, cyclic_requests.id AS idrequest').limit(1) 
     end
+
+    def self.available_classrooms(day, b_h, b_m, e_h, e_m)
+        cs = CyclicSchedule.all
+        return cs
+    end
 end

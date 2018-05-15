@@ -24,12 +24,18 @@
 #  fk_rails_...  (type_classroom_id => type_classrooms.id)
 #
 
-class ClassroomSerializer < ActiveModel::Serializer
-  attributes :id, :type_classroom_id, :building_id, :department_id, :capacity
+class ClassroomTakenSchedulesSerializer < ActiveModel::Serializer
+  attributes :id, :type_classroom_id, :building_id, :department_id, :capacity, :taken_schedules
 
-  belongs_to :type_classroom
-  belongs_to :building
-  belongs_to :department
+  def taken_schedules
+    Classroom.where('classrooms.id = ?', object.id).joins(:classroom_schedules).joins(:cyclic_schedules)
+    .select("day, begin_at_hour, begin_at_minute, end_at_hour, end_at_minute")
+  end
+#  begin_at_hour   :integer
+#  begin_at_minute :integer
+#  end_at_hour     :integer
+#  end_at_minute   :integer
+
+  #Classroom.where('classrooms.id = ?', 1).joins(:classroom_schedules).joins(:cyclic_schedules)
   
 end
-

@@ -12,6 +12,12 @@ class CyclicSchedulesController < ApplicationController
     render json: @cyclic_schedule
   end
 
+  def available_classrooms
+    render json: CyclicSchedule.available_classrooms(
+      params[:day], params[:begin_hour], params[:begin_minute], params[:end_hour], params[:end_minute])
+  end
+
+
   # POST /cyclic_schedules
   def create
     @cyclic_schedule = CyclicSchedule.new(cyclic_schedule_params)
@@ -47,4 +53,6 @@ class CyclicSchedulesController < ApplicationController
     def cyclic_schedule_params
       params.require(:cyclic_schedule).permit(:day, :begin_at, :end_at)
     end
+
+    
 end

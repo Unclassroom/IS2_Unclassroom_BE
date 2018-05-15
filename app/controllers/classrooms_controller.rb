@@ -1,4 +1,5 @@
 class ClassroomsController < ApplicationController
+  include ActiveModel::Serializers::JSON
   before_action :set_classroom, only: [:show, :update, :destroy]
 
   # GET /classrooms
@@ -18,6 +19,17 @@ class ClassroomsController < ApplicationController
       render json: @classroom.errors, status: :unprocessable_entity
     end
   end
+
+  # GET /classrooms/1
+  def show
+    render json: @classroom
+  end
+
+  # GET /classrooms/1
+  def taken_schedules
+    render json: Classroom.find(params[:id]).taken_schedules(params[:ini], params[:fin])
+  end
+
 
   # PATCH/PUT /classrooms/1
   def update
