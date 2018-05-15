@@ -7,6 +7,11 @@ class ClassroomsController < ApplicationController
     render json: @classrooms
   end
 
+  # POST /available_classroom
+  def available_classroom
+    render json: Classroom.find(params[:id]).classrooms
+  end
+
 
   # POST /classrooms
   def create
@@ -42,5 +47,9 @@ class ClassroomsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def classroom_params
       params.require(:classroom).permit(:type_classroom_id, :building_id, :department_id, :capacity)
+    end
+
+    def classroom_schedules
+      params.permit(:type_classroom_id, :specific_schedule)
     end
 end

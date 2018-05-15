@@ -50,5 +50,30 @@ class Classroom < ApplicationRecord
     .where('classrooms.id = ?',hb_id)
     .select('type_classrooms.name').limit(1) 
   end
+
+  def self.get_specific_classrooms(date, begin_hour,begin_minute, end_hour, end_minute)
+  
+    d1  = Time.parse(begin_hour+begin_minute)
+    d2  = Time.parse(end_hour+end_minute)
+    if Classroom.select("specific_schedules.date").where('specific_schedules.id = ?', object.id).present?
+      Classroom.select("specific_schedules.date").where('specific_schedules.id = ?', object.id).first.date.wday
+    else
+      -1
+    end
+    instance = Classroom
+    .joins(:classroom_events, :specific_schedules)
+    .where('classrooms_events.classroom_id = ?',object.id)
+    .where('specific_schedules.date').
+    .select('classrooms.id').limit(1) 
+p instance.between?( d1, d2 ) # => true
+    Classroom
+    .joins(:classroom_events, :specific_schedules)
+    .where('classrooms_events.classroom_id = ?',object.id)
+    .where('specific_schedules.date').
+    .select('classrooms.id').limit(1) 
+    return  Request.where("requests.created_at >= ?", begin_date).
+    where("requests.created_at <= ?", end_date).group("TO_CHAR(created_at, 'Month YYYY')").count
+  end
+
  # It is important change the where for other that search classrooms availables
 end

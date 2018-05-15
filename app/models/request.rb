@@ -51,7 +51,6 @@ class Request < ApplicationRecord
   has_many :cyclic_schedule, through: :cyclic_requests
   has_many :specific_schedule, through: :specific_requests
  
-
   scope :group_by_month,   -> { group("date_trunc('month', created_at) ") }
   scope :exclude_user_ids, -> (ids) { where("user_id is not in (?)",ids) }
 
@@ -77,6 +76,7 @@ class Request < ApplicationRecord
     where("requests.created_at <= ?", end_date).group(:name).count
   end
 
+
   def self.get_between_dates_by_month(begin_date, end_date)
     if(begin_date == nil)
       begin_date = "1-1-1000"
@@ -84,7 +84,6 @@ class Request < ApplicationRecord
     end
     return  Request.where("requests.created_at >= ?", begin_date).
     where("requests.created_at <= ?", end_date).group("TO_CHAR(created_at, 'Month YYYY')").count
-
   end
 
   def self.get_between_dates_by_state(begin_date, end_date)
@@ -100,6 +99,4 @@ class Request < ApplicationRecord
     CronMailer.pending_requests().deliver_now
   end
   
-
-
 end

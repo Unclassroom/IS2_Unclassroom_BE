@@ -175,19 +175,8 @@ Rails.application.routes.draw do
   # Home controller routes.
   root   'home#index'
   get    'auth'            => 'home#auth'
-    
-  # Get login token from Knock
-  post   'user_token'      => 'user_token#create'
-    
-  # User actions
-  get    '/users'          => 'users#index'
-  get    '/users/current'  => 'users#current'
-  post   '/users/create'   => 'users#create'
-  patch  '/user/:id'       => 'users#update'
-  delete '/user/:id'       => 'users#destroy'
   
   resources :social_auth
-  # resources :users
   resources :departments
   resources :reports
   resources :classroom_events
@@ -212,29 +201,52 @@ Rails.application.routes.draw do
   resources :type_classrooms
   resources :purpose_classrooms
   resources :faculties
-  
-  get '/all_head_buildings(.:format)', to: 'head_buildings#all'
-  get '/pdf_request/:id(.:format)', to: 'requests#get_pdf'
-  get '/purpose_classrooms_no_paginate/(.:format)',  to: 'purpose_classrooms#index_no_paginate'
-  get '/type_classrooms_no_paginate/(.:format)',  to: 'type_classrooms#index_no_paginate'
-  get '/faculties_no_paginate/(.:format)',  to: 'faculties#index_no_paginate'
-  get '/groups_no_paginate/(.:format)',  to: 'groups#index_no_paginate'
-  get '/subjects_no_paginate/(.:format)',  to: 'subjects#index_no_paginate'
-  get '/requests_no_paginate/(.:format)',  to: 'requests#index_no_paginate'
 
-  get '/faculties_pages(.:format)',  to: 'faculties#number_pages'
-  get '/events_pages(.:format)',  to: 'events#number_pages'
-  get '/subjects_pages(.:format)',  to: 'subjects#number_pages'
-  get '/groups_pages(.:format)',  to: 'groups#number_pages'
-  get '/purpose_classrooms_pages(.:format)',  to: 'purpose_classrooms#number_pages'
+   # Get login token from Knock
+   post   'user_token'      => 'user_token#create'
+    
+   # User actions
+   get    '/users'          => 'users#index'
+   get    '/users/current'  => 'users#current'
+   post   '/users/create'   => 'users#create'
+   patch  '/user/:id'       => 'users#update'
+   delete '/user/:id'       => 'users#destroy'
+
+  # ENDPOINT QUERIES
+
+  # REQUESTS
+  get '/pdf_request/:id(.:format)', to: 'requests#get_pdf'
+  get '/requests_no_paginate/(.:format)',  to: 'requests#index_no_paginate'
   get '/requests_pages(.:format)',  to: 'requests#number_pages'
   # namespaces (?)
   #edit delete endpoints
   get '/request_count_by_purpose(.:format)',  to: 'requests#count_by_purpose'
   get '/request_count_by_month(.:format)',  to: 'requests#count_by_month'
   get '/request_count_by_state(.:format)',  to: 'requests#count_by_state'
-  
+
+  # CLASSROOMS
+  # post '/available_classroom'   => 'classrooms#available_classroom'
+
+  # Headbuildings
+  get '/all_head_buildings(.:format)', to: 'head_buildings#all'
+  # Buildings
   get '/building_classrooms/:id(.:format)',  to: 'buildings#building_classrooms'
-  
+  # PurposeClassrooms
+  get '/purpose_classrooms_no_paginate/(.:format)',  to: 'purpose_classrooms#index_no_paginate'
+  get '/purpose_classrooms_pages(.:format)',  to: 'purpose_classrooms#number_pages'
+  # TypeClassrooms
+  get '/type_classrooms_no_paginate/(.:format)',  to: 'type_classrooms#index_no_paginate'
+  # Faculties
+  get '/faculties_no_paginate/(.:format)',  to: 'faculties#index_no_paginate'
+  get '/faculties_pages(.:format)',  to: 'faculties#number_pages'
+  # Groups
+  get '/groups_no_paginate/(.:format)',  to: 'groups#index_no_paginate'
+  get '/groups_pages(.:format)',  to: 'groups#number_pages'
+  # Subjects
+  get '/subjects_no_paginate/(.:format)',  to: 'subjects#index_no_paginate'
+  get '/subjects_pages(.:format)',  to: 'subjects#number_pages'
+  # Events  
+  get '/events_pages(.:format)',  to: 'events#number_pages'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end

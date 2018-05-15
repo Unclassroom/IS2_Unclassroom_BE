@@ -23,6 +23,7 @@ class RequestsController < ApplicationController
     render json: @request    
   end
 
+  
   def get_pdf
     respond_to do |format|
       # format.html
@@ -85,6 +86,7 @@ class RequestsController < ApplicationController
       render json: @request.errors, status: :unprocessable_entity
     end
   end
+  
 
   def count_by_purpose
     data = Array.new
