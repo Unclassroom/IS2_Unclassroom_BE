@@ -5,7 +5,10 @@ fin = DateTime.new(2018,5,22,4,5,6)
 
 d = DateTime.new()
 
-if 1 == 1 && 2 == 2
-    p "no shit"
+def tr(a)
+    return true
 end
-#if d.wday == -1
+
+if tr(34)
+    p "hola"
+end

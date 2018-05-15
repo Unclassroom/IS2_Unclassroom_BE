@@ -94,8 +94,24 @@ class Classroom < ApplicationRecord
         
       end
     end
-
-
     return ans
   end
+
+  def is_cyclic_available(day, b_h, b_m, e_h, e_m)
+    for i in classroom_schedules
+      cyc = i.cyclic_schedule
+      req_ini = DateTime.new(2000,1,1,b_h.to_i, b_m.to_i, 0)
+      req_end = DateTime.new(2000,1,1,e_h.to_i, e_m.to_i, 0)
+      taken_ini = DateTime.new(2000,1,1,cyc.begin_at_hour, cyc.begin_at_minute, 0)
+      taken_end = DateTime.new(2000,1,1,cyc.end_at_hour, cyc.end_at_minute, 0)
+      
+      if cyc.day != day || req_ini >= taken_end || req_end <= taken_ini
+        a = 1
+      else
+        return false
+      end
+    end
+    return true
+  end
+
 end

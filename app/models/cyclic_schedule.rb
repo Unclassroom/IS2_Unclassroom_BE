@@ -38,7 +38,12 @@ class CyclicSchedule < ApplicationRecord
     end
 
     def self.available_classrooms(day, b_h, b_m, e_h, e_m)
-        cs = CyclicSchedule.all
-        return cs
+        ans = Array.new
+        Classroom.find_each do |c|
+            if c.is_cyclic_available(day, b_h, b_m, e_h, e_m)
+                ans.push(c)
+            end
+          end
+          return ans
     end
 end
