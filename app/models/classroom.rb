@@ -114,4 +114,26 @@ class Classroom < ApplicationRecord
     return true
   end
 
+  def is_specific_available(ini, fin)
+    req_ini = DateTime.parse(ini)
+    req_end = DateTime.parse(fin)
+    for i in classroom_events
+      sc = i.specific_schedule
+      dsc = sc.date
+      taken_ini = DateTime.new(dsc.year, dsc.month, dsc.day, sc.begin_at_hour, sc.begin_at_minute, 0)
+      taken_end = DateTime.new(dsc.year, dsc.month, dsc.day, sc.end_at_hour, sc.end_at_minute, 0)
+      if req_ini >= taken_end || req_end <= taken_ini
+        a = 1
+      else
+        return false
+      end
+
+    end
+
+    return is_cyclic_available(req_ini.wday, req_ini.hour, req_ini.minute, req_end.hour, req_end.minute)
+
+
+  end
+
+
 end

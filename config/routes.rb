@@ -238,5 +238,6 @@ Rails.application.routes.draw do
   
   get '/classroom_taken_schedules(.:format)',  to: 'classrooms#taken_schedules'
   get '/cyclic_schedule_available_classrooms(.:format)',  to: 'cyclic_schedules#available_classrooms'
+  get '/specific_schedule_available_classrooms(.:format)',  to: 'specific_schedules#available_classrooms'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end
