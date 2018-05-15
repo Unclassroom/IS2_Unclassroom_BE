@@ -22,6 +22,10 @@ class FacultiesController < ApplicationController
   def show
     render json: @faculty
   end
+  # GET /faculties/1
+  def classrooms
+    render json: Faculty.find(params[:id]).classrooms
+  end
 
   # POST /faculties
   def create

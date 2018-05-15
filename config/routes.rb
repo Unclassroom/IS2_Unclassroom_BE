@@ -235,6 +235,7 @@ Rails.application.routes.draw do
   get '/request_count_by_state(.:format)',  to: 'requests#count_by_state'
   
   get '/building_classrooms/:id(.:format)',  to: 'buildings#building_classrooms'
+  get '/faculty_classrooms/:id(.:format)',  to: 'faculties#classrooms'
   
   get '/classroom_taken_schedules(.:format)',  to: 'classrooms#taken_schedules'
   get '/cyclic_schedule_available_classrooms(.:format)',  to: 'cyclic_schedules#available_classrooms'
