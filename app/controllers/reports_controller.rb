@@ -15,7 +15,17 @@ class ReportsController < ApplicationController
   # POST /reports
   def create
     @report = Report.new(report_params)
+    
+    case params[:user_type]
+    when "student"
+      Student.find(params[:user_id]).reports << @report
+    else
+      render json: ["invalid user type:", params[:user_type]]
+      return -1
+    end
 
+
+    
     if @report.save
       render json: @report, status: :created, location: @report
     else

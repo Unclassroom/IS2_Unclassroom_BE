@@ -34,6 +34,8 @@ class Teacher < ApplicationRecord
     has_many :requests
     belongs_to :departments
     belongs_to :user
+    has_many :reports, as: :reportable
+
 
     # I think that it isnt necesaary make queries here.
 end

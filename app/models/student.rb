@@ -29,6 +29,9 @@ class Student < ApplicationRecord
     
     has_many :opinions
     belongs_to :user
+    has_many :reports, as: :reportable
+    has_many :opinions, as: :opinable
+
 
     # I think that it isnt necesaary make queries here.
 end

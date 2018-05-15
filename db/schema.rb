@@ -168,7 +168,8 @@ ActiveRecord::Schema.define(version: 20180515054647) do
 
   create_table "opinions", force: :cascade do |t|
     t.bigint "classroom_schedule_id"
-    t.bigint "student_id"
+    t.string "opinable_type"
+    t.bigint "opinable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
@@ -176,7 +177,7 @@ ActiveRecord::Schema.define(version: 20180515054647) do
     t.string "image"
     t.index ["classroom_id"], name: "index_opinions_on_classroom_id"
     t.index ["classroom_schedule_id"], name: "index_opinions_on_classroom_schedule_id"
-    t.index ["student_id"], name: "index_opinions_on_student_id"
+    t.index ["opinable_type", "opinable_id"], name: "index_opinions_on_opinable_type_and_opinable_id"
   end
 
   create_table "purpose_classrooms", force: :cascade do |t|
@@ -188,10 +189,13 @@ ActiveRecord::Schema.define(version: 20180515054647) do
   create_table "reports", force: :cascade do |t|
     t.string "description", limit: 500
     t.bigint "classroom_id"
+    t.string "reportable_type"
+    t.bigint "reportable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
     t.index ["classroom_id"], name: "index_reports_on_classroom_id"
+    t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
   end
 
   create_table "request_alternatives", force: :cascade do |t|
@@ -310,7 +314,6 @@ ActiveRecord::Schema.define(version: 20180515054647) do
   add_foreign_key "managers", "users"
   add_foreign_key "opinions", "classroom_schedules"
   add_foreign_key "opinions", "classrooms"
-  add_foreign_key "opinions", "students"
   add_foreign_key "reports", "classrooms"
   add_foreign_key "request_alternatives", "requests"
   add_foreign_key "requests", "external_people"

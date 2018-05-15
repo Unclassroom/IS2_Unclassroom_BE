@@ -38,14 +38,11 @@ class OpinionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_opinion
+    ef set_opinion
       @opinion = Opinion.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def opinion_params
-      #params.require(:opinion).permit(:student_id, :classroom_id, :description)#Revisar
-      params.permit(:student_id, :classroom_id, :description, :image)
+      params.permit(:classroom_id, :description, :image, :type_user, :id_user)
     end
 end

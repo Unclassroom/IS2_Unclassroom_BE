@@ -4,7 +4,8 @@
 #
 #  id                    :integer          not null, primary key
 #  classroom_schedule_id :integer
-#  student_id            :integer
+#  opinable_type         :string
+#  opinable_id           :integer
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  description           :string
@@ -13,15 +14,14 @@
 #
 # Indexes
 #
-#  index_opinions_on_classroom_id           (classroom_id)
-#  index_opinions_on_classroom_schedule_id  (classroom_schedule_id)
-#  index_opinions_on_student_id             (student_id)
+#  index_opinions_on_classroom_id                   (classroom_id)
+#  index_opinions_on_classroom_schedule_id          (classroom_schedule_id)
+#  index_opinions_on_opinable_type_and_opinable_id  (opinable_type,opinable_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (classroom_id => classrooms.id)
 #  fk_rails_...  (classroom_schedule_id => classroom_schedules.id)
-#  fk_rails_...  (student_id => students.id)
 #
 
 class OpinionSerializer < ActiveModel::Serializer

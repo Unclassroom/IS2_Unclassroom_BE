@@ -362,15 +362,14 @@ puts 'loading opinions'
 def create_Opinion (cnt = 1)
     for i in Student.take(2)
         for j in Classroom.take(2)
-            Opinion.create!(
-                student_id: i.id,
+            i.opinions << Opinion.create!(
                 classroom_id: j.id,
                 description: "this is " + Faker::HowIMetYourMother.catch_phrase 
             )
         end
     end
 end
-create_Opinion (1)
+create_Opinion (5)
 puts 'done'
 
 puts 'loading classrooms events'
