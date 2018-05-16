@@ -15,6 +15,21 @@ class OpinionsController < ApplicationController
   # POST /opinions
   def create
     @opinion = Opinion.new(opinion_params)
+    case params[:user_type]
+    when "student"
+      Student.find(params[:user_id]).opinions << @opinion
+    when "head_building"
+      HeadBuilding.find(params[:user_id]).opinions << @opinion
+    when "teacher"
+      Teacher.find(params[:user_id]).opinions << @opinion
+    when "external_person"
+      ExternalPerson.find(params[:user_id]).opinions << @opinion
+    when "manager"
+      Manager.find(params[:user_id]).opinions << @opinion
+    else
+      render json: ["invalid user type:", params[:user_type]]
+      return -1
+    end
 
     if @opinion.save
       render json: @opinion, status: :created, location: @opinion
@@ -38,7 +53,7 @@ class OpinionsController < ApplicationController
   end
 
   private
-    ef set_opinion
+    def set_opinion
       @opinion = Opinion.find(params[:id])
     end
 

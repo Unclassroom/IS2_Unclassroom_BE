@@ -17,6 +17,8 @@ class ExternalPerson < ApplicationRecord
     validates :cc, presence: true, numericality: { only_integer: true }
     validates :first_name, presence: true
     validates :last_name, presence: true
+    has_many :reports, as: :reportable
+    has_many :opinions, as: :opinable
 
     has_many :requests
 

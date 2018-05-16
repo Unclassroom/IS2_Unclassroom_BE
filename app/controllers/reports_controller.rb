@@ -19,6 +19,14 @@ class ReportsController < ApplicationController
     case params[:user_type]
     when "student"
       Student.find(params[:user_id]).reports << @report
+    when "head_building"
+      HeadBuilding.find(params[:user_id]).reports << @report
+    when "teacher"
+      Teacher.find(params[:user_id]).reports << @report
+    when "external_person"
+      ExternalPerson.find(params[:user_id]).reports << @report
+    when "manager"
+      Manager.find(params[:user_id]).reports << @report
     else
       render json: ["invalid user type:", params[:user_type]]
       return -1
