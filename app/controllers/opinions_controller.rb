@@ -58,6 +58,6 @@ class OpinionsController < ApplicationController
     end
 
     def opinion_params
-      params.permit(:classroom_id, :description, :image, :type_user, :id_user)
+      params.permit(:classroom_id, :description, :image)
     end
 end

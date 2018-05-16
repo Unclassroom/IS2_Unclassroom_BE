@@ -25,6 +25,6 @@
 #
 
 class OpinionSerializer < ActiveModel::Serializer
-  attributes :id, :student_id, :description
+  attributes :id, :description
 
 end
