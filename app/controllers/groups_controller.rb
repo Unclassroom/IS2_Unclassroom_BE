@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   # GET /groups
   def index
-    @groups = Group.paginate(:page => params[:page], per_page: 10)
+    @groups = Group.paginate(:page => params[:page], per_page: 10).order('created_at DESC')
 
     render json: @groups
   end
