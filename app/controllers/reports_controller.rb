@@ -36,7 +36,8 @@ class ReportsController < ApplicationController
     
     if @report.save
       user.reports << @report
-      render json: @report, status: :created, location: @report
+      #render json: @report, status: :created, location: @report
+      redirect_back fallback_location: "http://localhost:4200/damagerecord"
     else
       render json: @report.errors, status: :unprocessable_entity
     end
