@@ -76,11 +76,6 @@ rails g migration add_image_to_report image
 
 rails g migration remove_student_id_from_opinion
 
-rails g migration add_reportable_id_to_report reportable_id:string
-rails g migration add_reportable_type_to_report reportable_type:string
-
-
-
 # init all again
 bin/rails db:environment:set RAILS_ENV=development
 rake db:drop:all

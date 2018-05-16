@@ -34,11 +34,30 @@ class RequestsController < ApplicationController
 
   # POST /requests
   def create
+
+    user = nil
+    case params[:user_type]
+    when "student"
+      user = Student.find(params[:user_id])
+    when "head_building"
+      user = HeadBuilding.find(params[:user_id])
+    when "teacher"
+      user = Teacher.find(params[:user_id])
+    when "external_person"
+      user = ExternalPerson.find(params[:user_id])
+    when "manager"
+      user = Manager.find(params[:user_id])
+    else
+      render json: ["invalid user type:", params[:user_type]]
+      return -1
+    end
+
     @request = Request.new(request_params)
     if @request.save
+        user.requests << @request
         for i in params[:alternatives]
           ra = RequestAlternative.create!(request_id: @request.id)
-          @tr = params[:type_request]
+          @tr = i[:type_request]
           if  @tr == "specific"
             sr = SpecificRequest.create!(request_alternative_id: ra.id)
             ra.specific_requests << sr
@@ -52,6 +71,7 @@ class RequestsController < ApplicationController
                 )
                 sr.specific_schedule << sy
             end
+            ra.specific_requests << sr 
           elsif @tr == "cyclic"
             cr = CyclicRequest.create!(request_alternative_id: ra.id)
             ra.cyclic_requests << cr
@@ -65,7 +85,10 @@ class RequestsController < ApplicationController
                 )
                 cr.cyclic_schedule << cy
             end
+            ra.cyclic_requests << cr
           end
+          @request.request_alternatives << ra
+
         end
         # render json: {msg: @tr}
       render json: @request, status: :created, location: @request
@@ -117,8 +140,8 @@ class RequestsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def request_params
-      params.permit(:teacher_id, :external_person_id, :purpose_classroom_id, 
-        :type_classroom_id, :state, :accepted_alternative, :file, :motive, :alternatives)
+      params.permit(:purpose_classroom_id, :type_classroom_id, :state, 
+      :accepted_alternative, :file, :motive, :alternatives)
     end
 
     

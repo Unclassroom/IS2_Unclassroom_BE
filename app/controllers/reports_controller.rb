@@ -14,27 +14,28 @@ class ReportsController < ApplicationController
 
   # POST /reports
   def create
-    @report = Report.new(report_params)
-    
+    user = nil
     case params[:user_type]
     when "student"
-      Student.find(params[:user_id]).reports << @report
+      user = Student.find(params[:user_id])
     when "head_building"
-      HeadBuilding.find(params[:user_id]).reports << @report
+      user = HeadBuilding.find(params[:user_id])
     when "teacher"
-      Teacher.find(params[:user_id]).reports << @report
+      user = Teacher.find(params[:user_id])
     when "external_person"
-      ExternalPerson.find(params[:user_id]).reports << @report
+      user = ExternalPerson.find(params[:user_id])
     when "manager"
-      Manager.find(params[:user_id]).reports << @report
+      user = Manager.find(params[:user_id])
     else
       render json: ["invalid user type:", params[:user_type]]
       return -1
     end
 
 
+    @report = Report.new(report_params)
     
     if @report.save
+      user.reports << @report
       render json: @report, status: :created, location: @report
     else
       render json: @report.errors, status: :unprocessable_entity

@@ -82,10 +82,8 @@ ActiveRecord::Schema.define(version: 20180515054647) do
 
   create_table "cyclic_requests", force: :cascade do |t|
     t.bigint "request_alternative_id"
-    t.bigint "cyclic_schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cyclic_schedule_id"], name: "index_cyclic_requests_on_cyclic_schedule_id"
     t.index ["request_alternative_id"], name: "index_cyclic_requests_on_request_alternative_id"
   end
 
@@ -209,27 +207,26 @@ ActiveRecord::Schema.define(version: 20180515054647) do
     t.bigint "teacher_id"
     t.bigint "purpose_classroom_id"
     t.bigint "type_classroom_id"
-    t.bigint "external_person_id"
     t.string "state"
+    t.string "requestable_type"
+    t.bigint "requestable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "request_alternative_id"
     t.text "motive"
     t.string "file"
-    t.index ["external_person_id"], name: "index_requests_on_external_person_id"
     t.index ["purpose_classroom_id"], name: "index_requests_on_purpose_classroom_id"
     t.index ["request_alternative_id"], name: "index_requests_on_request_alternative_id"
+    t.index ["requestable_type", "requestable_id"], name: "index_requests_on_requestable_type_and_requestable_id"
     t.index ["teacher_id"], name: "index_requests_on_teacher_id"
     t.index ["type_classroom_id"], name: "index_requests_on_type_classroom_id"
   end
 
   create_table "specific_requests", force: :cascade do |t|
     t.bigint "request_alternative_id"
-    t.bigint "specific_schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["request_alternative_id"], name: "index_specific_requests_on_request_alternative_id"
-    t.index ["specific_schedule_id"], name: "index_specific_requests_on_specific_schedule_id"
   end
 
   create_table "specific_requests_schedules", id: false, force: :cascade do |t|
@@ -306,7 +303,6 @@ ActiveRecord::Schema.define(version: 20180515054647) do
   add_foreign_key "classrooms", "buildings"
   add_foreign_key "classrooms", "departments"
   add_foreign_key "classrooms", "type_classrooms"
-  add_foreign_key "cyclic_requests", "cyclic_schedules"
   add_foreign_key "cyclic_requests", "request_alternatives"
   add_foreign_key "departments", "faculties"
   add_foreign_key "groups", "subjects"
@@ -316,13 +312,11 @@ ActiveRecord::Schema.define(version: 20180515054647) do
   add_foreign_key "opinions", "classrooms"
   add_foreign_key "reports", "classrooms"
   add_foreign_key "request_alternatives", "requests"
-  add_foreign_key "requests", "external_people"
   add_foreign_key "requests", "purpose_classrooms"
   add_foreign_key "requests", "request_alternatives"
   add_foreign_key "requests", "teachers"
   add_foreign_key "requests", "type_classrooms"
   add_foreign_key "specific_requests", "request_alternatives"
-  add_foreign_key "specific_requests", "specific_schedules"
   add_foreign_key "students", "users"
   add_foreign_key "teachers", "departments"
   add_foreign_key "teachers", "users"

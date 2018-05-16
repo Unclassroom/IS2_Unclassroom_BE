@@ -230,12 +230,9 @@ puts 'loading requests'
 def create_Request(cnt  = 5)
     stat = ["pending", "in process", "denied", "seen", "accepted"]
     for a in Teacher.take(2)
-        for b in ExternalPerson.take(2)
             for c in PurposeClassroom.all
                 for d in TypeClassroom.all
-                    Request.create!(
-                        teacher_id: a.id,
-                        external_person_id: b.id,
+                    a.requests << Request.create!(
                         purpose_classroom_id: c.id,
                         type_classroom_id: d.id,
                         state: stat[Random.rand(5)],
@@ -247,7 +244,6 @@ def create_Request(cnt  = 5)
                         break
                     end
                 end
-            end
         end
     end
 end

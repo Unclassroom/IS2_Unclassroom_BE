@@ -21,6 +21,7 @@ class HeadBuilding < ApplicationRecord
     validates :last_name, presence: true
     has_many :reports, as: :reportable
     has_many :opinions, as: :opinable
+    has_many :requests, as: :requestable
 
     has_many :buildings
     has_many :faculties, through: :buildings

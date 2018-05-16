@@ -27,6 +27,7 @@ class Manager < ApplicationRecord
     validates :user_id, presence: true
     has_many :reports, as: :reportable
     has_many :opinions, as: :opinable
+    has_many :requests, as: :requestable
 
     belongs_to :user
 # I think that it isnt necesaary make queries here.

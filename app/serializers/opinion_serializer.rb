@@ -25,6 +25,10 @@
 #
 
 class OpinionSerializer < ActiveModel::Serializer
-  attributes :id, :description
+  attributes :id, :description, :type, :opinable
+
+  def type
+    object.opinable_type
+  end
 
 end

@@ -24,7 +24,7 @@
 class Report < ApplicationRecord
   include ActiveModel::Serialization
   mount_uploader :image, ImageUploader
-  belongs_to :opinable, polymorphic: true
+  belongs_to :reportable, polymorphic: true
   validates :classroom_id, presence: true, numericality: { only_integer: true }
   validates :description, presence: true
 
