@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects
   def index
-    @subjects = Subject.paginate(:page => params[:page], per_page: 10)
+    @subjects = Subject.paginate(:page => params[:page], per_page: 10).order('created_at DESC')
 
     render json: @subjects
   end

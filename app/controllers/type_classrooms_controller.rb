@@ -9,7 +9,7 @@ class TypeClassroomsController < ApplicationController
   end
 
   def index
-    @type_classrooms = TypeClassroom.paginate(:page => params[:page], per_page: 2)
+    @type_classrooms = TypeClassroom.paginate(:page => params[:page], per_page: 10).order('created_at DESC')
 
     render json: @type_classrooms
   end
