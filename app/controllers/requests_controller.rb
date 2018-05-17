@@ -100,7 +100,11 @@ class RequestsController < ApplicationController
     end
   end
 
+  def stats_pending_by_classroom_type
+    render json: Request.stats_pending_by_classroom_type
+  end
 
+  
   #POST /request_set_status
 
   def set_status

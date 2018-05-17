@@ -99,6 +99,8 @@ class Request < ApplicationRecord
     CronMailer.pending_requests().deliver_now
   end
   
-
+  def self.stats_pending_by_classroom_type
+    return Request.where("requests.state = ?", "pending").joins(:type_classroom).group("type_classrooms.name").count
+  end
 
 end

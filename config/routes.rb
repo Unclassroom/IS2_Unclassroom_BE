@@ -243,5 +243,6 @@ Rails.application.routes.draw do
   get '/specific_schedule_available_classrooms(.:format)',  to: 'specific_schedules#available_classrooms'
   
   post '/request_set_status', to: 'requests#set_status'
+  get '/request_stats_pending_by_classroom_type', to: 'requests#stats_pending_by_classroom_type'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end
