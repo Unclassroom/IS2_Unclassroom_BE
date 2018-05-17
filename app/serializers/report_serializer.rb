@@ -22,9 +22,9 @@
 #
 
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :description, :classroom_id, :type, :reportable
+  attributes :id, :description, :classroom_id, :user_type, :reportable
 
-  def type
+  def user_type
     object.reportable_type
   end
 
