@@ -47,6 +47,8 @@ class Request < ApplicationRecord
   has_many :specific_requests, through: :request_alternatives
   has_many :cyclic_schedule, through: :cyclic_requests
   has_many :specific_schedule, through: :specific_requests
+  has_many :classroom_schedules
+  has_many :classroom_events
  
 
   scope :group_by_month,   -> { group("date_trunc('month', created_at) ") }

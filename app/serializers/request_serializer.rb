@@ -41,6 +41,8 @@ class RequestSerializer < ActiveModel::Serializer
     object.requestable.user.email
   end
 
+
+  
   def user_type
     object.requestable_type
   end

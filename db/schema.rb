@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515054647) do
+ActiveRecord::Schema.define(version: 20180517035912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,10 @@ ActiveRecord::Schema.define(version: 20180515054647) do
     t.bigint "classroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "request_id"
     t.index ["classroom_id"], name: "index_classroom_events_on_classroom_id"
     t.index ["event_id"], name: "index_classroom_events_on_event_id"
+    t.index ["request_id"], name: "index_classroom_events_on_request_id"
     t.index ["specific_schedule_id"], name: "index_classroom_events_on_specific_schedule_id"
   end
 
@@ -62,9 +64,11 @@ ActiveRecord::Schema.define(version: 20180515054647) do
     t.bigint "cyclic_schedule_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "request_id"
     t.index ["classroom_id"], name: "index_classroom_schedules_on_classroom_id"
     t.index ["cyclic_schedule_id"], name: "index_classroom_schedules_on_cyclic_schedule_id"
     t.index ["group_id"], name: "index_classroom_schedules_on_group_id"
+    t.index ["request_id"], name: "index_classroom_schedules_on_request_id"
   end
 
   create_table "classrooms", force: :cascade do |t|
@@ -296,10 +300,12 @@ ActiveRecord::Schema.define(version: 20180515054647) do
   add_foreign_key "buildings", "head_buildings"
   add_foreign_key "classroom_events", "classrooms"
   add_foreign_key "classroom_events", "events"
+  add_foreign_key "classroom_events", "requests"
   add_foreign_key "classroom_events", "specific_schedules"
   add_foreign_key "classroom_schedules", "classrooms"
   add_foreign_key "classroom_schedules", "cyclic_schedules"
   add_foreign_key "classroom_schedules", "groups"
+  add_foreign_key "classroom_schedules", "requests"
   add_foreign_key "classrooms", "buildings"
   add_foreign_key "classrooms", "departments"
   add_foreign_key "classrooms", "type_classrooms"

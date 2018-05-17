@@ -76,6 +76,9 @@ rails g migration add_image_to_report image
 
 rails g migration remove_student_id_from_opinion
 
+rails g migration add_request_to_classroom_schedule request:references
+rails g migration add_request_to_classroom_event request:references
+
 # init all again
 bin/rails db:environment:set RAILS_ENV=development
 rake db:drop:all

@@ -100,6 +100,27 @@ class RequestsController < ApplicationController
     end
   end
 
+
+  #POST /request_set_status
+
+  def set_status
+    r = Request.find(params[:request_id])
+    r.state = params[:new_state]
+    r.save
+    if params[:assign_cyclic] != nil
+      for i in params[:assign_cyclic]
+        r.classroom_schedules << ClassroomSchedule.find(i[:classroom_schedule_id])
+      end
+    end
+    if params[:assign_specific] != nil
+      for i in params[:assign_specific]
+        r.classroom_events << ClassroomEvent.find(i[:classroom_event_id])
+      end
+    end
+       
+    render json: r
+  end
+
   # PATCH/PUT /requests/1
   def update
     if @request.update(request_params)
