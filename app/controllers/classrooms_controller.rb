@@ -27,7 +27,7 @@ class ClassroomsController < ApplicationController
 
   # GET /classrooms/1
   def taken_schedules
-    render json: Classroom.find(params[:id]).taken_schedules(params[:ini], params[:fin])
+    render json: Classroom.find(params[:id]).taken_schedules(params[:begin_date], params[:end_date])
   end
 
 
@@ -40,6 +40,10 @@ class ClassroomsController < ApplicationController
     end
   end
 
+
+  def percent_occupied
+    render json: Classroom.find(params[:classroom_id]).percent_occupied(params[:begin_date], params[:end_date])  
+  end
   # DELETE /classrooms/1
   def destroy
     @classroom.destroy

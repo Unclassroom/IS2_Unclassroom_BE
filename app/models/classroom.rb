@@ -135,5 +135,23 @@ class Classroom < ApplicationRecord
 
   end
 
+  def percent_occupied(a, b)
+    ini = Date.parse(a)
+    fin = Date.parse(b)
+    total = 0
+    ocup = 0
+    while ini <= fin
+      ini2 = ini.year.to_s + "-" + ini.month.to_s + '-' + ini.day.to_s + " 0:0:0"
+      fin2 = ini.year.to_s + "-" + ini.month.to_s + '-' + ini.day.to_s + " 23:59:59"
+      oc = taken_schedules(ini2, fin2)
+      total += 16
+      for i in oc
+        ocup += ((i[:end] - i[:start]) * 24 * 60).to_i
+      end
+      ini = ini.next_day
+    end
+    return [ocup / total]
+  end
+
 
 end

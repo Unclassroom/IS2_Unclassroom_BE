@@ -1,11 +1,9 @@
 require 'date'
 
 ini = DateTime.new(2018,5,12,4,5,6)
-fin = DateTime.new(2018,5,22,4,5,6)
+fin = DateTime.new(2018,5,12,4,7,6)
 
-d = DateTime.new()
+p ((fin - ini) * 24 * 60).to_i
 
-if 1 == 1 && 2 == 2
-    p "no shit"
-end
+
 #if d.wday == -1

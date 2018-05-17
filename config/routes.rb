@@ -244,5 +244,6 @@ Rails.application.routes.draw do
   
   post '/request_set_status', to: 'requests#set_status'
   get '/request_stats_pending_by_classroom_type', to: 'requests#stats_pending_by_classroom_type'
+  get '/classroom_percent_occupied(.:format)', to: 'classrooms#percent_occupied'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html1
 end
