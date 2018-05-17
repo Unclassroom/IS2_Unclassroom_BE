@@ -32,10 +32,14 @@
 #
 
 class RequestSerializer < ActiveModel::Serializer
-  attributes :id, :state, :times, :purpose_classroom, :type_classroom, :motive, :file, :user_type, :requestable
+  attributes :id, :state, :times, :purpose_classroom, :type_classroom, :motive, :file, :user_type, 
+  :requestable, :requester_email
   has_one :purpose_classroom
   has_one :type_classroom
   
+  def requester_email
+    object.requestable.user.email
+  end
 
   def user_type
     object.requestable_type
