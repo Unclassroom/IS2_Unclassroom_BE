@@ -150,7 +150,7 @@ class Classroom < ApplicationRecord
       end
       ini = ini.next_day
     end
-    return [ocup / total]
+    return ocup / total
   end
 
 
