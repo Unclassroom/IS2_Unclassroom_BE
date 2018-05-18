@@ -51,7 +51,7 @@ class CyclicSchedulesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cyclic_schedule_params
-      params.require(:cyclic_schedule).permit(:day, :begin_at, :end_at)
+      params.require(:cyclic_schedule).permit(:day, :begin_at_minute, :end_at_minute, :begin_at_hour, :end_at_hour)
     end
 
     

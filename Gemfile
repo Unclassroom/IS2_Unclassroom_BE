@@ -13,6 +13,7 @@ gem 'faker', '~> 1.8', '>= 1.8.7'
 gem 'carrierwave'
 gem 'whenever', require: false
 gem 'json'
+gem 'jbuilder'
 gem 'stamp'
 gem 'responders'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

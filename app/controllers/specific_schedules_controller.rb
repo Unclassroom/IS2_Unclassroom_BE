@@ -50,6 +50,6 @@ class SpecificSchedulesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def specific_schedule_params
-      params.require(:specific_schedule).permit(:day, :begin_at, :end_at)
+      params.require(:specific_schedule).permit(:date, :begin_at_hour, :begin_at_minute, :end_at_hour, :end_at_minute)
     end
 end
