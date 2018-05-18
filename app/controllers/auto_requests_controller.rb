@@ -18,7 +18,8 @@ class AutoRequestsController < ApplicationController
     @auto_request = AutoRequest.new(auto_request_params)
 
     if @auto_request.save
-      @auto_request.addDataFromExcel
+      ExcelSchedulesJob.perform_later(@auto_request)
+      #@auto_request.addDataFromExcel
       #render json: @auto_request, status: :created, location: @auto_request
       redirect_back fallback_location: "http://localhost:4200/layout/loadrequest"
       #redirect_to "http://www.rubyonrails.org", alert: "Watch it, mister!"

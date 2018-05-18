@@ -24,6 +24,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
 gem 'will_paginate', '~> 3.1.1'
 gem 'wicked_pdf'
+gem 'sidekiq'
 
 gem 'wkhtmltopdf-binary'
 gem 'receipts'
