@@ -33,7 +33,7 @@
 
 class RequestSerializer < ActiveModel::Serializer
   attributes :id, :state, :times, :purpose_classroom, :type_classroom, :motive, :file, :user_type, 
-  :requestable, :requester_email
+  :requestable, :requester_email, :classroom_schedules, :classroom_events
   has_one :purpose_classroom
   has_one :type_classroom
   
