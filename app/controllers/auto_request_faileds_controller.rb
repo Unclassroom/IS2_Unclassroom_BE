@@ -35,7 +35,7 @@ class AutoRequestFailedsController < ApplicationController
 
   # DELETE /auto_request_faileds/1
   def destroy
-    @auto_request_failed.destroy
+    #@auto_request_failed.destroy
   end
 
   private

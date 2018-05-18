@@ -36,7 +36,7 @@ else
 
   # DELETE /managers/1
   def destroy
-    @manager.destroy
+    #@manager.destroy
   end
 
   private

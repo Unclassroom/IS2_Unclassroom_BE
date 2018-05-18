@@ -154,7 +154,7 @@ class RequestsController < ApplicationController
 
   # DELETE /requests/1
   def destroy
-    @request.destroy
+   # @request.destroy
   end
 
   private

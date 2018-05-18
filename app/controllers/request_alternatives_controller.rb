@@ -35,7 +35,7 @@ class RequestAlternativesController < ApplicationController
 
   # DELETE /request_alternatives/1
   def destroy
-    @request_alternative.destroy
+   # @request_alternative.destroy
   end
 
   private

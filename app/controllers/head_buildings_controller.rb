@@ -44,7 +44,7 @@ def all
 
   # DELETE /head_buildings/1
   def destroy
-    @head_building.destroy
+    #@head_building.destroy
   end
 
   private

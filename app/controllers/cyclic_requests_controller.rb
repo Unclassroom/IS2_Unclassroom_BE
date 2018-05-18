@@ -34,7 +34,7 @@ class CyclicRequestsController < ApplicationController
 
   # DELETE /cyclic_requests/1
   def destroy
-    @cyclic_request.destroy
+    #@cyclic_request.destroy
   end
 
   private

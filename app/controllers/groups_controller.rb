@@ -46,7 +46,7 @@ class GroupsController < ApplicationController
 
   # DELETE /groups/1
   def destroy
-    @group.destroy
+    #@group.destroy
   end
 
   private

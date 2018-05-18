@@ -57,7 +57,7 @@ class BuildingsController < ApplicationController
 
   # DELETE /buildings/1
   def destroy
-    @building.destroy
+    #@building.destroy
   end
 
   private

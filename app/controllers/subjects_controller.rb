@@ -47,7 +47,7 @@ class SubjectsController < ApplicationController
 
   # DELETE /subjects/1
   def destroy
-    @subject.destroy
+    #@subject.destroy
   end
 
   private

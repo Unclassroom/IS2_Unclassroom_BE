@@ -41,7 +41,7 @@ class TypeClassroomsController < ApplicationController
 
   # DELETE /type_classrooms/1
   def destroy
-    @type_classroom.destroy
+    #@type_classroom.destroy
   end
 
   private

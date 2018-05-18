@@ -39,7 +39,7 @@ class SpecificSchedulesController < ApplicationController
 
   # DELETE /specific_schedules/1
   def destroy
-    @specific_schedule.destroy
+   # @specific_schedule.destroy
   end
 
   private

@@ -40,7 +40,7 @@ class CyclicSchedulesController < ApplicationController
 
   # DELETE /cyclic_schedules/1
   def destroy
-    @cyclic_schedule.destroy
+    #@cyclic_schedule.destroy
   end
 
   private

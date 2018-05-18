@@ -34,7 +34,7 @@ class SpecificRequestsController < ApplicationController
 
   # DELETE /specific_requests/1
   def destroy
-    @specific_request.destroy
+    #@specific_request.destroy
   end
 
   private

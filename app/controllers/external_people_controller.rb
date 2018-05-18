@@ -37,7 +37,7 @@ class ExternalPeopleController < ApplicationController
 
   # DELETE /external_people/1
   def destroy
-    @external_person.destroy
+   # @external_person.destroy
   end
 
   private

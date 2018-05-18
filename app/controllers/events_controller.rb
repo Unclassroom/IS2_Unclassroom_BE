@@ -46,7 +46,7 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
-    @event.destroy
+    #@event.destroy
   end
 
   private

@@ -37,7 +37,7 @@ class ClassroomEventsController < ApplicationController
 
   # DELETE /classroom_events/1
   def destroy
-    @classroom_event.destroy
+    #@classroom_event.destroy
   end
 
   private

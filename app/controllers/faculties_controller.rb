@@ -49,7 +49,7 @@ class FacultiesController < ApplicationController
 
   # DELETE /faculties/1
   def destroy
-    @faculty.destroy
+   # @faculty.destroy
   end
 
   private

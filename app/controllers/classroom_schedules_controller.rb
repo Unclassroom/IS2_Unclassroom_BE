@@ -35,7 +35,7 @@ class ClassroomSchedulesController < ApplicationController
 
   # DELETE /classroom_schedules/1
   def destroy
-    @classroom_schedule.destroy
+   # @classroom_schedule.destroy
   end
 
   private

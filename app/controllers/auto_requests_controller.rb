@@ -38,7 +38,7 @@ class AutoRequestsController < ApplicationController
 
   # DELETE /auto_requests/1
   def destroy
-    @auto_request.destroy
+    #@auto_request.destroy
   end
 
   private
