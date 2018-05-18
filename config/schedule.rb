@@ -15,6 +15,7 @@ set :output, "/home/fffeelipe/SE_II/IS2_Unclassroom_BE/log/development.log"
 #
 every 1.day do
   runner "Request.dailyMailer"
+  runner "Request.auto_reject"
 end
 
 # Learn more: http://github.com/javan/whenever

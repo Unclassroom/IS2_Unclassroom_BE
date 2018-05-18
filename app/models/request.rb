@@ -103,4 +103,10 @@ class Request < ApplicationRecord
     return Request.where("requests.state = ?", "pending").joins(:type_classroom).group("type_classrooms.name").count
   end
 
+  def self.auto_reject
+    for i in Request.where("created_at < ? and state = ?", (Date.today - 30).to_s, "pending")
+      i.state = "auto_rejected"
+      i.save
+    end
+  end
 end
