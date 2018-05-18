@@ -15,7 +15,7 @@ class TeachersController < ApplicationController
 
   # GET /teacher_requests/1
   def requests
-    render json: Teacher.find(params[:id]).requests
+    render json: Teacher.find(params[:id]).requests.order("updated_at desc")
   end
 
 
