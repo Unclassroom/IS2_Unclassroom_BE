@@ -48,6 +48,6 @@ class ClassroomEventsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def classroom_event_params
-      params.require(:classroom_event).permit(:event_id, :specific_id, :classroom_id)
+      params.require(:classroom_event).permit(:event_id, :specific_schedule_id, :classroom_id)
     end
 end
