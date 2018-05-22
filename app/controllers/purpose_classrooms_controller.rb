@@ -14,7 +14,7 @@ class PurposeClassroomsController < ApplicationController
 
   def number_pages
     pages = PurposeClassroom .all.count
-    render json: (pages/10).ceil
+    render json: (pages/10.0).ceil
   end
 
 

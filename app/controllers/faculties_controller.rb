@@ -10,7 +10,7 @@ class FacultiesController < ApplicationController
 
   def number_pages
     pages = Faculty.all.count 
-    render json: (pages/10).ceil
+    render json: (pages/10.0).ceil
   end
 
   def index_no_paginate

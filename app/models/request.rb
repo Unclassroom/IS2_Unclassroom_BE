@@ -109,4 +109,14 @@ class Request < ApplicationRecord
       i.save
     end
   end
+
+  def self.occupied_stats(a, b)
+    ans = Hash.new
+    for i in Classroom.find_each
+      ans[i] = i.percent_occupied
+    end
+
+    return ans
+  end
+  
 end

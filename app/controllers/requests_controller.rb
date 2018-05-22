@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
 
   def number_pages
     pages = Request.all.count
-    render json: (pages/10).ceil
+    render json: (pages/10.0).ceil
   end
 
 
@@ -156,6 +156,12 @@ class RequestsController < ApplicationController
   def destroy
    # @request.destroy
   end
+
+  def occupied_stats
+    render json: Request.occupied_stats(params[:begin_date], params[:end_date])
+    #render json: ["hola mundo"]
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

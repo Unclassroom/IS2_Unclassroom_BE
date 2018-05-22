@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   
   def number_pages
     pages = Group .all.count
-    render json: (pages/10).ceil
+    render json: (pages/10.0).ceil
   end
 
 
