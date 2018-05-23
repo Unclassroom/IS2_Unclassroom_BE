@@ -62,6 +62,9 @@ class Classroom < ApplicationRecord
       gr = i.group.number.to_s
       subj = i.group.subject.name
       teach = i.group.teacher
+      if teach == nil
+        teach = Teacher.first
+      end
       cyc = i.cyclic_schedule
       ini2 = DateTime.new(ini.year, ini.month, ini.day, cyc.begin_at_hour, cyc.begin_at_minute, 0)
       fin2 = DateTime.new(ini.year, ini.month, ini.day, cyc.end_at_hour, cyc.end_at_minute, 0)
@@ -71,8 +74,7 @@ class Classroom < ApplicationRecord
           hash[:title] = subj + ' - ' + gr +' - ' + teach.first_name + ' ' + teach.last_name
           hash[:start] = ini2
           hash[:end] = fin2
-          ans.push(hash)
-          
+          ans.push(hash)          
         end
         ini2 = ini2.next_day
         fin2 = fin2.next_day 
@@ -146,11 +148,13 @@ class Classroom < ApplicationRecord
       oc = taken_schedules(ini2, fin2)
       total += 16
       for i in oc
+        if i[:end] != nil && i[:start] != nil
         ocup += ((i[:end] - i[:start]) * 24 * 60).to_i
+        end
       end
       ini = ini.next_day
     end
-    return ocup / total
+    return ((ocup + 0.0) / total)*100.0
   end
 
 

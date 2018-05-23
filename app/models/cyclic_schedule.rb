@@ -18,10 +18,10 @@ class CyclicSchedule < ApplicationRecord
     include ActiveModel::Serialization
 
     validates :day, presence: true, numericality: { only_integer: true }
-    validates :begin_at_hour, presence: true
-    validates :end_at_hour, presence: true
-    validates :begin_at_minute, presence: true
-    validates :end_at_minute, presence: true
+    validates :begin_at_hour, presence: true, numericality: { only_integer: true }
+    validates :end_at_hour, presence: true, numericality: { only_integer: true }
+    validates :begin_at_minute, presence: true, numericality: { only_integer: true }
+    validates :end_at_minute, presence: true, numericality: { only_integer: true }
   
     has_and_belongs_to_many :cyclic_requests
     has_many :classroom_schedules

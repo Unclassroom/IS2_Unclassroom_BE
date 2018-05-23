@@ -111,12 +111,15 @@ class Request < ApplicationRecord
   end
 
   def self.occupied_stats(a, b)
-    ans = Hash.new
-    for i in Classroom.find_each
-      ans[i] = i.percent_occupied
+    ans = Array.new
+    for i in Classroom.all
+      temp = Hash.new
+      temp[:classroom] = i
+      temp[:percent_occupied] = i.percent_occupied(a, b)
+      ans.push(temp)
     end
 
-    return ans
+    return ans.sort_by { |k| -k[:percent_occupied] }
   end
   
 end

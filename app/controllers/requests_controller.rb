@@ -159,7 +159,7 @@ class RequestsController < ApplicationController
 
   def occupied_stats
     render json: Request.occupied_stats(params[:begin_date], params[:end_date])
-    #render json: ["hola mundo"]
+    #render json: [params[:begin_date], params[:end_date]]
   end
 
 
