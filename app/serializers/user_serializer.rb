@@ -29,7 +29,7 @@ class UserSerializer < ActiveModel::Serializer
     when User.joins(:managers).select("managers.id").where('managers.user_id = ?', object.id).present?
       User.joins(:managers).select("managers.id").where('managers.user_id = ?', object.id).first.id
     else
-      -1
+      object.id
     end
   end
   def first_name
