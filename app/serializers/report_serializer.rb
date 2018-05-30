@@ -22,10 +22,14 @@
 #
 
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :description, :classroom_id, :user_type, :reportable, :image
+  attributes :id, :description, :classroom_id, :user_type, :reportable, :image, :faculty
 
   def user_type
     object.reportable_type
+  end
+
+  def faculty
+    object.classroom.department.faculty
   end
 
   belongs_to :classroom

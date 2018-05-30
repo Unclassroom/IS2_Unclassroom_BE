@@ -25,10 +25,15 @@
 #
 
 class OpinionSerializer < ActiveModel::Serializer
-  attributes :id, :description, :user_type, :opinable, :image
+  attributes :id, :description, :user_type, :opinable, :image, :faculty
 
   def user_type
     object.opinable_type
   end
+
+  def faculty
+    object.classroom.department.faculty
+  end
+
 
 end
