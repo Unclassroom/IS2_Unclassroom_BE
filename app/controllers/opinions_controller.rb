@@ -3,7 +3,7 @@ class OpinionsController < ApplicationController
 
   # GET /opinions
   def index
-    @opinions = Opinion.all
+    @opinions = Opinion.paginate(:page => params[:page], per_page: 10).order('created_at DESC')
     render json: @opinions
   end
 
@@ -11,6 +11,12 @@ class OpinionsController < ApplicationController
   def show
     render json: @opinion
   end
+
+  def number_pages
+    pages = Opinion.all.count
+    render json: (pages/10.0).ceil
+  end
+
 
   # POST /opinions
   def create

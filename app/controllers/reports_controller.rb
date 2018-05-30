@@ -3,9 +3,15 @@ class ReportsController < ApplicationController
 
   # GET /reports
   def index
-    @reports = Report.all
+    @reports = Report.paginate(:page => params[:page], per_page: 10).order('created_at DESC')
     render json: @reports
   end
+
+  def number_pages
+    pages = Report.all.count
+    render json: (pages/10.0).ceil
+  end
+
 
   # GET /reports/1
   def show

@@ -228,6 +228,8 @@ Rails.application.routes.draw do
   get '/groups_pages(.:format)',  to: 'groups#number_pages'
   get '/purpose_classrooms_pages(.:format)',  to: 'purpose_classrooms#number_pages'
   get '/requests_pages(.:format)',  to: 'requests#number_pages'
+  get '/opinions_pages(.:format)',  to: 'opinions#number_pages'
+  get '/reports_pages(.:format)',  to: 'reports#number_pages'
   # namespaces (?)
   #edit delete endpoints
   get '/request_count_by_purpose(.:format)',  to: 'requests#count_by_purpose'
