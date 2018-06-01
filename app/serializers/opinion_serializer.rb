@@ -38,6 +38,7 @@ class OpinionSerializer < ActiveModel::Serializer
   def faculty
     object.classroom.department.faculty
   end
+  belongs_to :classroom
 
 
 end
